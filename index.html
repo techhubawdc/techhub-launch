@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TECH HUB — Grand Launch</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -26,24 +28,51 @@ body{
     radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%);
 }
 
-/* GRID */
+
+/* =========================
+   GRID
+========================= */
+
 .grid{
     position:absolute;
     inset:-50%;
+
     background-image:
         linear-gradient(rgba(0,180,255,.08) 1px,transparent 1px),
         linear-gradient(90deg,rgba(0,180,255,.08) 1px,transparent 1px);
+
     background-size:55px 55px;
-    transform:perspective(500px) rotateX(60deg);
+
+    transform:
+        perspective(500px)
+        rotateX(60deg);
+
     animation:gridMove 8s linear infinite;
 }
 
 @keyframes gridMove{
-    from{transform:perspective(500px) rotateX(60deg) translateY(0);}
-    to{transform:perspective(500px) rotateX(60deg) translateY(55px);}
+
+    from{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(0);
+    }
+
+    to{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(55px);
+    }
+
 }
 
-/* PARTICLES */
+
+/* =========================
+   PARTICLES
+========================= */
+
 .particles{
     position:absolute;
     inset:0;
@@ -52,50 +81,82 @@ body{
 
 .particle{
     position:absolute;
+
     width:3px;
     height:3px;
+
     border-radius:50%;
+
     background:#65eaff;
-    box-shadow:0 0 12px #00cfff;
-    animation:float 5s linear infinite;
+
+    box-shadow:
+        0 0 12px #00cfff;
+
+    animation:
+        float 5s linear infinite;
 }
 
 @keyframes float{
+
     from{
         transform:translateY(100vh);
         opacity:0;
     }
-    20%{opacity:1;}
-    80%{opacity:1;}
+
+    20%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
     to{
         transform:translateY(-10vh);
         opacity:0;
     }
+
 }
 
-/* WHITE FRAME */
+
+/* =========================
+   WHITE FRAME
+========================= */
+
 .frame{
     position:absolute;
+
     inset:20px;
+
     border:3px solid white;
+
     z-index:50;
+
     pointer-events:none;
+
     box-shadow:
         0 0 18px rgba(255,255,255,.18),
         inset 0 0 18px rgba(255,255,255,.05);
 }
 
-/* CORNERS */
+
+/* =========================
+   CORNERS
+========================= */
+
 .corner{
     position:absolute;
+
     width:55px;
     height:55px;
+
     border-color:#62eaff;
 }
 
 .tl{
     top:-3px;
     left:-3px;
+
     border-top:4px solid;
     border-left:4px solid;
 }
@@ -103,6 +164,7 @@ body{
 .tr{
     top:-3px;
     right:-3px;
+
     border-top:4px solid;
     border-right:4px solid;
 }
@@ -110,6 +172,7 @@ body{
 .bl{
     bottom:-3px;
     left:-3px;
+
     border-bottom:4px solid;
     border-left:4px solid;
 }
@@ -117,20 +180,32 @@ body{
 .br{
     bottom:-3px;
     right:-3px;
+
     border-bottom:4px solid;
     border-right:4px solid;
 }
 
-/* SCREEN */
+
+/* =========================
+   SCREEN
+========================= */
+
 .screen{
     position:absolute;
+
     inset:0;
+
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     flex-direction:column;
+
     text-align:center;
+
     z-index:10;
+
     padding:40px;
 }
 
@@ -138,117 +213,195 @@ body{
     display:none !important;
 }
 
+
+/* =========================
+   TEXT
+========================= */
+
 .label{
     font-size:clamp(14px,1.7vw,25px);
+
     letter-spacing:6px;
+
     color:#6eeaff;
+
     margin-bottom:25px;
 }
 
 .title{
     font-size:clamp(35px,5vw,75px);
+
     font-weight:800;
+
     letter-spacing:3px;
 }
 
 .subtitle{
     margin-top:25px;
+
     color:#a7bdcc;
+
     letter-spacing:4px;
+
     font-size:clamp(14px,1.5vw,22px);
 }
 
-/* BOOT */
+
+/* =========================
+   BOOT
+========================= */
+
 #boot{
     transition:opacity 1s ease;
 }
 
 .loading{
     width:min(500px,60vw);
+
     height:4px;
+
     background:rgba(255,255,255,.12);
+
     margin-top:30px;
+
     overflow:hidden;
 }
 
 .loadingBar{
     width:0;
+
     height:100%;
+
     background:#62eaff;
-    box-shadow:0 0 20px #00d9ff;
-    animation:load 3s forwards;
+
+    box-shadow:
+        0 0 20px #00d9ff;
+
+    animation:
+        load 3s forwards;
 }
 
 @keyframes load{
-    to{width:100%;}
+    to{
+        width:100%;
+    }
 }
 
-/* BUTTONS */
+
+/* =========================
+   BUTTONS
+========================= */
+
 .enterBtn,
 .letsGo{
+
     margin-top:40px;
+
     padding:18px 45px;
+
     background:rgba(0,150,255,.08);
+
     color:white;
+
     border:2px solid #63eaff;
+
     font-size:clamp(15px,1.6vw,23px);
+
     font-weight:bold;
+
     letter-spacing:3px;
+
     cursor:pointer;
+
     transition:.3s;
-    box-shadow:0 0 20px rgba(0,210,255,.25);
+
+    box-shadow:
+        0 0 20px rgba(0,210,255,.25);
 }
 
 .enterBtn:hover,
 .letsGo:hover{
+
     background:rgba(0,190,255,.22);
-    box-shadow:0 0 40px rgba(0,210,255,.6);
+
+    box-shadow:
+        0 0 40px rgba(0,210,255,.6);
+
     transform:scale(1.05);
 }
 
-/* LOADING / AUTHENTICATION */
+
+/* =========================
+   LOADING
+========================= */
+
 .loadingScreen{
-    animation:appear .6s ease;
+    animation:
+        appear .6s ease;
 }
 
 @keyframes appear{
+
     from{
         opacity:0;
         transform:scale(.9);
     }
+
     to{
         opacity:1;
         transform:scale(1);
     }
+
 }
 
 .loadingTitle{
+
     font-size:clamp(30px,4vw,65px);
+
     font-weight:800;
+
     letter-spacing:4px;
 }
 
 .loadingText{
+
     margin-top:25px;
+
     color:#8eaabd;
+
     letter-spacing:4px;
+
     font-size:clamp(14px,1.5vw,21px);
 }
 
-/* LOADING DOTS */
+
+/* =========================
+   LOADING DOTS
+========================= */
+
 .dots{
+
     margin-top:35px;
+
     display:flex;
+
     gap:12px;
 }
 
 .dot{
+
     width:13px;
     height:13px;
+
     border-radius:50%;
+
     background:#63eaff;
-    box-shadow:0 0 15px #00d9ff;
-    animation:dotPulse 1s infinite;
+
+    box-shadow:
+        0 0 15px #00d9ff;
+
+    animation:
+        dotPulse 1s infinite;
 }
 
 .dot:nth-child(2){
@@ -260,242 +413,655 @@ body{
 }
 
 @keyframes dotPulse{
+
     0%,100%{
         opacity:.2;
         transform:scale(.7);
     }
+
     50%{
         opacity:1;
         transform:scale(1.2);
     }
+
 }
 
-/* ERROR */
+
+/* =========================
+   ERROR
+========================= */
+
 .errorBox{
-    animation:errorAppear .7s ease;
+    animation:
+        errorAppear .7s ease;
 }
 
 @keyframes errorAppear{
+
     0%{
         opacity:0;
         transform:scale(1.2);
     }
+
     60%{
         opacity:1;
         transform:scale(.98);
     }
+
     100%{
         transform:scale(1);
     }
+
 }
 
 .errorText{
+
     color:#ff6975;
+
     font-size:clamp(40px,6vw,95px);
+
     font-weight:900;
+
     letter-spacing:7px;
-    text-shadow:0 0 30px rgba(255,50,70,.6);
+
+    text-shadow:
+        0 0 30px rgba(255,50,70,.6);
 }
 
 .errorSmall{
+
     margin-top:20px;
+
     color:#c5a3a8;
+
     letter-spacing:4px;
 }
 
-/* CHAIRMAN */
+
+/* =========================
+   CHAIRMAN
+========================= */
+
 .chairmanText{
+
     max-width:1000px;
+
     line-height:1.4;
+
     font-size:clamp(24px,4vw,60px);
+
     font-weight:700;
 }
 
 .sir{
+
     margin-top:30px;
+
     color:#69eaff;
+
     font-size:clamp(30px,5vw,70px);
+
     font-weight:900;
+
     letter-spacing:5px;
-    text-shadow:0 0 25px #00cfff;
+
+    text-shadow:
+        0 0 25px #00cfff;
 }
 
-/* SUCCESS */
+
+/* =========================
+   SUCCESS
+========================= */
+
 .success{
+
     color:#5cffae;
+
     font-size:clamp(45px,7vw,110px);
+
     font-weight:900;
+
     letter-spacing:7px;
+
     text-shadow:
         0 0 20px #00ff91,
         0 0 60px rgba(0,255,150,.6);
-    animation:successPop .8s ease;
+
+    animation:
+        successPop .8s ease;
 }
 
 @keyframes successPop{
+
     0%{
         opacity:0;
         transform:scale(.5);
     }
+
     70%{
         transform:scale(1.1);
     }
+
     100%{
         opacity:1;
         transform:scale(1);
     }
+
 }
 
-/* COUNTDOWN */
+
+/* =========================
+   COUNTDOWN
+========================= */
+
 .countNumber{
+
     font-size:clamp(130px,23vw,330px);
+
     font-weight:900;
+
     line-height:1;
+
     color:white;
+
     text-shadow:
         0 0 25px #00d9ff,
         0 0 70px #0077ff,
         0 0 130px #7c00ff;
-    animation:pulse 1s ease;
+
+    animation:
+        pulse 1s ease;
 }
 
 @keyframes pulse{
+
     0%{
         transform:scale(1.6);
         opacity:0;
     }
+
     60%{
         transform:scale(.95);
         opacity:1;
     }
+
     100%{
         transform:scale(1);
     }
+
 }
 
-/* FLASH */
+
+/* =========================
+   FLASH
+========================= */
+
 .flash{
+
     position:absolute;
+
     inset:0;
+
     background:white;
+
     opacity:0;
+
     z-index:100;
+
     pointer-events:none;
 }
 
 .flash.active{
-    animation:flash .8s ease;
+    animation:
+        flash .8s ease;
 }
 
 @keyframes flash{
-    0%{opacity:0;}
-    25%{opacity:.95;}
-    100%{opacity:0;}
-}
 
-/* BANNER */
-#bannerReveal{
-    background:#000;
-    padding:0;
-}
-
-.bannerImage{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    opacity:0;
-    transform:scale(1.12);
-    animation:bannerReveal 3s ease forwards;
-}
-
-@keyframes bannerReveal{
     0%{
         opacity:0;
-        transform:scale(1.12);
-        filter:brightness(0);
     }
-    45%{
-        opacity:1;
-        filter:brightness(1.5);
+
+    25%{
+        opacity:.95;
     }
+
     100%{
-        opacity:1;
-        transform:scale(1);
-        filter:brightness(1);
+        opacity:0;
     }
+
 }
+
+
+/* =================================================
+   PHYSICAL BANNER LAUNCH
+================================================= */
+
+#bannerReveal{
+
+    background:#000;
+
+    padding:0;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    z-index:20;
+}
+
+
+/* Banner */
+
+.bannerImage{
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center bottom;
+
+    /*
+       Banner completely hidden initially.
+       It will appear from bottom.
+    */
+
+    clip-path:
+        inset(100% 0 0 0);
+
+    transform:
+        translateY(8%);
+
+    opacity:1;
+
+    filter:
+        brightness(.35);
+
+    /*
+       Slight 3D perspective
+       for physical banner feeling.
+    */
+
+    transform-origin:
+        center bottom;
+}
+
+
+/* =========================
+   BANNER ROLL / UNFOLD
+========================= */
+
+@keyframes physicalBannerRoll{
+
+    0%{
+
+        clip-path:
+            inset(100% 0 0 0);
+
+        transform:
+            translateY(8%)
+            scaleY(.98);
+
+        filter:
+            brightness(.35);
+    }
+
+
+    12%{
+
+        clip-path:
+            inset(88% 0 0 0);
+
+        transform:
+            translateY(6%)
+            scaleY(.99);
+
+        filter:
+            brightness(.55);
+    }
+
+
+    25%{
+
+        clip-path:
+            inset(75% 0 0 0);
+
+        transform:
+            translateY(4%)
+            scaleY(.995);
+
+        filter:
+            brightness(.75);
+    }
+
+
+    45%{
+
+        clip-path:
+            inset(55% 0 0 0);
+
+        transform:
+            translateY(2%)
+            scaleY(1);
+
+        filter:
+            brightness(.9);
+    }
+
+
+    65%{
+
+        clip-path:
+            inset(35% 0 0 0);
+
+        transform:
+            translateY(1%)
+            scaleY(1);
+
+        filter:
+            brightness(1.05);
+    }
+
+
+    82%{
+
+        clip-path:
+            inset(18% 0 0 0);
+
+        transform:
+            translateY(0)
+            scaleY(1);
+
+        filter:
+            brightness(1.12);
+    }
+
+
+    94%{
+
+        clip-path:
+            inset(5% 0 0 0);
+
+        transform:
+            translateY(0)
+            scaleY(1);
+
+        filter:
+            brightness(1.08);
+    }
+
+
+    100%{
+
+        clip-path:
+            inset(0 0 0 0);
+
+        transform:
+            translateY(0)
+            scaleY(1);
+
+        filter:
+            brightness(1);
+    }
+
+}
+
+
+/* =========================
+   BANNER LIGHT
+========================= */
 
 .bannerGlow{
+
     position:absolute;
+
     inset:0;
+
     pointer-events:none;
+
     background:
-        radial-gradient(circle at center,
-        rgba(0,210,255,.25),
-        transparent 45%);
-    animation:glow 3s ease infinite alternate;
-}
 
-@keyframes glow{
-    from{opacity:.3;}
-    to{opacity:.8;}
-}
+        radial-gradient(
+            circle at center,
+            rgba(0,210,255,.35),
+            transparent 55%
+        );
 
-/* ENERGY RING */
-.ring{
-    position:absolute;
-    width:30vw;
-    height:30vw;
-    max-width:500px;
-    max-height:500px;
-    border:2px solid rgba(90,230,255,.8);
-    border-radius:50%;
     opacity:0;
+
+    animation:
+        bannerGlowReveal 4s ease forwards;
+}
+
+@keyframes bannerGlowReveal{
+
+    0%{
+        opacity:0;
+    }
+
+    35%{
+        opacity:.15;
+    }
+
+    70%{
+        opacity:.5;
+    }
+
+    100%{
+        opacity:.75;
+    }
+
+}
+
+
+/* =========================
+   PHYSICAL BANNER EDGE
+========================= */
+
+#bannerReveal::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:100%;
+
+    height:7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #63eaff,
+            white,
+            #63eaff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 25px #00d9ff,
+        0 0 50px #00d9ff;
+
+    opacity:0;
+
+    animation:
+        bannerEdge 4s ease forwards;
+
+    pointer-events:none;
+}
+
+@keyframes bannerEdge{
+
+    0%{
+        opacity:0;
+        transform:translateY(0);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================
+   ENERGY RING
+========================= */
+
+.ring{
+
+    position:absolute;
+
+    width:30vw;
+
+    height:30vw;
+
+    max-width:500px;
+
+    max-height:500px;
+
+    border:
+        2px solid rgba(90,230,255,.8);
+
+    border-radius:50%;
+
+    opacity:0;
+
     pointer-events:none;
 }
 
 .ring.active{
-    animation:ring 1.5s ease-out;
+
+    animation:
+        ring 1.5s ease-out;
 }
 
 @keyframes ring{
+
     0%{
+
         transform:scale(.1);
+
         opacity:1;
     }
+
     100%{
+
         transform:scale(3);
+
         opacity:0;
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .frame{
+        inset:10px;
+    }
+
+    .label{
+        letter-spacing:3px;
+    }
+
+    .title{
+        letter-spacing:1px;
+    }
+
+    .subtitle{
+        letter-spacing:2px;
+    }
+
+    .bannerImage{
+        object-fit:contain;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- BACKGROUND -->
+
 <div class="grid"></div>
+
 <div class="particles" id="particles"></div>
 
+
+<!-- WHITE FRAME -->
+
 <div class="frame">
+
     <div class="corner tl"></div>
+
     <div class="corner tr"></div>
+
     <div class="corner bl"></div>
+
     <div class="corner br"></div>
+
 </div>
 
+
+<!-- EFFECTS -->
+
 <div class="ring" id="ring"></div>
+
 <div class="flash" id="flash"></div>
 
 
-<!-- 1. SYSTEM INITIALIZATION -->
+<!-- =================================================
+     1. SYSTEM INITIALIZATION
+================================================= -->
+
 <div class="screen" id="boot">
 
-    <div class="label">SYSTEM INITIALIZATION</div>
+    <div class="label">
+        SYSTEM INITIALIZATION
+    </div>
 
-    <div class="title">TECH HUB</div>
+    <div class="title">
+        TECH HUB
+    </div>
 
     <div class="loading">
+
         <div class="loadingBar"></div>
+
     </div>
 
     <div class="subtitle">
@@ -505,10 +1071,15 @@ body{
 </div>
 
 
-<!-- 2. PRESIDENT -->
+<!-- =================================================
+     2. PRESIDENT
+================================================= -->
+
 <div class="screen hidden" id="president">
 
-    <div class="label">AUTHORIZED PERSONNEL REQUIRED</div>
+    <div class="label">
+        AUTHORIZED PERSONNEL REQUIRED
+    </div>
 
     <div class="title">
         PRESIDENT OF TECH HUB
@@ -518,17 +1089,28 @@ body{
         PLEASE ENTER TO MOVE ON
     </div>
 
-    <button class="enterBtn" onclick="presidentEnter()">
+    <button
+        class="enterBtn"
+        onclick="presidentEnter()">
+
         ENTER
+
     </button>
 
 </div>
 
 
-<!-- 3. PRESIDENT LOADING -->
-<div class="screen hidden loadingScreen" id="presidentLoading">
+<!-- =================================================
+     3. PRESIDENT LOADING
+================================================= -->
 
-    <div class="label">SECURITY PROTOCOL</div>
+<div
+    class="screen hidden loadingScreen"
+    id="presidentLoading">
+
+    <div class="label">
+        SECURITY PROTOCOL
+    </div>
 
     <div class="loadingTitle">
         AUTHENTICATING...
@@ -539,15 +1121,22 @@ body{
     </div>
 
     <div class="dots">
+
         <div class="dot"></div>
+
         <div class="dot"></div>
+
         <div class="dot"></div>
+
     </div>
 
 </div>
 
 
-<!-- 4. PRESIDENT ERROR -->
+<!-- =================================================
+     4. PRESIDENT ERROR
+================================================= -->
+
 <div class="screen hidden" id="error1">
 
     <div class="errorBox">
@@ -569,10 +1158,15 @@ body{
 </div>
 
 
-<!-- 5. ASSOCIATE PRESIDENT -->
+<!-- =================================================
+     5. ASSOCIATE PRESIDENT
+================================================= -->
+
 <div class="screen hidden" id="associate">
 
-    <div class="label">SECOND AUTHORIZATION REQUIRED</div>
+    <div class="label">
+        SECOND AUTHORIZATION REQUIRED
+    </div>
 
     <div class="title">
         ASSOCIATIVE PRESIDENT
@@ -582,17 +1176,28 @@ body{
         PLEASE ENTER TO MOVE ON
     </div>
 
-    <button class="enterBtn" onclick="associateEnter()">
+    <button
+        class="enterBtn"
+        onclick="associateEnter()">
+
         ENTER
+
     </button>
 
 </div>
 
 
-<!-- 6. ASSOCIATE LOADING -->
-<div class="screen hidden loadingScreen" id="associateLoading">
+<!-- =================================================
+     6. ASSOCIATE LOADING
+================================================= -->
 
-    <div class="label">SECURITY PROTOCOL</div>
+<div
+    class="screen hidden loadingScreen"
+    id="associateLoading">
+
+    <div class="label">
+        SECURITY PROTOCOL
+    </div>
 
     <div class="loadingTitle">
         AUTHENTICATING...
@@ -603,15 +1208,22 @@ body{
     </div>
 
     <div class="dots">
+
         <div class="dot"></div>
+
         <div class="dot"></div>
+
         <div class="dot"></div>
+
     </div>
 
 </div>
 
 
-<!-- 7. ASSOCIATE ERROR -->
+<!-- =================================================
+     7. ASSOCIATE ERROR
+================================================= -->
+
 <div class="screen hidden" id="error2">
 
     <div class="errorBox">
@@ -633,7 +1245,10 @@ body{
 </div>
 
 
-<!-- 8. CHAIRMAN -->
+<!-- =================================================
+     8. CHAIRMAN
+================================================= -->
+
 <div class="screen hidden" id="chairman">
 
     <div class="label">
@@ -648,17 +1263,28 @@ body{
         CHAIRMAN SIR
     </div>
 
-    <button class="letsGo" onclick="chairmanEnter()">
+    <button
+        class="letsGo"
+        onclick="chairmanEnter()">
+
         ⚡ LET'S GO
+
     </button>
 
 </div>
 
 
-<!-- 9. CHAIRMAN LOADING -->
-<div class="screen hidden loadingScreen" id="chairmanLoading">
+<!-- =================================================
+     9. CHAIRMAN LOADING
+================================================= -->
 
-    <div class="label">PRIORITY AUTHORIZATION</div>
+<div
+    class="screen hidden loadingScreen"
+    id="chairmanLoading">
+
+    <div class="label">
+        PRIORITY AUTHORIZATION
+    </div>
 
     <div class="loadingTitle">
         AUTHENTICATING...
@@ -669,15 +1295,22 @@ body{
     </div>
 
     <div class="dots">
+
         <div class="dot"></div>
+
         <div class="dot"></div>
+
         <div class="dot"></div>
+
     </div>
 
 </div>
 
 
-<!-- 10. SUCCESS -->
+<!-- =================================================
+     10. SUCCESS
+================================================= -->
+
 <div class="screen hidden" id="success">
 
     <div class="success">
@@ -695,22 +1328,34 @@ body{
 </div>
 
 
-<!-- 11. COUNTDOWN -->
+<!-- =================================================
+     11. COUNTDOWN
+================================================= -->
+
 <div class="screen hidden" id="countdown">
 
     <div class="label">
         TECH HUB LAUNCH SEQUENCE
     </div>
 
-    <div class="countNumber" id="countNumber">
+    <div
+        class="countNumber"
+        id="countNumber">
+
         10
+
     </div>
 
 </div>
 
 
-<!-- 12. FINAL BANNER -->
-<div class="screen hidden" id="bannerReveal">
+<!-- =================================================
+     12. FINAL PHYSICAL BANNER
+================================================= -->
+
+<div
+    class="screen hidden"
+    id="bannerReveal">
 
     <img
         class="bannerImage"
@@ -725,157 +1370,213 @@ body{
 
 <script>
 
-/* CREATE PARTICLES */
-const particles=document.getElementById("particles");
+
+/* =================================================
+   CREATE PARTICLES
+================================================= */
+
+const particles =
+    document.getElementById("particles");
+
 
 for(let i=0;i<100;i++){
 
-    const p=document.createElement("div");
+    const p =
+        document.createElement("div");
 
     p.className="particle";
 
-    p.style.left=Math.random()*100+"%";
+    p.style.left =
+        Math.random()*100+"%";
 
-    p.style.animationDelay=
-        (Math.random()*5)+"s";
+    p.style.animationDelay =
+        Math.random()*5+"s";
 
-    p.style.animationDuration=
-        (3+Math.random()*6)+"s";
+    p.style.animationDuration =
+        3+Math.random()*6+"s";
 
     particles.appendChild(p);
+
 }
 
 
-/* SCREENS */
+/* =================================================
+   SCREENS
+================================================= */
+
 const screens=[
+
     "boot",
+
     "president",
+
     "presidentLoading",
+
     "error1",
+
     "associate",
+
     "associateLoading",
+
     "error2",
+
     "chairman",
+
     "chairmanLoading",
+
     "success",
+
     "countdown",
+
     "bannerReveal"
+
 ];
+
 
 function hideAll(){
 
     screens.forEach(id=>{
-        document.getElementById(id)
-        .classList.add("hidden");
+
+        document
+            .getElementById(id)
+            .classList
+            .add("hidden");
+
     });
 
 }
 
 
-/* INITIALIZATION → PRESIDENT */
+/* =================================================
+   INITIALIZATION → PRESIDENT
+================================================= */
+
 setTimeout(()=>{
 
-    document.getElementById("boot")
-    .style.opacity="0";
+    document
+        .getElementById("boot")
+        .style.opacity="0";
+
 
     setTimeout(()=>{
 
         hideAll();
 
-        document.getElementById("president")
-        .classList.remove("hidden");
+        document
+            .getElementById("president")
+            .classList
+            .remove("hidden");
 
     },900);
 
 },3500);
 
 
-/* PRESIDENT ENTER */
+/* =================================================
+   PRESIDENT ENTER
+================================================= */
+
 function presidentEnter(){
 
     hideAll();
 
-    document.getElementById("presidentLoading")
-    .classList.remove("hidden");
+    document
+        .getElementById("presidentLoading")
+        .classList
+        .remove("hidden");
 
-    /* LOADING FOR 3 SECONDS */
 
     setTimeout(()=>{
 
         hideAll();
 
-        document.getElementById("error1")
-        .classList.remove("hidden");
+        document
+            .getElementById("error1")
+            .classList
+            .remove("hidden");
 
     },3000);
 
-    /* ERROR FOR 2.5 SECONDS */
 
     setTimeout(()=>{
 
         hideAll();
 
-        document.getElementById("associate")
-        .classList.remove("hidden");
+        document
+            .getElementById("associate")
+            .classList
+            .remove("hidden");
 
     },5500);
 
 }
 
 
-/* ASSOCIATE PRESIDENT ENTER */
+/* =================================================
+   ASSOCIATE PRESIDENT
+================================================= */
+
 function associateEnter(){
 
     hideAll();
 
-    document.getElementById("associateLoading")
-    .classList.remove("hidden");
+    document
+        .getElementById("associateLoading")
+        .classList
+        .remove("hidden");
 
-    /* LOADING */
 
     setTimeout(()=>{
 
         hideAll();
 
-        document.getElementById("error2")
-        .classList.remove("hidden");
+        document
+            .getElementById("error2")
+            .classList
+            .remove("hidden");
 
     },3000);
 
-    /* ERROR */
 
     setTimeout(()=>{
 
         hideAll();
 
-        document.getElementById("chairman")
-        .classList.remove("hidden");
+        document
+            .getElementById("chairman")
+            .classList
+            .remove("hidden");
 
     },5500);
 
 }
 
 
-/* CHAIRMAN */
+/* =================================================
+   CHAIRMAN
+================================================= */
+
 function chairmanEnter(){
 
     hideAll();
 
-    document.getElementById("chairmanLoading")
-    .classList.remove("hidden");
+    document
+        .getElementById("chairmanLoading")
+        .classList
+        .remove("hidden");
 
-    /* CHAIRMAN LOADING */
 
     setTimeout(()=>{
 
         hideAll();
 
-        document.getElementById("success")
-        .classList.remove("hidden");
+        document
+            .getElementById("success")
+            .classList
+            .remove("hidden");
 
     },3000);
 
-    /* SUCCESS */
 
     setTimeout(()=>{
 
@@ -886,24 +1587,39 @@ function chairmanEnter(){
 }
 
 
-/* LAUNCH */
+/* =================================================
+   LAUNCH
+================================================= */
+
 function startLaunch(){
 
-    const flash=document.getElementById("flash");
-    const ring=document.getElementById("ring");
+    const flash =
+        document.getElementById("flash");
+
+    const ring =
+        document.getElementById("ring");
+
 
     hideAll();
 
+
     flash.classList.add("active");
+
     ring.classList.add("active");
+
 
     setTimeout(()=>{
 
         flash.classList.remove("active");
+
         ring.classList.remove("active");
 
-        document.getElementById("countdown")
-        .classList.remove("hidden");
+
+        document
+            .getElementById("countdown")
+            .classList
+            .remove("hidden");
+
 
         startCountdown();
 
@@ -912,59 +1628,128 @@ function startLaunch(){
 }
 
 
-/* COUNTDOWN */
+/* =================================================
+   COUNTDOWN
+================================================= */
+
 function startCountdown(){
 
     let n=10;
 
-    const number=document.getElementById("countNumber");
+    const number =
+        document.getElementById("countNumber");
+
 
     number.innerText=n;
 
-    const timer=setInterval(()=>{
 
-        n--;
+    const timer =
+        setInterval(()=>{
 
-        if(n>0){
+            n--;
 
-            number.innerText=n;
 
-            number.style.animation="none";
+            if(n>0){
 
-            void number.offsetWidth;
+                number.innerText=n;
 
-            number.style.animation="pulse 1s ease";
 
-        }
+                number.style.animation="none";
 
-        else{
 
-            clearInterval(timer);
+                void number.offsetWidth;
 
-            finalReveal();
 
-        }
+                number.style.animation=
+                    "pulse 1s ease";
 
-    },1000);
+            }
+
+            else{
+
+                clearInterval(timer);
+
+                finalReveal();
+
+            }
+
+        },1000);
 
 }
 
 
-/* FINAL BANNER */
+/* =================================================
+   FINAL BANNER REVEAL
+================================================= */
+
 function finalReveal(){
 
-    const flash=document.getElementById("flash");
+    const flash =
+        document.getElementById("flash");
+
+    const banner =
+        document.getElementById("bannerReveal");
+
+    const image =
+        banner.querySelector(".bannerImage");
+
 
     hideAll();
 
+
+    /*
+       RESET BANNER
+       So every launch starts
+       completely rolled at bottom.
+    */
+
+    image.style.animation="none";
+
+    image.style.clipPath=
+        "inset(100% 0 0 0)";
+
+    image.style.transform=
+        "translateY(8%)";
+
+
+    /*
+       Force browser reflow
+       before starting animation.
+    */
+
+    void image.offsetWidth;
+
+
+    /*
+       Launch flash
+    */
+
     flash.classList.add("active");
+
 
     setTimeout(()=>{
 
         flash.classList.remove("active");
 
-        document.getElementById("bannerReveal")
-        .classList.remove("hidden");
+
+        /*
+           SHOW BANNER
+        */
+
+        banner
+            .classList
+            .remove("hidden");
+
+
+        /*
+           START PHYSICAL
+           BOTTOM → TOP
+           ROLL / UNFOLD
+        */
+
+        image.style.animation=
+            "physicalBannerRoll 4s cubic-bezier(.22,.61,.36,1) forwards";
+
 
     },600);
 
