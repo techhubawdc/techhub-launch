@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +21,12 @@ html,body{
     color:white;
 }
 
-/* BACKGROUND */
 body{
     background:
-    radial-gradient(circle at center, #071a32 0%, #02040a 55%, #000 100%);
+    radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%);
 }
 
+/* GRID */
 .grid{
     position:absolute;
     inset:-50%;
@@ -40,12 +39,8 @@ body{
 }
 
 @keyframes gridMove{
-    from{
-        transform:perspective(500px) rotateX(60deg) translateY(0);
-    }
-    to{
-        transform:perspective(500px) rotateX(60deg) translateY(55px);
-    }
+    from{transform:perspective(500px) rotateX(60deg) translateY(0);}
+    to{transform:perspective(500px) rotateX(60deg) translateY(55px);}
 }
 
 /* PARTICLES */
@@ -59,8 +54,8 @@ body{
     position:absolute;
     width:3px;
     height:3px;
-    background:#65eaff;
     border-radius:50%;
+    background:#65eaff;
     box-shadow:0 0 12px #00cfff;
     animation:float 5s linear infinite;
 }
@@ -126,7 +121,7 @@ body{
     border-right:4px solid;
 }
 
-/* GENERAL SCREEN */
+/* SCREEN */
 .screen{
     position:absolute;
     inset:0;
@@ -143,7 +138,6 @@ body{
     display:none !important;
 }
 
-/* TEXT */
 .label{
     font-size:clamp(14px,1.7vw,25px);
     letter-spacing:6px;
@@ -189,9 +183,32 @@ body{
     to{width:100%;}
 }
 
-/* AUTHORIZATION */
-.auth{
-    animation:appear .8s ease;
+/* BUTTONS */
+.enterBtn,
+.letsGo{
+    margin-top:40px;
+    padding:18px 45px;
+    background:rgba(0,150,255,.08);
+    color:white;
+    border:2px solid #63eaff;
+    font-size:clamp(15px,1.6vw,23px);
+    font-weight:bold;
+    letter-spacing:3px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 0 20px rgba(0,210,255,.25);
+}
+
+.enterBtn:hover,
+.letsGo:hover{
+    background:rgba(0,190,255,.22);
+    box-shadow:0 0 40px rgba(0,210,255,.6);
+    transform:scale(1.05);
+}
+
+/* LOADING / AUTHENTICATION */
+.loadingScreen{
+    animation:appear .6s ease;
 }
 
 @keyframes appear{
@@ -205,31 +222,55 @@ body{
     }
 }
 
-.enterBtn{
-    margin-top:40px;
-    padding:18px 42px;
-    background:rgba(0,150,255,.08);
-    color:white;
-    border:2px solid #63eaff;
-    font-size:clamp(15px,1.6vw,23px);
-    font-weight:bold;
-    letter-spacing:3px;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:0 0 20px rgba(0,210,255,.25);
+.loadingTitle{
+    font-size:clamp(30px,4vw,65px);
+    font-weight:800;
+    letter-spacing:4px;
 }
 
-.enterBtn:hover{
-    background:rgba(0,190,255,.22);
-    box-shadow:0 0 40px rgba(0,210,255,.6);
-    transform:scale(1.04);
+.loadingText{
+    margin-top:25px;
+    color:#8eaabd;
+    letter-spacing:4px;
+    font-size:clamp(14px,1.5vw,21px);
+}
+
+/* LOADING DOTS */
+.dots{
+    margin-top:35px;
+    display:flex;
+    gap:12px;
+}
+
+.dot{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:#63eaff;
+    box-shadow:0 0 15px #00d9ff;
+    animation:dotPulse 1s infinite;
+}
+
+.dot:nth-child(2){
+    animation-delay:.2s;
+}
+
+.dot:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes dotPulse{
+    0%,100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.2);
+    }
 }
 
 /* ERROR */
-#error{
-    background:rgba(0,0,0,.35);
-}
-
 .errorBox{
     animation:errorAppear .7s ease;
 }
@@ -249,11 +290,11 @@ body{
 }
 
 .errorText{
-    color:#ff6b75;
-    font-size:clamp(35px,6vw,90px);
+    color:#ff6975;
+    font-size:clamp(40px,6vw,95px);
     font-weight:900;
-    letter-spacing:6px;
-    text-shadow:0 0 25px rgba(255,50,70,.6);
+    letter-spacing:7px;
+    text-shadow:0 0 30px rgba(255,50,70,.6);
 }
 
 .errorSmall{
@@ -271,7 +312,7 @@ body{
 }
 
 .sir{
-    margin-top:35px;
+    margin-top:30px;
     color:#69eaff;
     font-size:clamp(30px,5vw,70px);
     font-weight:900;
@@ -279,28 +320,30 @@ body{
     text-shadow:0 0 25px #00cfff;
 }
 
-/* LET'S GO */
-.letsGo{
-    margin-top:40px;
-    padding:20px 60px;
-    background:linear-gradient(90deg,rgba(0,130,255,.12),rgba(120,0,255,.15));
-    border:2px solid white;
-    color:white;
-    font-size:clamp(18px,2vw,28px);
-    font-weight:bold;
-    letter-spacing:4px;
-    cursor:pointer;
-    box-shadow:
-        0 0 20px rgba(0,200,255,.3),
-        inset 0 0 20px rgba(0,200,255,.08);
-    transition:.3s;
+/* SUCCESS */
+.success{
+    color:#5cffae;
+    font-size:clamp(45px,7vw,110px);
+    font-weight:900;
+    letter-spacing:7px;
+    text-shadow:
+        0 0 20px #00ff91,
+        0 0 60px rgba(0,255,150,.6);
+    animation:successPop .8s ease;
 }
 
-.letsGo:hover{
-    transform:scale(1.07);
-    box-shadow:
-        0 0 45px #00d9ff,
-        0 0 80px rgba(120,0,255,.5);
+@keyframes successPop{
+    0%{
+        opacity:0;
+        transform:scale(.5);
+    }
+    70%{
+        transform:scale(1.1);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 /* COUNTDOWN */
@@ -350,7 +393,7 @@ body{
     100%{opacity:0;}
 }
 
-/* BANNER REVEAL */
+/* BANNER */
 #bannerReveal{
     background:#000;
     padding:0;
@@ -382,7 +425,6 @@ body{
     }
 }
 
-/* FINAL GLOW */
 .bannerGlow{
     position:absolute;
     inset:0;
@@ -445,7 +487,7 @@ body{
 <div class="flash" id="flash"></div>
 
 
-<!-- 1. INITIALIZATION -->
+<!-- 1. SYSTEM INITIALIZATION -->
 <div class="screen" id="boot">
 
     <div class="label">SYSTEM INITIALIZATION</div>
@@ -464,7 +506,7 @@ body{
 
 
 <!-- 2. PRESIDENT -->
-<div class="screen auth hidden" id="president">
+<div class="screen hidden" id="president">
 
     <div class="label">AUTHORIZED PERSONNEL REQUIRED</div>
 
@@ -483,7 +525,29 @@ body{
 </div>
 
 
-<!-- 3. ERROR 1 -->
+<!-- 3. PRESIDENT LOADING -->
+<div class="screen hidden loadingScreen" id="presidentLoading">
+
+    <div class="label">SECURITY PROTOCOL</div>
+
+    <div class="loadingTitle">
+        AUTHENTICATING...
+    </div>
+
+    <div class="loadingText">
+        VERIFYING PRESIDENT AUTHORIZATION
+    </div>
+
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+</div>
+
+
+<!-- 4. PRESIDENT ERROR -->
 <div class="screen hidden" id="error1">
 
     <div class="errorBox">
@@ -497,7 +561,7 @@ body{
         </div>
 
         <div class="errorSmall">
-            PLEASE WAIT...
+            PRESIDENT ACCESS DENIED
         </div>
 
     </div>
@@ -505,8 +569,8 @@ body{
 </div>
 
 
-<!-- 4. ASSOCIATIVE PRESIDENT -->
-<div class="screen auth hidden" id="associate">
+<!-- 5. ASSOCIATE PRESIDENT -->
+<div class="screen hidden" id="associate">
 
     <div class="label">SECOND AUTHORIZATION REQUIRED</div>
 
@@ -525,7 +589,29 @@ body{
 </div>
 
 
-<!-- 5. ERROR 2 -->
+<!-- 6. ASSOCIATE LOADING -->
+<div class="screen hidden loadingScreen" id="associateLoading">
+
+    <div class="label">SECURITY PROTOCOL</div>
+
+    <div class="loadingTitle">
+        AUTHENTICATING...
+    </div>
+
+    <div class="loadingText">
+        VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION
+    </div>
+
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+</div>
+
+
+<!-- 7. ASSOCIATE ERROR -->
 <div class="screen hidden" id="error2">
 
     <div class="errorBox">
@@ -539,7 +625,7 @@ body{
         </div>
 
         <div class="errorSmall">
-            ACCESS STILL LOCKED...
+            ASSOCIATE PRESIDENT ACCESS DENIED
         </div>
 
     </div>
@@ -547,7 +633,7 @@ body{
 </div>
 
 
-<!-- 6. CHAIRMAN REQUEST -->
+<!-- 8. CHAIRMAN -->
 <div class="screen hidden" id="chairman">
 
     <div class="label">
@@ -562,14 +648,54 @@ body{
         CHAIRMAN SIR
     </div>
 
-    <button class="letsGo" onclick="launchTechHub()">
+    <button class="letsGo" onclick="chairmanEnter()">
         ⚡ LET'S GO
     </button>
 
 </div>
 
 
-<!-- 7. COUNTDOWN -->
+<!-- 9. CHAIRMAN LOADING -->
+<div class="screen hidden loadingScreen" id="chairmanLoading">
+
+    <div class="label">PRIORITY AUTHORIZATION</div>
+
+    <div class="loadingTitle">
+        AUTHENTICATING...
+    </div>
+
+    <div class="loadingText">
+        VERIFYING CHAIRMAN AUTHORIZATION
+    </div>
+
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+</div>
+
+
+<!-- 10. SUCCESS -->
+<div class="screen hidden" id="success">
+
+    <div class="success">
+        ACCESS GRANTED
+    </div>
+
+    <div class="subtitle">
+        CHAIRMAN AUTHORIZATION SUCCESSFUL
+    </div>
+
+    <div class="subtitle">
+        TECH HUB LAUNCH SEQUENCE ACTIVATED
+    </div>
+
+</div>
+
+
+<!-- 11. COUNTDOWN -->
 <div class="screen hidden" id="countdown">
 
     <div class="label">
@@ -583,7 +709,7 @@ body{
 </div>
 
 
-<!-- 8. BANNER REVEAL -->
+<!-- 12. FINAL BANNER -->
 <div class="screen hidden" id="bannerReveal">
 
     <img
@@ -599,8 +725,8 @@ body{
 
 <script>
 
-/* PARTICLES */
-const particles = document.getElementById("particles");
+/* CREATE PARTICLES */
+const particles=document.getElementById("particles");
 
 for(let i=0;i<100;i++){
 
@@ -610,106 +736,165 @@ for(let i=0;i<100;i++){
 
     p.style.left=Math.random()*100+"%";
 
-    p.style.animationDelay=(Math.random()*5)+"s";
+    p.style.animationDelay=
+        (Math.random()*5)+"s";
 
-    p.style.animationDuration=(3+Math.random()*6)+"s";
+    p.style.animationDuration=
+        (3+Math.random()*6)+"s";
 
     particles.appendChild(p);
 }
 
 
 /* SCREENS */
-const boot=document.getElementById("boot");
-const president=document.getElementById("president");
-const error1=document.getElementById("error1");
-const associate=document.getElementById("associate");
-const error2=document.getElementById("error2");
-const chairman=document.getElementById("chairman");
-const countdown=document.getElementById("countdown");
-const bannerReveal=document.getElementById("bannerReveal");
+const screens=[
+    "boot",
+    "president",
+    "presidentLoading",
+    "error1",
+    "associate",
+    "associateLoading",
+    "error2",
+    "chairman",
+    "chairmanLoading",
+    "success",
+    "countdown",
+    "bannerReveal"
+];
 
-const countNumber=document.getElementById("countNumber");
-
-const flash=document.getElementById("flash");
-const ring=document.getElementById("ring");
-
-
-/* HIDE ALL */
 function hideAll(){
 
-    [
-        boot,
-        president,
-        error1,
-        associate,
-        error2,
-        chairman,
-        countdown,
-        bannerReveal
-    ].forEach(el=>{
-        el.classList.add("hidden");
+    screens.forEach(id=>{
+        document.getElementById(id)
+        .classList.add("hidden");
     });
 
 }
 
 
-/* INITIALIZATION */
+/* INITIALIZATION → PRESIDENT */
 setTimeout(()=>{
 
-    boot.style.opacity="0";
+    document.getElementById("boot")
+    .style.opacity="0";
 
     setTimeout(()=>{
 
         hideAll();
 
-        president.classList.remove("hidden");
+        document.getElementById("president")
+        .classList.remove("hidden");
 
     },900);
 
 },3500);
 
 
-/* PRESIDENT */
+/* PRESIDENT ENTER */
 function presidentEnter(){
 
     hideAll();
 
-    error1.classList.remove("hidden");
+    document.getElementById("presidentLoading")
+    .classList.remove("hidden");
+
+    /* LOADING FOR 3 SECONDS */
 
     setTimeout(()=>{
 
         hideAll();
 
-        associate.classList.remove("hidden");
+        document.getElementById("error1")
+        .classList.remove("hidden");
 
-    },2300);
+    },3000);
+
+    /* ERROR FOR 2.5 SECONDS */
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document.getElementById("associate")
+        .classList.remove("hidden");
+
+    },5500);
+
 }
 
 
-/* ASSOCIATIVE PRESIDENT */
+/* ASSOCIATE PRESIDENT ENTER */
 function associateEnter(){
 
     hideAll();
 
-    error2.classList.remove("hidden");
+    document.getElementById("associateLoading")
+    .classList.remove("hidden");
+
+    /* LOADING */
 
     setTimeout(()=>{
 
         hideAll();
 
-        chairman.classList.remove("hidden");
+        document.getElementById("error2")
+        .classList.remove("hidden");
 
-    },2300);
+    },3000);
+
+    /* ERROR */
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document.getElementById("chairman")
+        .classList.remove("hidden");
+
+    },5500);
+
 }
 
 
-/* CHAIRMAN LAUNCH */
-function launchTechHub(){
+/* CHAIRMAN */
+function chairmanEnter(){
+
+    hideAll();
+
+    document.getElementById("chairmanLoading")
+    .classList.remove("hidden");
+
+    /* CHAIRMAN LOADING */
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document.getElementById("success")
+        .classList.remove("hidden");
+
+    },3000);
+
+    /* SUCCESS */
+
+    setTimeout(()=>{
+
+        startLaunch();
+
+    },5000);
+
+}
+
+
+/* LAUNCH */
+function startLaunch(){
+
+    const flash=document.getElementById("flash");
+    const ring=document.getElementById("ring");
 
     hideAll();
 
     flash.classList.add("active");
-
     ring.classList.add("active");
 
     setTimeout(()=>{
@@ -717,11 +902,13 @@ function launchTechHub(){
         flash.classList.remove("active");
         ring.classList.remove("active");
 
-        countdown.classList.remove("hidden");
+        document.getElementById("countdown")
+        .classList.remove("hidden");
 
         startCountdown();
 
-    },700);
+    },900);
+
 }
 
 
@@ -730,7 +917,9 @@ function startCountdown(){
 
     let n=10;
 
-    countNumber.innerText=n;
+    const number=document.getElementById("countNumber");
+
+    number.innerText=n;
 
     const timer=setInterval(()=>{
 
@@ -738,13 +927,13 @@ function startCountdown(){
 
         if(n>0){
 
-            countNumber.innerText=n;
+            number.innerText=n;
 
-            countNumber.style.animation="none";
+            number.style.animation="none";
 
-            void countNumber.offsetWidth;
+            void number.offsetWidth;
 
-            countNumber.style.animation="pulse 1s ease";
+            number.style.animation="pulse 1s ease";
 
         }
 
@@ -752,16 +941,19 @@ function startCountdown(){
 
             clearInterval(timer);
 
-            launchFinal();
+            finalReveal();
 
         }
 
     },1000);
+
 }
 
 
 /* FINAL BANNER */
-function launchFinal(){
+function finalReveal(){
+
+    const flash=document.getElementById("flash");
 
     hideAll();
 
@@ -771,9 +963,10 @@ function launchFinal(){
 
         flash.classList.remove("active");
 
-        bannerReveal.classList.remove("hidden");
+        document.getElementById("bannerReveal")
+        .classList.remove("hidden");
 
-    },500);
+    },600);
 
 }
 
@@ -781,4 +974,3 @@ function launchFinal(){
 
 </body>
 </html>
-```
