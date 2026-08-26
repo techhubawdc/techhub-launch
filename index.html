@@ -1288,7 +1288,38 @@ body{
 
 
 <script>
+/* =========================
+   SOUND SYSTEM
+========================= */
 
+const sounds = {
+
+    error: new Audio("sounds/error.mp3"),
+
+    scan: new Audio("sounds/scan.mp3"),
+
+    success: new Audio("sounds/success.mp3"),
+
+    countdown: new Audio("sounds/countdown.mp3"),
+
+    launch: new Audio("sounds/launch.mp3"),
+
+    celebration: new Audio("sounds/celebration.mp3")
+
+};
+
+
+function playSound(name){
+
+    const sound = sounds[name];
+
+    if(!sound) return;
+
+    sound.currentTime = 0;
+
+    sound.play().catch(()=>{});
+
+}
 
 /* =================================================
    CREATE PARTICLES
@@ -1413,20 +1444,22 @@ function presidentEnter(){
             .getElementById("error1")
             .classList
             .remove("hidden");
-
+ playSound("scan");
     },3000);
 
 
     setTimeout(()=>{
 
-        hideAll();
+    hideAll();
 
-        document
-            .getElementById("associate")
-            .classList
-            .remove("hidden");
+    document
+        .getElementById("error1")
+        .classList
+        .remove("hidden");
 
-    },5500);
+    playSound("error");
+
+},3000);
 
 }
 
@@ -1443,7 +1476,7 @@ function associateEnter(){
         .getElementById("associateLoading")
         .classList
         .remove("hidden");
-
+ playSound("scan");
 
     setTimeout(()=>{
 
@@ -1459,14 +1492,16 @@ function associateEnter(){
 
     setTimeout(()=>{
 
-        hideAll();
+    hideAll();
 
-        document
-            .getElementById("chairman")
-            .classList
-            .remove("hidden");
+    document
+        .getElementById("error2")
+        .classList
+        .remove("hidden");
 
-    },5500);
+    playSound("error");
+
+},3000);
 
 }
 
@@ -1483,7 +1518,7 @@ function chairmanEnter(){
         .getElementById("chairmanLoading")
         .classList
         .remove("hidden");
-
+ playSound("scan");
 
     setTimeout(()=>{
 
@@ -1493,7 +1528,7 @@ function chairmanEnter(){
             .getElementById("success")
             .classList
             .remove("hidden");
-
+   playSound("success");
     },3000);
 
 
@@ -1581,7 +1616,7 @@ function startCountdown(){
 
                 number.style.animation=
                     "pulse 1s ease";
-
+    playSound("countdown");
             }
 
             else{
@@ -1614,7 +1649,7 @@ function finalReveal(){
 
 
     hideAll();
-
+  playSound("launch");
 
     /*
        RESET BANNER
