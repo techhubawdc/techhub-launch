@@ -2,1714 +2,362 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>TECH HUB — Grand Launch</title>
-
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#02040a;color:#fff;font-family:Arial,Helvetica,sans-serif}
+body{background:radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%)}
+button{font:inherit}
+#app{position:fixed;inset:0;overflow:hidden}
+.grid{position:absolute;inset:-50%;background-image:linear-gradient(rgba(0,180,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,255,.08) 1px,transparent 1px);background-size:55px 55px;transform:perspective(500px) rotateX(60deg);animation:gridMove 8s linear infinite;pointer-events:none}
+@keyframes gridMove{to{transform:perspective(500px) rotateX(60deg) translateY(55px)}}
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:3px;height:3px;border-radius:50%;background:#65eaff;box-shadow:0 0 12px #00cfff;animation:float 5s linear infinite}
+@keyframes float{from{transform:translateY(100vh);opacity:0}20%,80%{opacity:1}to{transform:translateY(-10vh);opacity:0}}
+.screen{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;z-index:10;padding:clamp(18px,4vw,40px)}
+.hidden{display:none!important}
+.label{font-size:clamp(12px,1.7vw,25px);letter-spacing:clamp(2px,0.4vw,6px);color:#6eeaff;margin-bottom:20px}
+.title{font-size:clamp(30px,5vw,75px);font-weight:800;letter-spacing:3px}
+.subtitle{margin-top:20px;color:#a7bdcc;letter-spacing:clamp(1px,.25vw,4px);font-size:clamp(12px,1.5vw,22px)}
+.loading{width:min(500px,70vw);height:4px;background:rgba(255,255,255,.12);margin-top:28px;overflow:hidden}
+.loadingBar{width:0;height:100%;background:#62eaff;box-shadow:0 0 20px #00d9ff;animation:load 3s forwards}
+@keyframes load{to{width:100%}}
+.enterBtn,.chairmanEnter,.yesBtn{margin-top:34px;padding:16px 42px;background:rgba(0,150,255,.08);color:#fff;border:2px solid #63eaff;font-size:clamp(14px,1.6vw,23px);font-weight:bold;letter-spacing:3px;cursor:pointer;box-shadow:0 0 20px rgba(0,210,255,.25);transition:.25s}
+.enterBtn:hover,.chairmanEnter:hover,.yesBtn:hover{background:rgba(0,190,255,.22);box-shadow:0 0 40px rgba(0,210,255,.6);transform:scale(1.05)}
+.loadingScreen{animation:appear .6s ease}
+@keyframes appear{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.loadingTitle{font-size:clamp(28px,4vw,65px);font-weight:800;letter-spacing:4px}
+.loadingText{margin-top:20px;color:#8eaabd;letter-spacing:3px;font-size:clamp(12px,1.5vw,21px)}
+.dots{margin-top:30px;display:flex;gap:12px}.dot{width:12px;height:12px;border-radius:50%;background:#63eaff;box-shadow:0 0 15px #00d9ff;animation:dotPulse 1s infinite}.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes dotPulse{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+.errorText{color:#ff6975;font-size:clamp(42px,7vw,110px);font-weight:900;letter-spacing:7px;text-shadow:0 0 30px rgba(255,50,70,.6);animation:errorAppear .7s ease}
+@keyframes errorAppear{0%{opacity:0;transform:scale(1.2)}60%{opacity:1;transform:scale(.98)}100%{transform:scale(1)}}
+.errorSmall{margin-top:15px;color:#c5a3a8;letter-spacing:3px;font-size:clamp(11px,1.2vw,18px)}
+.chairmanText{max-width:1000px;line-height:1.4;font-size:clamp(22px,4vw,60px);font-weight:700}
+.sir{margin-top:25px;color:#69eaff;font-size:clamp(28px,5vw,70px);font-weight:900;letter-spacing:5px;text-shadow:0 0 25px #00cfff}
+.success{color:#5cffae;font-size:clamp(42px,7vw,110px);font-weight:900;letter-spacing:7px;text-shadow:0 0 20px #00ff91,0 0 60px rgba(0,255,150,.6);animation:successPop .8s ease}
+@keyframes successPop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+#letsGo{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:80;pointer-events:none;opacity:0}
+#letsGo.show{animation:letsGoShow 1.5s ease forwards}
+.letsGoText{font-size:clamp(70px,16vw,230px);font-weight:1000;font-style:italic;letter-spacing:clamp(3px,1vw,15px);color:#fff;text-shadow:0 0 20px #00d9ff,0 0 70px #0077ff,0 0 120px #7c00ff;transform:scale(.4);animation:letsGoPop 1.5s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes letsGoShow{0%{opacity:0}15%,75%{opacity:1}100%{opacity:0}}
+@keyframes letsGoPop{0%{transform:scale(.4) rotate(-4deg);opacity:0}35%{transform:scale(1.12) rotate(1deg);opacity:1}60%{transform:scale(1) rotate(0)}100%{transform:scale(1.06);opacity:0}}
+.energy{position:absolute;width:25vw;height:25vw;max-width:430px;max-height:430px;border:2px solid rgba(90,230,255,.8);border-radius:50%;opacity:0;pointer-events:none}
+.energy.active{animation:ring 1.3s ease-out}
+@keyframes ring{0%{transform:scale(.1);opacity:1}100%{transform:scale(3);opacity:0}}
+.countNumber{font-size:clamp(120px,23vw,330px);font-weight:900;line-height:1;color:#fff;text-shadow:0 0 25px #00d9ff,0 0 70px #0077ff,0 0 130px #7c00ff;animation:pulse 1s ease}
+@keyframes pulse{0%{transform:scale(1.6);opacity:0}60%{transform:scale(.95);opacity:1}100%{transform:scale(1)}}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:100;pointer-events:none}.flash.active{animation:flash .8s ease}
+@keyframes flash{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
+/* Banner reveal: 8 vertical slices close together, opening from the center toward both sides. */
+#bannerReveal{background:#000;padding:0;overflow:hidden;z-index:20}
+.bannerFinal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:3vh 2vw;opacity:0;transform:scale(1.04);transition:opacity .7s ease,transform .9s ease}
+.bannerFinal.visible{opacity:1;transform:scale(1)}
+.bannerFinal img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+.bannerSlices{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);z-index:4}
+.slice{position:relative;overflow:hidden;background:#000;box-shadow:0 0 18px rgba(0,0,0,.9);transform:scaleX(1);transform-origin:center}
+.slice::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,210,255,.12),rgba(0,0,0,.95));opacity:.7}
+.slice:nth-child(1),.slice:nth-child(2),.slice:nth-child(3),.slice:nth-child(4){transform-origin:right center}
+.slice:nth-child(5),.slice:nth-child(6),.slice:nth-child(7),.slice:nth-child(8){transform-origin:left center}
+.bannerSlices.open .slice:nth-child(1){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .05s forwards}
+.bannerSlices.open .slice:nth-child(2){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .12s forwards}
+.bannerSlices.open .slice:nth-child(3){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .19s forwards}
+.bannerSlices.open .slice:nth-child(4){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .26s forwards}
+.bannerSlices.open .slice:nth-child(5){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .26s forwards}
+.bannerSlices.open .slice:nth-child(6){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .19s forwards}
+.bannerSlices.open .slice:nth-child(7){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .12s forwards}
+.bannerSlices.open .slice:nth-child(8){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .05s forwards}
+@keyframes openLeft{to{transform:translateX(-115%) scaleX(.92);opacity:0}}
+@keyframes openRight{to{transform:translateX(115%) scaleX(.92);opacity:0}}
+.bannerGlow{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(circle at center,rgba(0,210,255,.4),transparent 55%);opacity:0}
+.bannerGlow.on{animation:glow .9s ease forwards}
+@keyframes glow{0%{opacity:0}35%{opacity:.8}100%{opacity:.15}}
+/* Logo sequence */
+#logoReady .readyTitle{font-size:clamp(30px,6vw,82px);font-weight:900;letter-spacing:2px;text-shadow:0 0 30px #00d9ff}
+#logoLoading .loadingTitle{font-size:clamp(28px,5vw,70px)}
+.logoLaunch{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0}
+.logoLaunch img{max-width:80vw;max-height:75vh;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 0 25px #00d9ff) drop-shadow(0 0 65px rgba(124,0,255,.8));transform:scale(.15);opacity:0}
+.logoLaunch.show{animation:logoScene 2.2s ease forwards}
+.logoLaunch.show img{animation:logoPop 2.2s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes logoScene{0%{opacity:0}18%{opacity:1}82%{opacity:1}100%{opacity:1}}
+@keyframes logoPop{0%{transform:scale(.15);opacity:0}35%{transform:scale(1.12);opacity:1}65%{transform:scale(.98)}100%{transform:scale(1);opacity:1}}
+#rotateHint{display:none;position:fixed;inset:0;z-index:200;background:#02040a;align-items:center;justify-content:center;text-align:center;padding:28px}
+#rotateHint .rotateBox{max-width:420px}
+#rotateHint .phone{font-size:60px;margin-bottom:15px;animation:rotatePhone 1.5s infinite alternate}
+#rotateHint h2{font-size:clamp(22px,7vw,36px);margin-bottom:10px}
+#rotateHint p{color:#9bb1c0;line-height:1.5}
+@keyframes rotatePhone{to{transform:rotate(90deg)}}
+@media (max-width:600px) and (orientation:portrait){
+  #rotateHint{display:flex}
 }
-
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#02040a;
-    font-family:Arial,Helvetica,sans-serif;
-    color:white;
+@media (max-width:600px) and (orientation:landscape){
+  .screen{padding:12px 22px}
+  .bannerFinal{padding:1vh 1vw}
+  .logoLaunch img{max-width:72vw;max-height:72vh}
 }
-
-body{
-    background:
-    radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%);
+@media (min-width:601px){
+  #rotateHint{display:none!important}
 }
-
-
-/* =========================
-   GRID
-========================= */
-
-.grid{
-    position:absolute;
-    inset:-50%;
-
-    background-image:
-        linear-gradient(rgba(0,180,255,.08) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,180,255,.08) 1px,transparent 1px);
-
-    background-size:55px 55px;
-
-    transform:
-        perspective(500px)
-        rotateX(60deg);
-
-    animation:gridMove 8s linear infinite;
-}
-
-@keyframes gridMove{
-
-    from{
-        transform:
-            perspective(500px)
-            rotateX(60deg)
-            translateY(0);
-    }
-
-    to{
-        transform:
-            perspective(500px)
-            rotateX(60deg)
-            translateY(55px);
-    }
-
-}
-
-
-/* =========================
-   PARTICLES
-========================= */
-
-.particles{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-}
-
-.particle{
-    position:absolute;
-
-    width:3px;
-    height:3px;
-
-    border-radius:50%;
-
-    background:#65eaff;
-
-    box-shadow:
-        0 0 12px #00cfff;
-
-    animation:
-        float 5s linear infinite;
-}
-
-@keyframes float{
-
-    from{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-
-    20%{
-        opacity:1;
-    }
-
-    80%{
-        opacity:1;
-    }
-
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
-
-}
-
-
-/* =========================
-   SCREEN
-========================= */
-
-.screen{
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    flex-direction:column;
-
-    text-align:center;
-
-    z-index:10;
-
-    padding:40px;
-}
-
-.hidden{
-    display:none !important;
-}
-
-
-/* =========================
-   TEXT
-========================= */
-
-.label{
-    font-size:clamp(14px,1.7vw,25px);
-
-    letter-spacing:6px;
-
-    color:#6eeaff;
-
-    margin-bottom:25px;
-}
-
-.title{
-    font-size:clamp(35px,5vw,75px);
-
-    font-weight:800;
-
-    letter-spacing:3px;
-}
-
-.subtitle{
-    margin-top:25px;
-
-    color:#a7bdcc;
-
-    letter-spacing:4px;
-
-    font-size:clamp(14px,1.5vw,22px);
-}
-
-
-/* =========================
-   BOOT
-========================= */
-
-#boot{
-    transition:opacity 1s ease;
-}
-
-.loading{
-    width:min(500px,60vw);
-
-    height:4px;
-
-    background:rgba(255,255,255,.12);
-
-    margin-top:30px;
-
-    overflow:hidden;
-}
-
-.loadingBar{
-    width:0;
-
-    height:100%;
-
-    background:#62eaff;
-
-    box-shadow:
-        0 0 20px #00d9ff;
-
-    animation:
-        load 3s forwards;
-}
-
-@keyframes load{
-    to{
-        width:100%;
-    }
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.enterBtn,
-.letsGo{
-
-    margin-top:40px;
-
-    padding:18px 45px;
-
-    background:rgba(0,150,255,.08);
-
-    color:white;
-
-    border:2px solid #63eaff;
-
-    font-size:clamp(15px,1.6vw,23px);
-
-    font-weight:bold;
-
-    letter-spacing:3px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:
-        0 0 20px rgba(0,210,255,.25);
-}
-
-.enterBtn:hover,
-.letsGo:hover{
-
-    background:rgba(0,190,255,.22);
-
-    box-shadow:
-        0 0 40px rgba(0,210,255,.6);
-
-    transform:scale(1.05);
-}
-
-
-/* =========================
-   LOADING
-========================= */
-
-.loadingScreen{
-    animation:
-        appear .6s ease;
-}
-
-@keyframes appear{
-
-    from{
-        opacity:0;
-        transform:scale(.9);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-
-}
-
-.loadingTitle{
-
-    font-size:clamp(30px,4vw,65px);
-
-    font-weight:800;
-
-    letter-spacing:4px;
-}
-
-.loadingText{
-
-    margin-top:25px;
-
-    color:#8eaabd;
-
-    letter-spacing:4px;
-
-    font-size:clamp(14px,1.5vw,21px);
-}
-
-
-/* =========================
-   LOADING DOTS
-========================= */
-
-.dots{
-
-    margin-top:35px;
-
-    display:flex;
-
-    gap:12px;
-}
-
-.dot{
-
-    width:13px;
-    height:13px;
-
-    border-radius:50%;
-
-    background:#63eaff;
-
-    box-shadow:
-        0 0 15px #00d9ff;
-
-    animation:
-        dotPulse 1s infinite;
-}
-
-.dot:nth-child(2){
-    animation-delay:.2s;
-}
-
-.dot:nth-child(3){
-    animation-delay:.4s;
-}
-
-@keyframes dotPulse{
-
-    0%,100%{
-        opacity:.2;
-        transform:scale(.7);
-    }
-
-    50%{
-        opacity:1;
-        transform:scale(1.2);
-    }
-
-}
-
-
-/* =========================
-   ERROR
-========================= */
-
-.errorBox{
-    animation:
-        errorAppear .7s ease;
-}
-
-@keyframes errorAppear{
-
-    0%{
-        opacity:0;
-        transform:scale(1.2);
-    }
-
-    60%{
-        opacity:1;
-        transform:scale(.98);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
-}
-
-.errorText{
-
-    color:#ff6975;
-
-    font-size:clamp(40px,6vw,95px);
-
-    font-weight:900;
-
-    letter-spacing:7px;
-
-    text-shadow:
-        0 0 30px rgba(255,50,70,.6);
-}
-
-.errorSmall{
-
-    margin-top:20px;
-
-    color:#c5a3a8;
-
-    letter-spacing:4px;
-}
-
-
-/* =========================
-   CHAIRMAN
-========================= */
-
-.chairmanText{
-
-    max-width:1000px;
-
-    line-height:1.4;
-
-    font-size:clamp(24px,4vw,60px);
-
-    font-weight:700;
-}
-
-.sir{
-
-    margin-top:30px;
-
-    color:#69eaff;
-
-    font-size:clamp(30px,5vw,70px);
-
-    font-weight:900;
-
-    letter-spacing:5px;
-
-    text-shadow:
-        0 0 25px #00cfff;
-}
-
-
-/* =========================
-   SUCCESS
-========================= */
-
-.success{
-
-    color:#5cffae;
-
-    font-size:clamp(45px,7vw,110px);
-
-    font-weight:900;
-
-    letter-spacing:7px;
-
-    text-shadow:
-        0 0 20px #00ff91,
-        0 0 60px rgba(0,255,150,.6);
-
-    animation:
-        successPop .8s ease;
-}
-
-@keyframes successPop{
-
-    0%{
-        opacity:0;
-        transform:scale(.5);
-    }
-
-    70%{
-        transform:scale(1.1);
-    }
-
-    100%{
-        opacity:1;
-        transform:scale(1);
-    }
-
-}
-
-
-/* =========================
-   COUNTDOWN
-========================= */
-
-.countNumber{
-
-    font-size:clamp(130px,23vw,330px);
-
-    font-weight:900;
-
-    line-height:1;
-
-    color:white;
-
-    text-shadow:
-        0 0 25px #00d9ff,
-        0 0 70px #0077ff,
-        0 0 130px #7c00ff;
-
-    animation:
-        pulse 1s ease;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1.6);
-        opacity:0;
-    }
-
-    60%{
-        transform:scale(.95);
-        opacity:1;
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
-}
-
-
-/* =========================
-   FLASH
-========================= */
-
-.flash{
-
-    position:absolute;
-
-    inset:0;
-
-    background:white;
-
-    opacity:0;
-
-    z-index:100;
-
-    pointer-events:none;
-}
-
-.flash.active{
-    animation:
-        flash .8s ease;
-}
-
-@keyframes flash{
-
-    0%{
-        opacity:0;
-    }
-
-    25%{
-        opacity:.95;
-    }
-
-    100%{
-        opacity:0;
-    }
-
-}
-
-
-/* =================================================
-   PHYSICAL BANNER LAUNCH
-================================================= */
-
-#bannerReveal{
-
-    background:#000;
-
-    padding:0;
-
-    overflow:hidden;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-end;
-
-    z-index:20;
-}
-
-
-/* Banner */
-
-.bannerImage{
-
-    position:absolute;
-
-    left:0;
-
-    bottom:0;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:contain;
-
-    object-position:center bottom;
-
-    /*
-       Banner completely hidden initially.
-       It will appear from bottom.
-    */
-
-    clip-path:
-        inset(100% 0 0 0);
-
-    transform:
-        translateY(8%);
-
-    opacity:1;
-
-    filter:
-        brightness(.35);
-
-    /*
-       Slight 3D perspective
-       for physical banner feeling.
-    */
-
-    transform-origin:
-        center bottom;
-}
-
-
-/* =========================
-   BANNER ROLL / UNFOLD
-========================= */
-
-@keyframes physicalBannerRoll{
-
-    0%{
-
-        clip-path:
-            inset(100% 0 0 0);
-
-        transform:
-            translateY(8%)
-            scaleY(.98);
-
-        filter:
-            brightness(.35);
-    }
-
-
-    12%{
-
-        clip-path:
-            inset(88% 0 0 0);
-
-        transform:
-            translateY(6%)
-            scaleY(.99);
-
-        filter:
-            brightness(.55);
-    }
-
-
-    25%{
-
-        clip-path:
-            inset(75% 0 0 0);
-
-        transform:
-            translateY(4%)
-            scaleY(.995);
-
-        filter:
-            brightness(.75);
-    }
-
-
-    45%{
-
-        clip-path:
-            inset(55% 0 0 0);
-
-        transform:
-            translateY(2%)
-            scaleY(1);
-
-        filter:
-            brightness(.9);
-    }
-
-
-    65%{
-
-        clip-path:
-            inset(35% 0 0 0);
-
-        transform:
-            translateY(1%)
-            scaleY(1);
-
-        filter:
-            brightness(1.05);
-    }
-
-
-    82%{
-
-        clip-path:
-            inset(18% 0 0 0);
-
-        transform:
-            translateY(0)
-            scaleY(1);
-
-        filter:
-            brightness(1.12);
-    }
-
-
-    94%{
-
-        clip-path:
-            inset(5% 0 0 0);
-
-        transform:
-            translateY(0)
-            scaleY(1);
-
-        filter:
-            brightness(1.08);
-    }
-
-
-    100%{
-
-        clip-path:
-            inset(0 0 0 0);
-
-        transform:
-            translateY(0)
-            scaleY(1);
-
-        filter:
-            brightness(1);
-    }
-
-}
-
-
-/* =========================
-   BANNER LIGHT
-========================= */
-
-.bannerGlow{
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            rgba(0,210,255,.35),
-            transparent 55%
-        );
-
-    opacity:0;
-
-    animation:
-        bannerGlowReveal 4s ease forwards;
-}
-
-@keyframes bannerGlowReveal{
-
-    0%{
-        opacity:0;
-    }
-
-    35%{
-        opacity:.15;
-    }
-
-    70%{
-        opacity:.5;
-    }
-
-    100%{
-        opacity:.75;
-    }
-
-}
-
-
-/* =========================
-   PHYSICAL BANNER EDGE
-========================= */
-
-#bannerReveal::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    bottom:0;
-
-    width:100%;
-
-    height:7px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #63eaff,
-            white,
-            #63eaff,
-            transparent
-        );
-
-    box-shadow:
-        0 0 25px #00d9ff,
-        0 0 50px #00d9ff;
-
-    opacity:0;
-
-    animation:
-        bannerEdge 4s ease forwards;
-
-    pointer-events:none;
-}
-
-@keyframes bannerEdge{
-
-    0%{
-        opacity:0;
-        transform:translateY(0);
-    }
-
-    15%{
-        opacity:1;
-    }
-
-    80%{
-        opacity:1;
-    }
-
-    100%{
-        opacity:0;
-    }
-
-}
-
-
-/* =========================
-   ENERGY RING
-========================= */
-
-.ring{
-
-    position:absolute;
-
-    width:30vw;
-
-    height:30vw;
-
-    max-width:500px;
-
-    max-height:500px;
-
-    border:
-        2px solid rgba(90,230,255,.8);
-
-    border-radius:50%;
-
-    opacity:0;
-
-    pointer-events:none;
-}
-
-.ring.active{
-
-    animation:
-        ring 1.5s ease-out;
-}
-
-@keyframes ring{
-
-    0%{
-
-        transform:scale(.1);
-
-        opacity:1;
-    }
-
-    100%{
-
-        transform:scale(3);
-
-        opacity:0;
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px){
-
-    .frame{
-        inset:10px;
-    }
-
-    .label{
-        letter-spacing:3px;
-    }
-
-    .title{
-        letter-spacing:1px;
-    }
-
-    .subtitle{
-        letter-spacing:2px;
-    }
-
-    .bannerImage{
-        object-fit:contain;
-    }
-
-}
-
 </style>
 </head>
-
-
 <body>
+<div id="app">
+  <div class="grid"></div>
+  <div class="particles" id="particles"></div>
+  <div class="energy" id="energy"></div>
+  <div class="flash" id="flash"></div>
 
+  <div class="screen" id="boot">
+    <div class="label">SYSTEM INITIALIZATION</div>
+    <div class="title">TECH HUB</div>
+    <div class="loading"><div class="loadingBar"></div></div>
+    <div class="subtitle">INITIALIZING TECHNOLOGY CORE...</div>
+  </div>
 
-<!-- BACKGROUND -->
+  <div class="screen hidden" id="president">
+    <div class="label">AUTHORIZED PERSONNEL REQUIRED</div>
+    <div class="title">PRESIDENT OF TECH HUB</div>
+    <div class="subtitle">PLEASE ENTER TO MOVE ON</div>
+    <button class="enterBtn" onclick="presidentEnter()">ENTER</button>
+  </div>
 
-<div class="grid"></div>
+  <div class="screen hidden loadingScreen" id="presidentLoading">
+    <div class="label">SECURITY PROTOCOL</div>
+    <div class="loadingTitle">AUTHENTICATING...</div>
+    <div class="loadingText">VERIFYING PRESIDENT AUTHORIZATION</div>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
 
-<div class="particles" id="particles"></div>
-
-
-
-<!-- EFFECTS -->
-
-<div class="ring" id="ring"></div>
-
-<div class="flash" id="flash"></div>
-
-
-<!-- =================================================
-     1. SYSTEM INITIALIZATION
-================================================= -->
-
-<div class="screen" id="boot">
-
-    <div class="label">
-        SYSTEM INITIALIZATION
-    </div>
-
-    <div class="title">
-        TECH HUB
-    </div>
-
-    <div class="loading">
-
-        <div class="loadingBar"></div>
-
-    </div>
-
-    <div class="subtitle">
-        INITIALIZING TECHNOLOGY CORE...
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     2. PRESIDENT
-================================================= -->
-
-<div class="screen hidden" id="president">
-
-    <div class="label">
-        AUTHORIZED PERSONNEL REQUIRED
-    </div>
-
-    <div class="title">
-        PRESIDENT OF TECH HUB
-    </div>
-
-    <div class="subtitle">
-        PLEASE ENTER TO MOVE ON
-    </div>
-
-    <button
-        class="enterBtn"
-        onclick="presidentEnter()">
-
-        ENTER
-
-    </button>
-
-</div>
-
-
-<!-- =================================================
-     3. PRESIDENT LOADING
-================================================= -->
-
-<div
-    class="screen hidden loadingScreen"
-    id="presidentLoading">
-
-    <div class="label">
-        SECURITY PROTOCOL
-    </div>
-
-    <div class="loadingTitle">
-        AUTHENTICATING...
-    </div>
-
-    <div class="loadingText">
-        VERIFYING PRESIDENT AUTHORIZATION
-    </div>
-
-    <div class="dots">
-
-        <div class="dot"></div>
-
-        <div class="dot"></div>
-
-        <div class="dot"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     4. PRESIDENT ERROR
-================================================= -->
-
-<div class="screen hidden" id="error1">
-
+  <div class="screen hidden" id="error1">
     <div class="errorBox">
-
-        <div class="errorText">
-            ERROR
-        </div>
-
-        <div class="errorSmall">
-            AUTHORIZATION FAILED
-        </div>
-
-        <div class="errorSmall">
-            PRESIDENT ACCESS DENIED
-        </div>
-
+      <div class="errorText">ERROR</div>
+      <div class="errorSmall">AUTHORIZATION FAILED</div>
+      <div class="errorSmall">PRESIDENT ACCESS DENIED</div>
     </div>
+  </div>
 
-</div>
+  <div class="screen hidden" id="associate">
+    <div class="label">SECOND AUTHORIZATION REQUIRED</div>
+    <div class="title">ASSOCIATIVE PRESIDENT</div>
+    <div class="subtitle">PLEASE ENTER TO MOVE ON</div>
+    <button class="enterBtn" onclick="associateEnter()">ENTER</button>
+  </div>
 
+  <div class="screen hidden loadingScreen" id="associateLoading">
+    <div class="label">SECURITY PROTOCOL</div>
+    <div class="loadingTitle">AUTHENTICATING...</div>
+    <div class="loadingText">VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION</div>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
 
-<!-- =================================================
-     5. ASSOCIATE PRESIDENT
-================================================= -->
-
-<div class="screen hidden" id="associate">
-
-    <div class="label">
-        SECOND AUTHORIZATION REQUIRED
-    </div>
-
-    <div class="title">
-        ASSOCIATIVE PRESIDENT
-    </div>
-
-    <div class="subtitle">
-        PLEASE ENTER TO MOVE ON
-    </div>
-
-    <button
-        class="enterBtn"
-        onclick="associateEnter()">
-
-        ENTER
-
-    </button>
-
-</div>
-
-
-<!-- =================================================
-     6. ASSOCIATE LOADING
-================================================= -->
-
-<div
-    class="screen hidden loadingScreen"
-    id="associateLoading">
-
-    <div class="label">
-        SECURITY PROTOCOL
-    </div>
-
-    <div class="loadingTitle">
-        AUTHENTICATING...
-    </div>
-
-    <div class="loadingText">
-        VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION
-    </div>
-
-    <div class="dots">
-
-        <div class="dot"></div>
-
-        <div class="dot"></div>
-
-        <div class="dot"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     7. ASSOCIATE ERROR
-================================================= -->
-
-<div class="screen hidden" id="error2">
-
+  <div class="screen hidden" id="error2">
     <div class="errorBox">
-
-        <div class="errorText">
-            ERROR
-        </div>
-
-        <div class="errorSmall">
-            AUTHORIZATION FAILED
-        </div>
-
-        <div class="errorSmall">
-            ASSOCIATE PRESIDENT ACCESS DENIED
-        </div>
-
+      <div class="errorText">ERROR</div>
+      <div class="errorSmall">AUTHORIZATION FAILED</div>
+      <div class="errorSmall">ASSOCIATE PRESIDENT ACCESS DENIED</div>
     </div>
+  </div>
 
+  <div class="screen hidden" id="chairman">
+    <div class="label">FINAL AUTHORIZATION REQUIRED</div>
+    <div class="chairmanText">THIS IS THE TIME TO REQUEST OUR</div>
+    <div class="sir">CHAIRMAN SIR</div>
+    <button class="chairmanEnter" onclick="chairmanEnter()">ENTER</button>
+  </div>
+
+  <div class="screen hidden loadingScreen" id="chairmanLoading">
+    <div class="label">PRIORITY AUTHORIZATION</div>
+    <div class="loadingTitle">AUTHENTICATING...</div>
+    <div class="loadingText">VERIFYING CHAIRMAN AUTHORIZATION</div>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
+
+  <div class="screen hidden" id="success">
+    <div class="success">ACCESS GRANTED</div>
+    <div class="subtitle">CHAIRMAN AUTHORIZATION SUCCESSFUL</div>
+    <div class="subtitle">TECH HUB LAUNCH SEQUENCE ACTIVATED</div>
+  </div>
+
+  <div class="screen hidden" id="countdown">
+    <div class="label">TECH HUB LAUNCH SEQUENCE</div>
+    <div class="countNumber" id="countNumber">10</div>
+  </div>
+
+  <div class="screen hidden" id="bannerReveal">
+    <div class="bannerFinal" id="bannerFinal">
+      <img src="techhub-banner.png.png" alt="TECH HUB Banner">
+    </div>
+    <div class="bannerSlices" id="bannerSlices">
+      <div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="slice"></div>
+      <div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="slice"></div>
+    </div>
+    <div class="bannerGlow" id="bannerGlow"></div>
+  </div>
+
+  <div class="screen hidden" id="logoReady">
+    <div class="readyTitle">ARE YOU READY TO LAUNCH LOGO?</div>
+    <button class="yesBtn" onclick="startLogoLaunch()">YES</button>
+  </div>
+
+  <div class="screen hidden loadingScreen" id="logoLoading">
+    <div class="label">FINAL LAUNCH PROTOCOL</div>
+    <div class="loadingTitle">PREPARING LOGO LAUNCH...</div>
+    <div class="loadingText">CALIBRATING TECH HUB IDENTITY SYSTEM</div>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
+
+  <div class="screen hidden" id="logoCountdown">
+    <div class="label">LOGO LAUNCH SEQUENCE</div>
+    <div class="countNumber" id="logoCountNumber">3</div>
+  </div>
+
+  <div class="logoLaunch" id="logoLaunch">
+    <img id="logoImage" src="techhub-logo.png" alt="TECH HUB Logo">
+  </div>
+
+  <div id="letsGo"><div class="letsGoText">LET'S GO</div></div>
+
+  <div id="rotateHint">
+    <div class="rotateBox">
+      <div class="phone">📱</div>
+      <h2>PLEASE ROTATE YOUR PHONE</h2>
+      <p>For the full cinematic TECH HUB launch, view this presentation in landscape mode.</p>
+    </div>
+  </div>
 </div>
-
-
-<!-- =================================================
-     8. CHAIRMAN
-================================================= -->
-
-<div class="screen hidden" id="chairman">
-
-    <div class="label">
-        FINAL AUTHORIZATION REQUIRED
-    </div>
-
-    <div class="chairmanText">
-        THIS IS THE TIME TO REQUEST OUR
-    </div>
-
-    <div class="sir">
-        CHAIRMAN SIR
-    </div>
-
-    <button
-        class="letsGo"
-        onclick="chairmanEnter()">
-
-        ⚡ LET'S GO
-
-    </button>
-
-</div>
-
-
-<!-- =================================================
-     9. CHAIRMAN LOADING
-================================================= -->
-
-<div
-    class="screen hidden loadingScreen"
-    id="chairmanLoading">
-
-    <div class="label">
-        PRIORITY AUTHORIZATION
-    </div>
-
-    <div class="loadingTitle">
-        AUTHENTICATING...
-    </div>
-
-    <div class="loadingText">
-        VERIFYING CHAIRMAN AUTHORIZATION
-    </div>
-
-    <div class="dots">
-
-        <div class="dot"></div>
-
-        <div class="dot"></div>
-
-        <div class="dot"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     10. SUCCESS
-================================================= -->
-
-<div class="screen hidden" id="success">
-
-    <div class="success">
-        ACCESS GRANTED
-    </div>
-
-    <div class="subtitle">
-        CHAIRMAN AUTHORIZATION SUCCESSFUL
-    </div>
-
-    <div class="subtitle">
-        TECH HUB LAUNCH SEQUENCE ACTIVATED
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     11. COUNTDOWN
-================================================= -->
-
-<div class="screen hidden" id="countdown">
-
-    <div class="label">
-        TECH HUB LAUNCH SEQUENCE
-    </div>
-
-    <div
-        class="countNumber"
-        id="countNumber">
-
-        10
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     12. FINAL PHYSICAL BANNER
-================================================= -->
-
-<div
-    class="screen hidden"
-    id="bannerReveal">
-
-    <img
-        class="bannerImage"
-        src="techhub-banner.png.png"
-        alt="TECH HUB Banner"
-    >
-
-    <div class="bannerGlow"></div>
-
-</div>
-
 
 <script>
-/* =========================
-   SOUND SYSTEM
-========================= */
-
-const sounds = {
-
-    error: new Audio("sounds/error.mp3"),
-
-    scan: new Audio("sounds/scan.mp3"),
-
-    success: new Audio("sounds/success.mp3"),
-
-    countdown: new Audio("sounds/countdown.mp3"),
-
-    launch: new Audio("sounds/launch.mp3"),
-
-    celebration: new Audio("sounds/celebration.mp3")
-
+/* ---------- generated sound effects: no sound file is required for these ---------- */
+let audioCtx=null;
+function unlockAudio(){
+  try{
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==="suspended") audioCtx.resume();
+  }catch(e){}
+}
+function tone(freq,duration,type="sine",volume=.06,delay=0){
+  if(!audioCtx) return;
+  const t=audioCtx.currentTime+delay;
+  const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type=type;o.frequency.setValueAtTime(freq,t);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(volume,t+.01);
+  g.gain.exponentialRampToValueAtTime(.001,t+duration);
+  o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+duration+.03);
+}
+function soundScan(){unlockAudio();tone(620,.08,"square",.05);tone(880,.08,"square",.04,.09)}
+function soundError(){unlockAudio();tone(150,.12,"sawtooth",.07);tone(95,.28,"sawtooth",.06,.12)}
+function soundSuccess(){unlockAudio();tone(520,.12,"sine",.06);tone(780,.16,"sine",.06,.12);tone(1040,.28,"sine",.07,.27)}
+function soundBeep(){unlockAudio();tone(880,.16,"square",.045)}
+function soundLetsGo(){unlockAudio();tone(220,.12,"sawtooth",.05);tone(440,.12,"sawtooth",.06,.1);tone(880,.4,"sawtooth",.07,.2)}
+function soundReveal(){unlockAudio();[220,330,440,660].forEach((f,i)=>tone(f,.45,"sawtooth",.045,i*.11))}
+function soundLaunch(){unlockAudio();tone(180,.25,"sine",.05);tone(360,.25,"sine",.05,.18);tone(720,.5,"sine",.07,.36)}
+/* Optional music files. If you upload these into sounds/, they will play too. */
+const optionalMusic={
+  banner:new Audio("sounds/banner-reveal.mp3"),
+  logo:new Audio("sounds/logo-launch.mp3")
 };
-
-
-function playSound(name){
-
-    const sound = sounds[name];
-
-    if(!sound) return;
-
-    sound.currentTime = 0;
-
-    sound.play().catch(()=>{});
-
+Object.values(optionalMusic).forEach(a=>{a.preload="auto";a.volume=.75});
+function playOptional(a){
+  try{a.currentTime=0;const p=a.play();if(p)p.catch(()=>{});}catch(e){}
 }
+function stopOptional(a){try{a.pause();a.currentTime=0}catch(e){}}
 
-/* =================================================
-   CREATE PARTICLES
-================================================= */
-
-const particles =
-    document.getElementById("particles");
-
-
-for(let i=0;i<100;i++){
-
-    const p =
-        document.createElement("div");
-
-    p.className="particle";
-
-    p.style.left =
-        Math.random()*100+"%";
-
-    p.style.animationDelay =
-        Math.random()*5+"s";
-
-    p.style.animationDuration =
-        3+Math.random()*6+"s";
-
-    particles.appendChild(p);
-
+/* ---------- setup ---------- */
+const screens=["boot","president","presidentLoading","error1","associate","associateLoading","error2","chairman","chairmanLoading","success","countdown","bannerReveal","logoReady","logoLoading","logoCountdown"];
+function hideAll(){screens.forEach(id=>document.getElementById(id)?.classList.add("hidden"))}
+const particles=document.getElementById("particles");
+for(let i=0;i<90;i++){
+  const p=document.createElement("div");p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDelay=Math.random()*5+"s";
+  p.style.animationDuration=3+Math.random()*6+"s";
+  particles.appendChild(p);
 }
-
-
-/* =================================================
-   SCREENS
-================================================= */
-
-const screens=[
-
-    "boot",
-
-    "president",
-
-    "presidentLoading",
-
-    "error1",
-
-    "associate",
-
-    "associateLoading",
-
-    "error2",
-
-    "chairman",
-
-    "chairmanLoading",
-
-    "success",
-
-    "countdown",
-
-    "bannerReveal"
-
-];
-
-
-function hideAll(){
-
-    screens.forEach(id=>{
-
-        document
-            .getElementById(id)
-            .classList
-            .add("hidden");
-
-    });
-
-}
-
-
-/* =================================================
-   INITIALIZATION → PRESIDENT
-================================================= */
-
 setTimeout(()=>{
-
-    document
-        .getElementById("boot")
-        .style.opacity="0";
-
-
-    setTimeout(()=>{
-
-        hideAll();
-
-        document
-            .getElementById("president")
-            .classList
-            .remove("hidden");
-
-    },900);
-
+  document.getElementById("boot").style.opacity="0";
+  setTimeout(()=>{hideAll();document.getElementById("president").classList.remove("hidden")},900);
 },3500);
 
-
-/* =================================================
-   PRESIDENT ENTER
-================================================= */
-
 function presidentEnter(){
-
-    hideAll();
-
-    document
-        .getElementById("presidentLoading")
-        .classList
-        .remove("hidden");
-
-
-    setTimeout(()=>{
-
-        hideAll();
-
-        document
-            .getElementById("error1")
-            .classList
-            .remove("hidden");
- playSound("scan");
-    },3000);
-
-
-    setTimeout(()=>{
-
-    hideAll();
-
-    document
-        .getElementById("error1")
-        .classList
-        .remove("hidden");
-
-    playSound("error");
-
-},3000);
-
+  unlockAudio();soundScan();hideAll();
+  document.getElementById("presidentLoading").classList.remove("hidden");
+  setTimeout(()=>{
+    hideAll();document.getElementById("error1").classList.remove("hidden");soundError();
+  },3000);
+  setTimeout(()=>{hideAll();document.getElementById("associate").classList.remove("hidden")},5500);
 }
-
-
-/* =================================================
-   ASSOCIATE PRESIDENT
-================================================= */
-
 function associateEnter(){
-
-    hideAll();
-
-    document
-        .getElementById("associateLoading")
-        .classList
-        .remove("hidden");
- playSound("scan");
-
-    setTimeout(()=>{
-
-        hideAll();
-
-        document
-            .getElementById("error2")
-            .classList
-            .remove("hidden");
-
-    },3000);
-
-
-    setTimeout(()=>{
-
-    hideAll();
-
-    document
-        .getElementById("error2")
-        .classList
-        .remove("hidden");
-
-    playSound("error");
-
-},3000);
-
+  unlockAudio();soundScan();hideAll();
+  document.getElementById("associateLoading").classList.remove("hidden");
+  setTimeout(()=>{
+    hideAll();document.getElementById("error2").classList.remove("hidden");soundError();
+  },3000);
+  setTimeout(()=>{hideAll();document.getElementById("chairman").classList.remove("hidden")},5500);
 }
-
-
-/* =================================================
-   CHAIRMAN
-================================================= */
-
 function chairmanEnter(){
-
-    hideAll();
-
-    document
-        .getElementById("chairmanLoading")
-        .classList
-        .remove("hidden");
- playSound("scan");
-
-    setTimeout(()=>{
-
-        hideAll();
-
-        document
-            .getElementById("success")
-            .classList
-            .remove("hidden");
-   playSound("success");
-    },3000);
-
-
-    setTimeout(()=>{
-
-        startLaunch();
-
-    },5000);
-
+  unlockAudio();soundScan();hideAll();
+  document.getElementById("chairmanLoading").classList.remove("hidden");
+  setTimeout(()=>{
+    hideAll();document.getElementById("success").classList.remove("hidden");soundSuccess();
+  },3000);
+  setTimeout(showLetsGo,5000);
 }
-
-
-/* =================================================
-   LAUNCH
-================================================= */
-
-function startLaunch(){
-
-    const flash =
-        document.getElementById("flash");
-
-    const ring =
-        document.getElementById("ring");
-
-
-    hideAll();
-
-
-    flash.classList.add("active");
-
-    ring.classList.add("active");
-
-
-    setTimeout(()=>{
-
-        flash.classList.remove("active");
-
-        ring.classList.remove("active");
-
-
-        document
-            .getElementById("countdown")
-            .classList
-            .remove("hidden");
-
-
-        startCountdown();
-
-    },900);
-
+function showLetsGo(){
+  hideAll();
+  const lg=document.getElementById("letsGo"),en=document.getElementById("energy");
+  lg.classList.remove("show");void lg.offsetWidth;lg.classList.add("show");
+  en.classList.remove("active");void en.offsetWidth;en.classList.add("active");
+  soundLetsGo();
+  setTimeout(startCountdown,1450);
 }
-
-
-/* =================================================
-   COUNTDOWN
-================================================= */
-
 function startCountdown(){
-
-    let n=10;
-
-    const number =
-        document.getElementById("countNumber");
-
-
-    number.innerText=n;
-
-
-    const timer =
-        setInterval(()=>{
-
-            n--;
-
-
-            if(n>0){
-
-                number.innerText=n;
-
-
-                number.style.animation="none";
-
-
-                void number.offsetWidth;
-
-
-                number.style.animation=
-                    "pulse 1s ease";
-    playSound("countdown");
-            }
-
-            else{
-
-                clearInterval(timer);
-
-                finalReveal();
-
-            }
-
-        },1000);
-
+  hideAll();
+  const s=document.getElementById("countdown"),nEl=document.getElementById("countNumber");
+  s.classList.remove("hidden");
+  let n=10;nEl.textContent=n;soundBeep();
+  const timer=setInterval(()=>{
+    n--;
+    if(n>0){
+      nEl.textContent=n;nEl.style.animation="none";void nEl.offsetWidth;nEl.style.animation="pulse 1s ease";soundBeep();
+    }else{
+      clearInterval(timer);finalBannerReveal();
+    }
+  },1000);
 }
-
-
-/* =================================================
-   FINAL BANNER REVEAL
-================================================= */
-
-function finalReveal(){
-
-    const flash =
-        document.getElementById("flash");
-
-    const banner =
-        document.getElementById("bannerReveal");
-
-    const image =
-        banner.querySelector(".bannerImage");
-
-
-    hideAll();
-  playSound("launch");
-
-    /*
-       RESET BANNER
-       So every launch starts
-       completely rolled at bottom.
-    */
-
-    image.style.animation="none";
-
-    image.style.clipPath=
-        "inset(100% 0 0 0)";
-
-    image.style.transform=
-        "translateY(8%)";
-
-
-    /*
-       Force browser reflow
-       before starting animation.
-    */
-
-    void image.offsetWidth;
-
-
-    /*
-       Launch flash
-    */
-
-    flash.classList.add("active");
-
-
-    setTimeout(()=>{
-
-        flash.classList.remove("active");
-
-
-        /*
-           SHOW BANNER
-        */
-
-        banner
-            .classList
-            .remove("hidden");
-
-
-        /*
-           START PHYSICAL
-           BOTTOM → TOP
-           ROLL / UNFOLD
-        */
-
-        image.style.animation=
-            "physicalBannerRoll 4s cubic-bezier(.22,.61,.36,1) forwards";
-
-
-    },600);
-
+function finalBannerReveal(){
+  hideAll();soundReveal();playOptional(optionalMusic.banner);
+  const b=document.getElementById("bannerReveal"),s=document.getElementById("bannerSlices"),f=document.getElementById("bannerFinal"),g=document.getElementById("bannerGlow");
+  b.classList.remove("hidden");s.classList.remove("open");f.classList.remove("visible");g.classList.remove("on");
+  void s.offsetWidth;s.classList.add("open");g.classList.add("on");
+  setTimeout(()=>f.classList.add("visible"),1450);
+  /* Keep the fully normal banner on screen for 1 minutes. */
+  setTimeout(()=>{
+    stopOptional(optionalMusic.banner);
+    hideAll();document.getElementById("logoReady").classList.remove("hidden");
+  },180000);
 }
-
+function startLogoLaunch(){
+  unlockAudio();soundLaunch();hideAll();stopOptional(optionalMusic.banner);
+  document.getElementById("logoLoading").classList.remove("hidden");
+  setTimeout(()=>startLogoCountdown(),60000);
+}
+function startLogoCountdown(){
+  hideAll();
+  const s=document.getElementById("logoCountdown"),el=document.getElementById("logoCountNumber");
+  s.classList.remove("hidden");
+  let n=3;el.textContent=n;soundBeep();
+  const timer=setInterval(()=>{
+    n--;
+    if(n>0){el.textContent=n;el.style.animation="none";void el.offsetWidth;el.style.animation="pulse 1s ease";soundBeep()}
+    else{clearInterval(timer);revealLogo()}
+  },1000);
+}
+function revealLogo(){
+  hideAll();soundLaunch();playOptional(optionalMusic.logo);
+  const scene=document.getElementById("logoLaunch");
+  scene.classList.remove("show");void scene.offsetWidth;scene.classList.add("show");
+}
 </script>
-
 </body>
 </html>
