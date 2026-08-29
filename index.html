@@ -1,363 +1,2566 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>TECH HUB — Grand Launch</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#02040a;color:#fff;font-family:Arial,Helvetica,sans-serif}
-body{background:radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%)}
-button{font:inherit}
-#app{position:fixed;inset:0;overflow:hidden}
-.grid{position:absolute;inset:-50%;background-image:linear-gradient(rgba(0,180,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,255,.08) 1px,transparent 1px);background-size:55px 55px;transform:perspective(500px) rotateX(60deg);animation:gridMove 8s linear infinite;pointer-events:none}
-@keyframes gridMove{to{transform:perspective(500px) rotateX(60deg) translateY(55px)}}
-.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;width:3px;height:3px;border-radius:50%;background:#65eaff;box-shadow:0 0 12px #00cfff;animation:float 5s linear infinite}
-@keyframes float{from{transform:translateY(100vh);opacity:0}20%,80%{opacity:1}to{transform:translateY(-10vh);opacity:0}}
-.screen{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;z-index:10;padding:clamp(18px,4vw,40px)}
-.hidden{display:none!important}
-.label{font-size:clamp(12px,1.7vw,25px);letter-spacing:clamp(2px,0.4vw,6px);color:#6eeaff;margin-bottom:20px}
-.title{font-size:clamp(30px,5vw,75px);font-weight:800;letter-spacing:3px}
-.subtitle{margin-top:20px;color:#a7bdcc;letter-spacing:clamp(1px,.25vw,4px);font-size:clamp(12px,1.5vw,22px)}
-.loading{width:min(500px,70vw);height:4px;background:rgba(255,255,255,.12);margin-top:28px;overflow:hidden}
-.loadingBar{width:0;height:100%;background:#62eaff;box-shadow:0 0 20px #00d9ff;animation:load 3s forwards}
-@keyframes load{to{width:100%}}
-.enterBtn,.chairmanEnter,.yesBtn{margin-top:34px;padding:16px 42px;background:rgba(0,150,255,.08);color:#fff;border:2px solid #63eaff;font-size:clamp(14px,1.6vw,23px);font-weight:bold;letter-spacing:3px;cursor:pointer;box-shadow:0 0 20px rgba(0,210,255,.25);transition:.25s}
-.enterBtn:hover,.chairmanEnter:hover,.yesBtn:hover{background:rgba(0,190,255,.22);box-shadow:0 0 40px rgba(0,210,255,.6);transform:scale(1.05)}
-.loadingScreen{animation:appear .6s ease}
-@keyframes appear{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-.loadingTitle{font-size:clamp(28px,4vw,65px);font-weight:800;letter-spacing:4px}
-.loadingText{margin-top:20px;color:#8eaabd;letter-spacing:3px;font-size:clamp(12px,1.5vw,21px)}
-.dots{margin-top:30px;display:flex;gap:12px}.dot{width:12px;height:12px;border-radius:50%;background:#63eaff;box-shadow:0 0 15px #00d9ff;animation:dotPulse 1s infinite}.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
-@keyframes dotPulse{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
-.errorText{color:#ff6975;font-size:clamp(42px,7vw,110px);font-weight:900;letter-spacing:7px;text-shadow:0 0 30px rgba(255,50,70,.6);animation:errorAppear .7s ease}
-@keyframes errorAppear{0%{opacity:0;transform:scale(1.2)}60%{opacity:1;transform:scale(.98)}100%{transform:scale(1)}}
-.errorSmall{margin-top:15px;color:#c5a3a8;letter-spacing:3px;font-size:clamp(11px,1.2vw,18px)}
-.chairmanText{max-width:1000px;line-height:1.4;font-size:clamp(22px,4vw,60px);font-weight:700}
-.sir{margin-top:25px;color:#69eaff;font-size:clamp(28px,5vw,70px);font-weight:900;letter-spacing:5px;text-shadow:0 0 25px #00cfff}
-.success{color:#5cffae;font-size:clamp(42px,7vw,110px);font-weight:900;letter-spacing:7px;text-shadow:0 0 20px #00ff91,0 0 60px rgba(0,255,150,.6);animation:successPop .8s ease}
-@keyframes successPop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
-#letsGo{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:80;pointer-events:none;opacity:0}
-#letsGo.show{animation:letsGoShow 1.5s ease forwards}
-.letsGoText{font-size:clamp(70px,16vw,230px);font-weight:1000;font-style:italic;letter-spacing:clamp(3px,1vw,15px);color:#fff;text-shadow:0 0 20px #00d9ff,0 0 70px #0077ff,0 0 120px #7c00ff;transform:scale(.4);animation:letsGoPop 1.5s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes letsGoShow{0%{opacity:0}15%,75%{opacity:1}100%{opacity:0}}
-@keyframes letsGoPop{0%{transform:scale(.4) rotate(-4deg);opacity:0}35%{transform:scale(1.12) rotate(1deg);opacity:1}60%{transform:scale(1) rotate(0)}100%{transform:scale(1.06);opacity:0}}
-.energy{position:absolute;width:25vw;height:25vw;max-width:430px;max-height:430px;border:2px solid rgba(90,230,255,.8);border-radius:50%;opacity:0;pointer-events:none}
-.energy.active{animation:ring 1.3s ease-out}
-@keyframes ring{0%{transform:scale(.1);opacity:1}100%{transform:scale(3);opacity:0}}
-.countNumber{font-size:clamp(120px,23vw,330px);font-weight:900;line-height:1;color:#fff;text-shadow:0 0 25px #00d9ff,0 0 70px #0077ff,0 0 130px #7c00ff;animation:pulse 1s ease}
-@keyframes pulse{0%{transform:scale(1.6);opacity:0}60%{transform:scale(.95);opacity:1}100%{transform:scale(1)}}
-.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:100;pointer-events:none}.flash.active{animation:flash .8s ease}
-@keyframes flash{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
-/* Banner reveal: 8 vertical slices close together, opening from the center toward both sides. */
-#bannerReveal{background:#000;padding:0;overflow:hidden;z-index:20}
-.bannerFinal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:3vh 2vw;opacity:0;transform:scale(1.04);transition:opacity .7s ease,transform .9s ease}
-.bannerFinal.visible{opacity:1;transform:scale(1)}
-.bannerFinal img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
-.bannerSlices{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);z-index:4}
-.slice{position:relative;overflow:hidden;background:#000;box-shadow:0 0 18px rgba(0,0,0,.9);transform:scaleX(1);transform-origin:center}
-.slice::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,210,255,.12),rgba(0,0,0,.95));opacity:.7}
-.slice:nth-child(1),.slice:nth-child(2),.slice:nth-child(3),.slice:nth-child(4){transform-origin:right center}
-.slice:nth-child(5),.slice:nth-child(6),.slice:nth-child(7),.slice:nth-child(8){transform-origin:left center}
-.bannerSlices.open .slice:nth-child(1){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .05s forwards}
-.bannerSlices.open .slice:nth-child(2){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .12s forwards}
-.bannerSlices.open .slice:nth-child(3){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .19s forwards}
-.bannerSlices.open .slice:nth-child(4){animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .26s forwards}
-.bannerSlices.open .slice:nth-child(5){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .26s forwards}
-.bannerSlices.open .slice:nth-child(6){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .19s forwards}
-.bannerSlices.open .slice:nth-child(7){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .12s forwards}
-.bannerSlices.open .slice:nth-child(8){animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .05s forwards}
-@keyframes openLeft{to{transform:translateX(-115%) scaleX(.92);opacity:0}}
-@keyframes openRight{to{transform:translateX(115%) scaleX(.92);opacity:0}}
-.bannerGlow{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(circle at center,rgba(0,210,255,.4),transparent 55%);opacity:0}
-.bannerGlow.on{animation:glow .9s ease forwards}
-@keyframes glow{0%{opacity:0}35%{opacity:.8}100%{opacity:.15}}
-/* Logo sequence */
-#logoReady .readyTitle{font-size:clamp(30px,6vw,82px);font-weight:900;letter-spacing:2px;text-shadow:0 0 30px #00d9ff}
-#logoLoading .loadingTitle{font-size:clamp(28px,5vw,70px)}
-.logoLaunch{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0}
-.logoLaunch img{max-width:80vw;max-height:75vh;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 0 25px #00d9ff) drop-shadow(0 0 65px rgba(124,0,255,.8));transform:scale(.15);opacity:0}
-.logoLaunch.show{animation:logoScene 2.2s ease forwards}
-.logoLaunch.show img{animation:logoPop 2.2s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes logoScene{0%{opacity:0}18%{opacity:1}82%{opacity:1}100%{opacity:1}}
-@keyframes logoPop{0%{transform:scale(.15);opacity:0}35%{transform:scale(1.12);opacity:1}65%{transform:scale(.98)}100%{transform:scale(1);opacity:1}}
-#rotateHint{display:none;position:fixed;inset:0;z-index:200;background:#02040a;align-items:center;justify-content:center;text-align:center;padding:28px}
-#rotateHint .rotateBox{max-width:420px}
-#rotateHint .phone{font-size:60px;margin-bottom:15px;animation:rotatePhone 1.5s infinite alternate}
-#rotateHint h2{font-size:clamp(22px,7vw,36px);margin-bottom:10px}
-#rotateHint p{color:#9bb1c0;line-height:1.5}
-@keyframes rotatePhone{to{transform:rotate(90deg)}}
-@media (max-width:600px) and (orientation:portrait){
-  #rotateHint{display:flex}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-@media (max-width:600px) and (orientation:landscape){
-  .screen{padding:12px 22px}
-  .bannerFinal{padding:1vh 1vw}
-  .logoLaunch img{max-width:72vw;max-height:72vh}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#02040a;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
 }
-@media (min-width:601px){
-  #rotateHint{display:none!important}
+
+body{
+    background:
+    radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%);
+}
+
+button{
+    font:inherit;
+}
+
+#app{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+    position:absolute;
+    inset:-50%;
+
+    background-image:
+    linear-gradient(rgba(0,180,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,180,255,.08) 1px,transparent 1px);
+
+    background-size:55px 55px;
+
+    transform:
+    perspective(500px)
+    rotateX(60deg);
+
+    animation:gridMove 8s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes gridMove{
+    to{
+        transform:
+        perspective(500px)
+        rotateX(60deg)
+        translateY(55px);
+    }
+}
+
+/* ================= PARTICLES ================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#65eaff;
+
+    box-shadow:
+    0 0 12px #00cfff;
+
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    20%,80%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* ================= COMMON ================= */
+
+.screen{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+    text-align:center;
+
+    z-index:10;
+
+    padding:clamp(18px,4vw,40px);
+}
+
+.hidden{
+    display:none!important;
+}
+
+.label{
+    font-size:clamp(12px,1.7vw,25px);
+    letter-spacing:clamp(2px,.4vw,6px);
+    color:#6eeaff;
+    margin-bottom:20px;
+}
+
+.title{
+    font-size:clamp(30px,5vw,75px);
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+.subtitle{
+    margin-top:20px;
+    color:#a7bdcc;
+    letter-spacing:clamp(1px,.25vw,4px);
+    font-size:clamp(12px,1.5vw,22px);
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    width:min(500px,70vw);
+    height:4px;
+    background:rgba(255,255,255,.12);
+    margin-top:28px;
+    overflow:hidden;
+}
+
+.loadingBar{
+    width:0;
+    height:100%;
+    background:#62eaff;
+
+    box-shadow:
+    0 0 20px #00d9ff;
+
+    animation:load 3s forwards;
+}
+
+@keyframes load{
+    to{
+        width:100%;
+    }
+}
+
+.loadingScreen{
+    animation:appear .6s ease;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.loadingTitle{
+    font-size:clamp(28px,4vw,65px);
+    font-weight:800;
+    letter-spacing:4px;
+}
+
+.loadingText{
+    margin-top:20px;
+    color:#8eaabd;
+    letter-spacing:3px;
+    font-size:clamp(12px,1.5vw,21px);
+}
+
+.dots{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#63eaff;
+
+    box-shadow:
+    0 0 15px #00d9ff;
+
+    animation:dotPulse 1s infinite;
+}
+
+.dot:nth-child(2){
+    animation-delay:.2s;
+}
+
+.dot:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes dotPulse{
+    0%,100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.2);
+    }
+}
+
+/* ================= BUTTON ================= */
+
+.enterBtn,
+.chairmanEnter{
+    margin-top:34px;
+
+    padding:16px 42px;
+
+    background:rgba(0,150,255,.08);
+
+    color:#fff;
+
+    border:2px solid #63eaff;
+
+    font-size:clamp(14px,1.6vw,23px);
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 20px rgba(0,210,255,.25);
+
+    transition:.25s;
+}
+
+.enterBtn:hover,
+.chairmanEnter:hover{
+    background:rgba(0,190,255,.22);
+
+    box-shadow:
+    0 0 40px rgba(0,210,255,.6);
+
+    transform:scale(1.05);
+}
+
+/* ================= ERROR ================= */
+
+.errorText{
+    color:#ff6975;
+
+    font-size:clamp(42px,7vw,110px);
+
+    font-weight:900;
+
+    letter-spacing:7px;
+
+    text-shadow:
+    0 0 30px rgba(255,50,70,.6);
+
+    animation:errorAppear .7s ease;
+}
+
+@keyframes errorAppear{
+    0%{
+        opacity:0;
+        transform:scale(1.2);
+    }
+
+    60%{
+        opacity:1;
+        transform:scale(.98);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+.errorSmall{
+    margin-top:15px;
+    color:#c5a3a8;
+    letter-spacing:3px;
+    font-size:clamp(11px,1.2vw,18px);
+}
+
+/* ================= CHAIRMAN ================= */
+
+.chairmanText{
+    max-width:1000px;
+    line-height:1.4;
+
+    font-size:clamp(22px,4vw,60px);
+
+    font-weight:700;
+}
+
+.sir{
+    margin-top:25px;
+
+    color:#69eaff;
+
+    font-size:clamp(28px,5vw,70px);
+
+    font-weight:900;
+
+    letter-spacing:5px;
+
+    text-shadow:
+    0 0 25px #00cfff;
+}
+
+/* ================= SUCCESS ================= */
+
+.success{
+    color:#5cffae;
+
+    font-size:clamp(42px,7vw,110px);
+
+    font-weight:900;
+
+    letter-spacing:7px;
+
+    text-shadow:
+    0 0 20px #00ff91,
+    0 0 60px rgba(0,255,150,.6);
+
+    animation:successPop .8s ease;
+}
+
+@keyframes successPop{
+    0%{
+        opacity:0;
+        transform:scale(.5);
+    }
+
+    70%{
+        transform:scale(1.1);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* ================= LET'S GO ================= */
+
+#letsGo{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:80;
+
+    pointer-events:none;
+
+    opacity:0;
+}
+
+#letsGo.show{
+    animation:letsGoShow 1.5s ease forwards;
+}
+
+.letsGoText{
+    font-size:clamp(70px,16vw,230px);
+
+    font-weight:1000;
+
+    font-style:italic;
+
+    letter-spacing:clamp(3px,1vw,15px);
+
+    color:#fff;
+
+    text-shadow:
+    0 0 20px #00d9ff,
+    0 0 70px #0077ff,
+    0 0 120px #7c00ff;
+
+    transform:scale(.4);
+
+    animation:
+    letsGoPop 1.5s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes letsGoShow{
+    0%{opacity:0}
+    15%,75%{opacity:1}
+    100%{opacity:0}
+}
+
+@keyframes letsGoPop{
+    0%{
+        transform:scale(.4) rotate(-4deg);
+        opacity:0;
+    }
+
+    35%{
+        transform:scale(1.12) rotate(1deg);
+        opacity:1;
+    }
+
+    60%{
+        transform:scale(1) rotate(0);
+    }
+
+    100%{
+        transform:scale(1.06);
+        opacity:0;
+    }
+}
+
+/* ================= ENERGY ================= */
+
+.energy{
+    position:absolute;
+
+    width:25vw;
+    height:25vw;
+
+    max-width:430px;
+    max-height:430px;
+
+    border:2px solid rgba(90,230,255,.8);
+
+    border-radius:50%;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.energy.active{
+    animation:ring 1.3s ease-out;
+}
+
+@keyframes ring{
+    0%{
+        transform:scale(.1);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(3);
+        opacity:0;
+    }
+}
+
+/* ================= COUNTDOWN ================= */
+
+.countNumber{
+    font-size:clamp(120px,23vw,330px);
+
+    font-weight:900;
+
+    line-height:1;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 25px #00d9ff,
+    0 0 70px #0077ff,
+    0 0 130px #7c00ff;
+
+    animation:pulse 1s ease;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1.6);
+        opacity:0;
+    }
+
+    60%{
+        transform:scale(.95);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ================= FLASH ================= */
+
+.flash{
+    position:absolute;
+    inset:0;
+
+    background:#fff;
+
+    opacity:0;
+
+    z-index:100;
+
+    pointer-events:none;
+}
+
+.flash.active{
+    animation:flash .8s ease;
+}
+
+@keyframes flash{
+    0%{opacity:0}
+    20%{opacity:.95}
+    100%{opacity:0}
+}
+
+/* =================================================
+   BANNER
+================================================= */
+
+#bannerReveal{
+    background:#000;
+    padding:0;
+    overflow:hidden;
+    z-index:20;
+}
+
+.bannerFinal{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:3vh 2vw;
+
+    opacity:0;
+
+    transform:scale(1.04);
+
+    transition:
+    opacity .7s ease,
+    transform .9s ease;
+}
+
+.bannerFinal.visible{
+    opacity:1;
+    transform:scale(1);
+}
+
+.bannerFinal img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    object-position:center;
+
+    display:block;
+}
+
+.bannerSlices{
+    position:absolute;
+    inset:0;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(8,1fr);
+
+    z-index:4;
+}
+
+.slice{
+    position:relative;
+
+    overflow:hidden;
+
+    background:#000;
+
+    box-shadow:
+    0 0 18px rgba(0,0,0,.9);
+
+    transform:scaleX(1);
+
+    transform-origin:center;
+}
+
+.slice::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,.95),
+        rgba(0,210,255,.12),
+        rgba(0,0,0,.95)
+    );
+
+    opacity:.7;
+}
+
+.slice:nth-child(-n+4){
+    transform-origin:right center;
+}
+
+.slice:nth-child(n+5){
+    transform-origin:left center;
+}
+
+.bannerSlices.open .slice:nth-child(1){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .05s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(2){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .12s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(3){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .19s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(4){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .26s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(5){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .26s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(6){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .19s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(7){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .12s forwards;
+}
+
+.bannerSlices.open .slice:nth-child(8){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .05s forwards;
+}
+
+@keyframes openLeft{
+    to{
+        transform:
+        translateX(-115%)
+        scaleX(.92);
+
+        opacity:0;
+    }
+}
+
+@keyframes openRight{
+    to{
+        transform:
+        translateX(115%)
+        scaleX(.92);
+
+        opacity:0;
+    }
+}
+
+.bannerGlow{
+    position:absolute;
+    inset:0;
+
+    z-index:6;
+
+    pointer-events:none;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(0,210,255,.4),
+        transparent 55%
+    );
+
+    opacity:0;
+}
+
+.bannerGlow.on{
+    animation:glow .9s ease forwards;
+}
+
+@keyframes glow{
+    0%{opacity:0}
+    35%{opacity:.8}
+    100%{opacity:.15}
+}
+
+/* =================================================
+   LOGO SUSPENSE
+================================================= */
+
+#suspense{
+    background:#000;
+    z-index:30;
+}
+
+.suspenseText{
+    font-size:clamp(25px,5vw,70px);
+
+    font-weight:800;
+
+    letter-spacing:clamp(2px,.6vw,8px);
+
+    text-shadow:
+    0 0 25px rgba(0,210,255,.6);
+
+    opacity:0;
+
+    animation:suspenseIn .8s ease forwards;
+}
+
+@keyframes suspenseIn{
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.secretText{
+    font-size:clamp(22px,4vw,58px);
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 20px #00d9ff;
+}
+
+.flicker{
+    animation:
+    flicker .15s infinite;
+}
+
+@keyframes flicker{
+    0%,100%{opacity:1}
+    50%{opacity:.2}
+    70%{opacity:.8}
+}
+
+/* ================= SYSTEM ================= */
+
+.systemBox{
+    width:min(800px,85vw);
+}
+
+.systemTitle{
+    font-size:clamp(14px,2vw,25px);
+
+    letter-spacing:5px;
+
+    color:#6eeaff;
+
+    margin-bottom:20px;
+}
+
+.progressText{
+    font-family:
+    "Courier New",
+    monospace;
+
+    font-size:clamp(18px,3vw,38px);
+
+    letter-spacing:3px;
+
+    color:#5cffae;
+
+    text-shadow:
+    0 0 15px #00ff91;
+}
+
+.progressBar{
+    margin-top:25px;
+
+    width:100%;
+
+    height:12px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:#050505;
+
+    overflow:hidden;
+}
+
+.progressFill{
+    width:0%;
+    height:100%;
+
+    background:#5cffae;
+
+    box-shadow:
+    0 0 25px #00ff91;
+}
+
+.glitch{
+    animation:glitch .15s infinite;
+}
+
+@keyframes glitch{
+    0%{
+        transform:translateX(0);
+        filter:none;
+    }
+
+    25%{
+        transform:translateX(-5px);
+        filter:hue-rotate(50deg);
+    }
+
+    50%{
+        transform:translateX(5px);
+        filter:none;
+    }
+
+    75%{
+        transform:translateX(-2px);
+        filter:hue-rotate(-40deg);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+}
+
+/* ================= FINAL MESSAGE ================= */
+
+.finalMessage{
+    font-size:clamp(24px,4vw,60px);
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
+    opacity:0;
+
+    animation:messageIn 1.2s ease forwards;
+
+    text-shadow:
+    0 0 25px #00d9ff,
+    0 0 60px #0077ff;
+}
+
+@keyframes messageIn{
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* ================= BOOM ================= */
+
+.boom{
+    position:absolute;
+    inset:0;
+
+    background:white;
+
+    opacity:0;
+
+    z-index:100;
+
+    pointer-events:none;
+}
+
+.boom.active{
+    animation:boomFlash 1.2s ease;
+}
+
+@keyframes boomFlash{
+    0%{opacity:0}
+    10%{opacity:1}
+    22%{opacity:.1}
+    32%{opacity:.8}
+    100%{opacity:0}
+}
+
+/* ================= LOGO ================= */
+
+.logoLaunch{
+    position:fixed;
+
+    inset:0;
+
+    z-index:90;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:#000;
+}
+
+.logoLaunch.show{
+    animation:logoScene 4s ease forwards;
+}
+
+.logoLaunch img{
+    max-width:80vw;
+    max-height:75vh;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    filter:
+    drop-shadow(0 0 25px #00d9ff)
+    drop-shadow(0 0 65px rgba(124,0,255,.8));
+
+    transform:scale(.08);
+
+    opacity:0;
+}
+
+.logoLaunch.show img{
+    animation:
+    logoPop 4s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes logoScene{
+    0%{opacity:0}
+    15%{opacity:1}
+    100%{opacity:1}
+}
+
+@keyframes logoPop{
+    0%{
+        transform:scale(.08);
+        opacity:0;
+        filter:
+        brightness(0)
+        drop-shadow(0 0 0 transparent);
+    }
+
+    30%{
+        transform:scale(.55);
+        opacity:.35;
+    }
+
+    55%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+
+    70%{
+        transform:scale(.98);
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+
+        filter:
+        brightness(1)
+        drop-shadow(0 0 25px #00d9ff)
+        drop-shadow(0 0 65px rgba(124,0,255,.8));
+    }
+}
+
+/* ================= FINAL BRAND ================= */
+
+.brandFinal{
+    position:fixed;
+    inset:0;
+
+    z-index:95;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    padding-bottom:8vh;
+
+    pointer-events:none;
+
+    opacity:0;
+}
+
+.brandFinal.show{
+    animation:brandShow 2s ease forwards;
+}
+
+.brandMain{
+    font-size:clamp(35px,7vw,95px);
+
+    font-weight:1000;
+
+    letter-spacing:clamp(3px,1vw,12px);
+
+    text-shadow:
+    0 0 20px #00d9ff,
+    0 0 60px #0077ff;
+}
+
+.brandTag{
+    margin-top:15px;
+
+    font-size:clamp(14px,2vw,28px);
+
+    letter-spacing:clamp(3px,.8vw,10px);
+
+    color:#b9f7ff;
+}
+
+@keyframes brandShow{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= ROTATE ================= */
+
+#rotateHint{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    z-index:200;
+
+    background:#02040a;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:28px;
+}
+
+.rotateBox{
+    max-width:420px;
+}
+
+.phone{
+    font-size:60px;
+    margin-bottom:15px;
+
+    animation:
+    rotatePhone 1.5s infinite alternate;
+}
+
+.rotateBox h2{
+    font-size:clamp(22px,7vw,36px);
+    margin-bottom:10px;
+}
+
+.rotateBox p{
+    color:#9bb1c0;
+    line-height:1.5;
+}
+
+@keyframes rotatePhone{
+    to{
+        transform:rotate(90deg);
+    }
+}
+
+@media(max-width:600px) and (orientation:portrait){
+    #rotateHint{
+        display:flex;
+    }
+}
+
+@media(min-width:601px){
+    #rotateHint{
+        display:none!important;
+    }
 }
 </style>
 </head>
+
 <body>
+
 <div id="app">
-  <div class="grid"></div>
-  <div class="particles" id="particles"></div>
-  <div class="energy" id="energy"></div>
-  <div class="flash" id="flash"></div>
 
-  <div class="screen" id="boot">
-    <div class="label">SYSTEM INITIALIZATION</div>
-    <div class="title">TECH HUB</div>
-    <div class="loading"><div class="loadingBar"></div></div>
-    <div class="subtitle">INITIALIZING TECHNOLOGY CORE...</div>
-  </div>
+<div class="grid"></div>
 
-  <div class="screen hidden" id="president">
-    <div class="label">AUTHORIZED PERSONNEL REQUIRED</div>
-    <div class="title">PRESIDENT OF TECH HUB</div>
-    <div class="subtitle">PLEASE ENTER TO MOVE ON</div>
-    <button class="enterBtn" onclick="presidentEnter()">ENTER</button>
-  </div>
+<div class="particles" id="particles"></div>
 
-  <div class="screen hidden loadingScreen" id="presidentLoading">
-    <div class="label">SECURITY PROTOCOL</div>
-    <div class="loadingTitle">AUTHENTICATING...</div>
-    <div class="loadingText">VERIFYING PRESIDENT AUTHORIZATION</div>
-    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-  </div>
+<div class="energy" id="energy"></div>
 
-  <div class="screen hidden" id="error1">
-    <div class="errorBox">
-      <div class="errorText">ERROR</div>
-      <div class="errorSmall">AUTHORIZATION FAILED</div>
-      <div class="errorSmall">PRESIDENT ACCESS DENIED</div>
+<div class="flash" id="flash"></div>
+
+<div class="boom" id="boom"></div>
+
+
+<!-- ================= BOOT ================= -->
+
+<div class="screen" id="boot">
+
+    <div class="label">
+        SYSTEM INITIALIZATION
     </div>
-  </div>
 
-  <div class="screen hidden" id="associate">
-    <div class="label">SECOND AUTHORIZATION REQUIRED</div>
-    <div class="title">ASSOCIATIVE PRESIDENT</div>
-    <div class="subtitle">PLEASE ENTER TO MOVE ON</div>
-    <button class="enterBtn" onclick="associateEnter()">ENTER</button>
-  </div>
-
-  <div class="screen hidden loadingScreen" id="associateLoading">
-    <div class="label">SECURITY PROTOCOL</div>
-    <div class="loadingTitle">AUTHENTICATING...</div>
-    <div class="loadingText">VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION</div>
-    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-  </div>
-
-  <div class="screen hidden" id="error2">
-    <div class="errorBox">
-      <div class="errorText">ERROR</div>
-      <div class="errorSmall">AUTHORIZATION FAILED</div>
-      <div class="errorSmall">ASSOCIATE PRESIDENT ACCESS DENIED</div>
+    <div class="title">
+        TECH HUB
     </div>
-  </div>
 
-  <div class="screen hidden" id="chairman">
-    <div class="label">FINAL AUTHORIZATION REQUIRED</div>
-    <div class="chairmanText">THIS IS THE TIME TO REQUEST OUR</div>
-    <div class="sir">CHAIRMAN SIR</div>
-    <button class="chairmanEnter" onclick="chairmanEnter()">ENTER</button>
-  </div>
-
-  <div class="screen hidden loadingScreen" id="chairmanLoading">
-    <div class="label">PRIORITY AUTHORIZATION</div>
-    <div class="loadingTitle">AUTHENTICATING...</div>
-    <div class="loadingText">VERIFYING CHAIRMAN AUTHORIZATION</div>
-    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-  </div>
-
-  <div class="screen hidden" id="success">
-    <div class="success">ACCESS GRANTED</div>
-    <div class="subtitle">CHAIRMAN AUTHORIZATION SUCCESSFUL</div>
-    <div class="subtitle">TECH HUB LAUNCH SEQUENCE ACTIVATED</div>
-  </div>
-
-  <div class="screen hidden" id="countdown">
-    <div class="label">TECH HUB LAUNCH SEQUENCE</div>
-    <div class="countNumber" id="countNumber">10</div>
-  </div>
-
-  <div class="screen hidden" id="bannerReveal">
-    <div class="bannerFinal" id="bannerFinal">
-      <img src="techhub-banner.png.png" alt="TECH HUB Banner">
+    <div class="loading">
+        <div class="loadingBar"></div>
     </div>
-    <div class="bannerSlices" id="bannerSlices">
-      <div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="slice"></div>
-      <div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="slice"></div>
+
+    <div class="subtitle">
+        INITIALIZING TECHNOLOGY CORE...
     </div>
-    <div class="bannerGlow" id="bannerGlow"></div>
-  </div>
 
-  <div class="screen hidden" id="logoReady">
-    <div class="readyTitle">ARE YOU READY TO LAUNCH LOGO?</div>
-    <button class="yesBtn" onclick="startLogoLaunch()">YES</button>
-  </div>
-
-  <div class="screen hidden loadingScreen" id="logoLoading">
-    <div class="label">FINAL LAUNCH PROTOCOL</div>
-    <div class="loadingTitle">PREPARING LOGO LAUNCH...</div>
-    <div class="loadingText">CALIBRATING TECH HUB IDENTITY SYSTEM</div>
-    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-  </div>
-
-  <div class="screen hidden" id="logoCountdown">
-    <div class="label">LOGO LAUNCH SEQUENCE</div>
-    <div class="countNumber" id="logoCountNumber">3</div>
-  </div>
-
-  <div class="logoLaunch" id="logoLaunch">
-    <img id="logoImage" src="techhub-logo.png" alt="TECH HUB Logo">
-  </div>
-
-  <div id="letsGo"><div class="letsGoText">LET'S GO</div></div>
-
-  <div id="rotateHint">
-    <div class="rotateBox">
-      <div class="phone">📱</div>
-      <h2>PLEASE ROTATE YOUR PHONE</h2>
-      <p>For the full cinematic TECH HUB launch, view this presentation in landscape mode.</p>
-    </div>
-  </div>
 </div>
 
-<script>
-/* ---------- generated sound effects: no sound file is required for these ---------- */
-let audioCtx=null;
-function unlockAudio(){
-  try{
-    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-    if(audioCtx.state==="suspended") audioCtx.resume();
-  }catch(e){}
-}
-function tone(freq,duration,type="sine",volume=.06,delay=0){
-  if(!audioCtx) return;
-  const t=audioCtx.currentTime+delay;
-  const o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type=type;o.frequency.setValueAtTime(freq,t);
-  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(volume,t+.01);
-  g.gain.exponentialRampToValueAtTime(.001,t+duration);
-  o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+duration+.03);
-}
-function soundScan(){unlockAudio();tone(620,.08,"square",.05);tone(880,.08,"square",.04,.09)}
-function soundError(){unlockAudio();tone(150,.12,"sawtooth",.07);tone(95,.28,"sawtooth",.06,.12)}
-function soundSuccess(){unlockAudio();tone(520,.12,"sine",.06);tone(780,.16,"sine",.06,.12);tone(1040,.28,"sine",.07,.27)}
-function soundBeep(){unlockAudio();tone(880,.16,"square",.045)}
-function soundLetsGo(){unlockAudio();tone(220,.12,"sawtooth",.05);tone(440,.12,"sawtooth",.06,.1);tone(880,.4,"sawtooth",.07,.2)}
-function soundReveal(){unlockAudio();[220,330,440,660].forEach((f,i)=>tone(f,.45,"sawtooth",.045,i*.11))}
-function soundLaunch(){unlockAudio();tone(180,.25,"sine",.05);tone(360,.25,"sine",.05,.18);tone(720,.5,"sine",.07,.36)}
-/* Optional music files. If you upload these into sounds/, they will play too. */
-const optionalMusic={
-  banner:new Audio("sounds/banner-reveal.mp3"),
-  logo:new Audio("sounds/logo-launch.mp3")
-};
-Object.values(optionalMusic).forEach(a=>{a.preload="auto";a.volume=.75});
-function playOptional(a){
-  try{a.currentTime=0;const p=a.play();if(p)p.catch(()=>{});}catch(e){}
-}
-function stopOptional(a){try{a.pause();a.currentTime=0}catch(e){}}
 
-/* ---------- setup ---------- */
-const screens=["boot","president","presidentLoading","error1","associate","associateLoading","error2","chairman","chairmanLoading","success","countdown","bannerReveal","logoReady","logoLoading","logoCountdown"];
-function hideAll(){screens.forEach(id=>document.getElementById(id)?.classList.add("hidden"))}
-const particles=document.getElementById("particles");
-for(let i=0;i<90;i++){
-  const p=document.createElement("div");p.className="particle";
-  p.style.left=Math.random()*100+"%";
-  p.style.animationDelay=Math.random()*5+"s";
-  p.style.animationDuration=3+Math.random()*6+"s";
-  particles.appendChild(p);
+<!-- ================= PRESIDENT ================= -->
+
+<div class="screen hidden" id="president">
+
+    <div class="label">
+        AUTHORIZED PERSONNEL REQUIRED
+    </div>
+
+    <div class="title">
+        PRESIDENT OF TECH HUB
+    </div>
+
+    <div class="subtitle">
+        PLEASE ENTER TO MOVE ON
+    </div>
+
+    <button class="enterBtn"
+    onclick="presidentEnter()">
+
+        ENTER
+
+    </button>
+
+</div>
+
+
+<!-- ================= PRESIDENT LOADING ================= -->
+
+<div class="screen hidden loadingScreen"
+id="presidentLoading">
+
+    <div class="label">
+        SECURITY PROTOCOL
+    </div>
+
+    <div class="loadingTitle">
+        AUTHENTICATING...
+    </div>
+
+    <div class="loadingText">
+        VERIFYING PRESIDENT AUTHORIZATION
+    </div>
+
+    <div class="dots">
+
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ERROR 1 ================= -->
+
+<div class="screen hidden" id="error1">
+
+    <div>
+
+        <div class="errorText">
+            ERROR
+        </div>
+
+        <div class="errorSmall">
+            AUTHORIZATION FAILED
+        </div>
+
+        <div class="errorSmall">
+            PRESIDENT ACCESS DENIED
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ASSOCIATE ================= -->
+
+<div class="screen hidden" id="associate">
+
+    <div class="label">
+        SECOND AUTHORIZATION REQUIRED
+    </div>
+
+    <div class="title">
+        ASSOCIATIVE PRESIDENT
+    </div>
+
+    <div class="subtitle">
+        PLEASE ENTER TO MOVE ON
+    </div>
+
+    <button class="enterBtn"
+    onclick="associateEnter()">
+
+        ENTER
+
+    </button>
+
+</div>
+
+
+<!-- ================= ASSOCIATE LOADING ================= -->
+
+<div class="screen hidden loadingScreen"
+id="associateLoading">
+
+    <div class="label">
+        SECURITY PROTOCOL
+    </div>
+
+    <div class="loadingTitle">
+        AUTHENTICATING...
+    </div>
+
+    <div class="loadingText">
+        VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION
+    </div>
+
+    <div class="dots">
+
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ERROR 2 ================= -->
+
+<div class="screen hidden" id="error2">
+
+    <div>
+
+        <div class="errorText">
+            ERROR
+        </div>
+
+        <div class="errorSmall">
+            AUTHORIZATION FAILED
+        </div>
+
+        <div class="errorSmall">
+            ASSOCIATE PRESIDENT ACCESS DENIED
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CHAIRMAN ================= -->
+
+<div class="screen hidden" id="chairman">
+
+    <div class="label">
+        FINAL AUTHORIZATION REQUIRED
+    </div>
+
+    <div class="chairmanText">
+        THIS IS THE TIME TO REQUEST OUR
+    </div>
+
+    <div class="sir">
+        CHAIRMAN SIR
+    </div>
+
+    <button class="chairmanEnter"
+    onclick="chairmanEnter()">
+
+        ENTER
+
+    </button>
+
+</div>
+
+
+<!-- ================= CHAIRMAN LOADING ================= -->
+
+<div class="screen hidden loadingScreen"
+id="chairmanLoading">
+
+    <div class="label">
+        PRIORITY AUTHORIZATION
+    </div>
+
+    <div class="loadingTitle">
+        AUTHENTICATING...
+    </div>
+
+    <div class="loadingText">
+        VERIFYING CHAIRMAN AUTHORIZATION
+    </div>
+
+    <div class="dots">
+
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ACCESS GRANTED ================= -->
+
+<div class="screen hidden" id="success">
+
+    <div class="success">
+        ACCESS GRANTED
+    </div>
+
+    <div class="subtitle">
+        CHAIRMAN AUTHORIZATION SUCCESSFUL
+    </div>
+
+    <div class="subtitle">
+        TECH HUB LAUNCH SEQUENCE ACTIVATED
+    </div>
+
+</div>
+
+
+<!-- ================= LET'S GO ================= -->
+
+<div id="letsGo">
+
+    <div class="letsGoText">
+        LET'S GO
+    </div>
+
+</div>
+
+
+<!-- ================= COUNTDOWN ================= -->
+
+<div class="screen hidden" id="countdown">
+
+    <div class="label">
+        TECH HUB LAUNCH SEQUENCE
+    </div>
+
+    <div class="countNumber"
+    id="countNumber">
+
+        10
+
+    </div>
+
+</div>
+
+
+<!-- ================= BANNER ================= -->
+
+<div class="screen hidden"
+id="bannerReveal">
+
+    <div class="bannerFinal"
+    id="bannerFinal">
+
+        <img
+        src="techhub-banner.png.png"
+        alt="TECH HUB Banner">
+
+    </div>
+
+    <div class="bannerSlices"
+    id="bannerSlices">
+
+        <div class="slice"></div>
+        <div class="slice"></div>
+        <div class="slice"></div>
+        <div class="slice"></div>
+
+        <div class="slice"></div>
+        <div class="slice"></div>
+        <div class="slice"></div>
+        <div class="slice"></div>
+
+    </div>
+
+    <div class="bannerGlow"
+    id="bannerGlow"></div>
+
+</div>
+
+
+<!-- ================= SUSPENSE ================= -->
+
+<div class="screen hidden"
+id="suspense">
+
+    <div
+    class="suspenseText"
+    id="suspenseText">
+    </div>
+
+</div>
+
+
+<!-- ================= SYSTEM ================= -->
+
+<div class="screen hidden"
+id="system">
+
+    <div class="systemBox">
+
+        <div class="systemTitle">
+            SYSTEM MESSAGE:
+        </div>
+
+        <div
+        class="progressText"
+        id="progressText">
+
+            INITIALIZING...
+
+        </div>
+
+        <div class="progressBar">
+
+            <div
+            class="progressFill"
+            id="progressFill">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FINAL MESSAGE ================= -->
+
+<div class="screen hidden"
+id="finalMessage">
+
+    <div
+    class="finalMessage"
+    id="finalMessageText">
+    </div>
+
+</div>
+
+
+<!-- ================= LOGO ================= -->
+
+<div class="logoLaunch"
+id="logoLaunch">
+
+    <img
+    src="techhub-logo.png"
+    alt="TECH HUB Logo">
+
+</div>
+
+
+<div class="brandFinal"
+id="brandFinal">
+
+    <div class="brandMain">
+        TECH HUB
+    </div>
+
+    <div class="brandTag">
+        LEARN • BUILD • INNOVATE
+    </div>
+
+</div>
+
+
+<!-- ================= ROTATE ================= -->
+
+<div id="rotateHint">
+
+    <div class="rotateBox">
+
+        <div class="phone">
+            📱
+        </div>
+
+        <h2>
+            PLEASE ROTATE YOUR PHONE
+        </h2>
+
+        <p>
+            For the full cinematic TECH HUB launch,
+            view this presentation in landscape mode.
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =================================================
+   AUDIO ENGINE
+================================================= */
+
+let audioCtx=null;
+
+function unlockAudio(){
+
+    try{
+
+        if(!audioCtx){
+
+            audioCtx =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+        }
+
+        if(audioCtx.state==="suspended"){
+            audioCtx.resume();
+        }
+
+    }catch(e){}
+
 }
+
+function tone(
+    freq,
+    duration,
+    type="sine",
+    volume=.06,
+    delay=0
+){
+
+    if(!audioCtx) return;
+
+    const t =
+    audioCtx.currentTime + delay;
+
+    const o =
+    audioCtx.createOscillator();
+
+    const g =
+    audioCtx.createGain();
+
+    o.type=type;
+
+    o.frequency.setValueAtTime(
+        freq,
+        t
+    );
+
+    g.gain.setValueAtTime(
+        0,
+        t
+    );
+
+    g.gain.linearRampToValueAtTime(
+        volume,
+        t+.01
+    );
+
+    g.gain.exponentialRampToValueAtTime(
+        .001,
+        t+duration
+    );
+
+    o.connect(g);
+
+    g.connect(
+        audioCtx.destination
+    );
+
+    o.start(t);
+
+    o.stop(
+        t+duration+.03
+    );
+}
+
+
+/* SCAN */
+
+function soundScan(){
+
+    unlockAudio();
+
+    tone(
+        620,
+        .08,
+        "square",
+        .05
+    );
+
+    tone(
+        880,
+        .08,
+        "square",
+        .04,
+        .09
+    );
+}
+
+
+/* ERROR */
+
+function soundError(){
+
+    unlockAudio();
+
+    tone(
+        150,
+        .12,
+        "sawtooth",
+        .07
+    );
+
+    tone(
+        95,
+        .28,
+        "sawtooth",
+        .06,
+        .12
+    );
+}
+
+
+/* SUCCESS */
+
+function soundSuccess(){
+
+    unlockAudio();
+
+    tone(520,.12,"sine",.06);
+
+    tone(780,.16,"sine",.06,.12);
+
+    tone(1040,.28,"sine",.07,.27);
+}
+
+
+/* BEEP */
+
+function soundBeep(){
+
+    unlockAudio();
+
+    tone(
+        880,
+        .16,
+        "square",
+        .045
+    );
+}
+
+
+/* LET'S GO */
+
+function soundLetsGo(){
+
+    unlockAudio();
+
+    tone(
+        220,
+        .12,
+        "sawtooth",
+        .05
+    );
+
+    tone(
+        440,
+        .12,
+        "sawtooth",
+        .06,
+        .1
+    );
+
+    tone(
+        880,
+        .4,
+        "sawtooth",
+        .07,
+        .2
+    );
+}
+
+
+/* HEARTBEAT */
+
+function heartbeat(
+    fast=false
+){
+
+    unlockAudio();
+
+    const gap =
+    fast ? .32 : .65;
+
+    tone(
+        70,
+        .10,
+        "sine",
+        .09
+    );
+
+    tone(
+        55,
+        .14,
+        "sine",
+        .07,
+        .12
+    );
+
+    if(fast){
+
+        tone(
+            70,
+            .10,
+            "sine",
+            .09,
+            gap
+        );
+
+        tone(
+            55,
+            .14,
+            "sine",
+            .07,
+            gap+.12
+        );
+
+    }
+
+}
+
+
+/* BOOM */
+
+function soundBoom(){
+
+    unlockAudio();
+
+    tone(
+        80,
+        .7,
+        "sawtooth",
+        .13
+    );
+
+    tone(
+        140,
+        .5,
+        "sine",
+        .1,
+        .08
+    );
+
+    tone(
+        440,
+        .6,
+        "sine",
+        .08,
+        .2
+    );
+}
+
+
+/* =================================================
+   SCREEN SYSTEM
+================================================= */
+
+const screens=[
+
+    "boot",
+    "president",
+    "presidentLoading",
+    "error1",
+    "associate",
+    "associateLoading",
+    "error2",
+    "chairman",
+    "chairmanLoading",
+    "success",
+    "countdown",
+    "bannerReveal",
+    "suspense",
+    "system",
+    "finalMessage"
+
+];
+
+function hideAll(){
+
+    screens.forEach(
+        id =>
+        document
+        .getElementById(id)
+        ?.classList
+        .add("hidden")
+    );
+
+}
+
+
+/* =================================================
+   PARTICLES
+================================================= */
+
+const particles =
+document.getElementById("particles");
+
+for(
+    let i=0;
+    i<90;
+    i++
+){
+
+    const p =
+    document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left =
+    Math.random()*100+"%";
+
+    p.style.animationDelay =
+    Math.random()*5+"s";
+
+    p.style.animationDuration =
+    3+Math.random()*6+"s";
+
+    particles.appendChild(p);
+
+}
+
+
+/* =================================================
+   BOOT
+================================================= */
+
 setTimeout(()=>{
-  document.getElementById("boot").style.opacity="0";
-  setTimeout(()=>{hideAll();document.getElementById("president").classList.remove("hidden")},900);
+
+    document
+    .getElementById("boot")
+    .style.opacity="0";
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document
+        .getElementById("president")
+        .classList
+        .remove("hidden");
+
+    },900);
+
 },3500);
 
+
+/* =================================================
+   PRESIDENT
+================================================= */
+
 function presidentEnter(){
-  unlockAudio();soundScan();hideAll();
-  document.getElementById("presidentLoading").classList.remove("hidden");
-  setTimeout(()=>{
-    hideAll();document.getElementById("error1").classList.remove("hidden");soundError();
-  },3000);
-  setTimeout(()=>{hideAll();document.getElementById("associate").classList.remove("hidden")},5500);
+
+    unlockAudio();
+
+    soundScan();
+
+    hideAll();
+
+    document
+    .getElementById("presidentLoading")
+    .classList
+    .remove("hidden");
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document
+        .getElementById("error1")
+        .classList
+        .remove("hidden");
+
+        soundError();
+
+    },3000);
+
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document
+        .getElementById("associate")
+        .classList
+        .remove("hidden");
+
+    },5500);
+
 }
+
+
+/* =================================================
+   ASSOCIATE
+================================================= */
+
 function associateEnter(){
-  unlockAudio();soundScan();hideAll();
-  document.getElementById("associateLoading").classList.remove("hidden");
-  setTimeout(()=>{
-    hideAll();document.getElementById("error2").classList.remove("hidden");soundError();
-  },3000);
-  setTimeout(()=>{hideAll();document.getElementById("chairman").classList.remove("hidden")},5500);
+
+    unlockAudio();
+
+    soundScan();
+
+    hideAll();
+
+    document
+    .getElementById("associateLoading")
+    .classList
+    .remove("hidden");
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document
+        .getElementById("error2")
+        .classList
+        .remove("hidden");
+
+        soundError();
+
+    },3000);
+
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document
+        .getElementById("chairman")
+        .classList
+        .remove("hidden");
+
+    },5500);
+
 }
+
+
+/* =================================================
+   CHAIRMAN
+================================================= */
+
 function chairmanEnter(){
-  unlockAudio();soundScan();hideAll();
-  document.getElementById("chairmanLoading").classList.remove("hidden");
-  setTimeout(()=>{
-    hideAll();document.getElementById("success").classList.remove("hidden");soundSuccess();
-  },3000);
-  setTimeout(showLetsGo,5000);
+
+    unlockAudio();
+
+    soundScan();
+
+    hideAll();
+
+    document
+    .getElementById("chairmanLoading")
+    .classList
+    .remove("hidden");
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        document
+        .getElementById("success")
+        .classList
+        .remove("hidden");
+
+        soundSuccess();
+
+    },3000);
+
+
+    setTimeout(
+        showLetsGo,
+        5000
+    );
+
 }
+
+
+/* =================================================
+   LET'S GO
+================================================= */
+
 function showLetsGo(){
-  hideAll();
-  const lg=document.getElementById("letsGo"),en=document.getElementById("energy");
-  lg.classList.remove("show");void lg.offsetWidth;lg.classList.add("show");
-  en.classList.remove("active");void en.offsetWidth;en.classList.add("active");
-  soundLetsGo();
-  setTimeout(startCountdown,1450);
+
+    hideAll();
+
+    const lg =
+    document.getElementById("letsGo");
+
+    const energy =
+    document.getElementById("energy");
+
+    lg.classList.remove("show");
+
+    void lg.offsetWidth;
+
+    lg.classList.add("show");
+
+    energy.classList.remove("active");
+
+    void energy.offsetWidth;
+
+    energy.classList.add("active");
+
+    soundLetsGo();
+
+    setTimeout(
+        startCountdown,
+        1450
+    );
+
 }
+
+
+/* =================================================
+   COUNTDOWN
+================================================= */
+
 function startCountdown(){
-  hideAll();
-  const s=document.getElementById("countdown"),nEl=document.getElementById("countNumber");
-  s.classList.remove("hidden");
-  let n=10;nEl.textContent=n;soundBeep();
-  const timer=setInterval(()=>{
-    n--;
-    if(n>0){
-      nEl.textContent=n;nEl.style.animation="none";void nEl.offsetWidth;nEl.style.animation="pulse 1s ease";soundBeep();
-    }else{
-      clearInterval(timer);finalBannerReveal();
-    }
-  },1000);
+
+    hideAll();
+
+    const s =
+    document.getElementById("countdown");
+
+    const nEl =
+    document.getElementById("countNumber");
+
+    s.classList.remove("hidden");
+
+    let n=10;
+
+    nEl.textContent=n;
+
+    soundBeep();
+
+    const timer =
+    setInterval(()=>{
+
+        n--;
+
+        if(n>0){
+
+            nEl.textContent=n;
+
+            nEl.style.animation="none";
+
+            void nEl.offsetWidth;
+
+            nEl.style.animation=
+            "pulse 1s ease";
+
+            soundBeep();
+
+        }
+
+        else{
+
+            clearInterval(timer);
+
+            finalBannerReveal();
+
+        }
+
+    },1000);
+
 }
+
+
+/* =================================================
+   BANNER REVEAL
+   BANNER STAYS 1 MINUTE
+================================================= */
+
 function finalBannerReveal(){
-  hideAll();soundReveal();playOptional(optionalMusic.banner);
-  const b=document.getElementById("bannerReveal"),s=document.getElementById("bannerSlices"),f=document.getElementById("bannerFinal"),g=document.getElementById("bannerGlow");
-  b.classList.remove("hidden");s.classList.remove("open");f.classList.remove("visible");g.classList.remove("on");
-  void s.offsetWidth;s.classList.add("open");g.classList.add("on");
-  setTimeout(()=>f.classList.add("visible"),1450);
-  /* Keep the fully normal banner on screen for 1 minutes. */
-  setTimeout(()=>{
-    stopOptional(optionalMusic.banner);
-    hideAll();document.getElementById("logoReady").classList.remove("hidden");
-  },60000);
+
+    hideAll();
+
+    const b =
+    document.getElementById("bannerReveal");
+
+    const s =
+    document.getElementById("bannerSlices");
+
+    const f =
+    document.getElementById("bannerFinal");
+
+    const g =
+    document.getElementById("bannerGlow");
+
+    b.classList.remove("hidden");
+
+    s.classList.remove("open");
+
+    f.classList.remove("visible");
+
+    g.classList.remove("on");
+
+    void s.offsetWidth;
+
+    s.classList.add("open");
+
+    g.classList.add("on");
+
+    setTimeout(()=>{
+
+        f.classList.add("visible");
+
+    },1450);
+
+
+    /*
+       IMPORTANT:
+       BANNER = 1 MINUTE
+    */
+
+    setTimeout(()=>{
+
+        startSuspense();
+
+    },60000);
+
 }
-function startLogoLaunch(){
-  unlockAudio();soundLaunch();hideAll();stopOptional(optionalMusic.banner);
-  document.getElementById("logoLoading").classList.remove("hidden");
-  setTimeout(()=>startLogoCountdown(),60000);
+
+
+/* =================================================
+   LOGO SUSPENSE
+================================================= */
+
+function startSuspense(){
+
+    hideAll();
+
+    const s =
+    document.getElementById("suspense");
+
+    const text =
+    document.getElementById("suspenseText");
+
+    s.classList.remove("hidden");
+
+    text.className="suspenseText";
+
+    text.innerHTML="WAIT…";
+
+    /* WAIT */
+
+    setTimeout(()=>{
+
+        text.style.opacity="0";
+
+    },1800);
+
+
+    /* THAT WASN'T THE END */
+
+    setTimeout(()=>{
+
+        text.className="suspenseText";
+
+        text.innerHTML=
+        "THAT WASN'T THE END.";
+
+        text.style.opacity="1";
+
+    },2000);
+
+
+    /* UNLOCKED */
+
+    setTimeout(()=>{
+
+        text.className="suspenseText";
+
+        text.innerHTML=
+        "YOU'VE UNLOCKED THE SYSTEM…";
+
+        text.style.opacity="1";
+
+        heartbeat(false);
+
+    },4500);
+
+
+    /* SECRET */
+
+    setTimeout(()=>{
+
+        text.innerHTML=
+        "BUT THE REAL SECRET…";
+
+        heartbeat(false);
+
+    },7000);
+
+
+    /* HIDDEN */
+
+    setTimeout(()=>{
+
+        text.className=
+        "suspenseText flicker";
+
+        text.innerHTML=
+        "…IS STILL HIDDEN.";
+
+        heartbeat(true);
+
+    },9000);
+
+
+    /* FINAL SEQUENCE */
+
+    setTimeout(()=>{
+
+        text.className="suspenseText";
+
+        text.innerHTML=
+        "ONE FINAL SEQUENCE REMAINS.";
+
+        heartbeat(true);
+
+    },11500);
+
+
+    /* SYSTEM */
+
+    setTimeout(
+        startSystem,
+        14000
+    );
+
 }
-function startLogoCountdown(){
-  hideAll();
-  const s=document.getElementById("logoCountdown"),el=document.getElementById("logoCountNumber");
-  s.classList.remove("hidden");
-  let n=3;el.textContent=n;soundBeep();
-  const timer=setInterval(()=>{
-    n--;
-    if(n>0){el.textContent=n;el.style.animation="none";void el.offsetWidth;el.style.animation="pulse 1s ease";soundBeep()}
-    else{clearInterval(timer);revealLogo()}
-  },1000);
+
+
+/* =================================================
+   SYSTEM 40 → 80 → 100
+================================================= */
+
+function startSystem(){
+
+    hideAll();
+
+    const s =
+    document.getElementById("system");
+
+    const text =
+    document.getElementById("progressText");
+
+    const fill =
+    document.getElementById("progressFill");
+
+    s.classList.remove("hidden");
+
+    fill.style.width="0%";
+
+    text.innerHTML=
+    "INITIALIZING...";
+
+    /* 40% */
+
+    setTimeout(()=>{
+
+        text.innerHTML=
+        "████░░░░░░ 40%";
+
+        fill.style.width="40%";
+
+    },500);
+
+
+    /* GLITCH */
+
+    setTimeout(()=>{
+
+        s.classList.add("glitch");
+
+        document
+        .getElementById("system")
+        .querySelector(".systemBox")
+        .insertAdjacentHTML(
+            "afterbegin",
+            '<div class="secretText">DO NOT LOOK AWAY.</div>'
+        );
+
+        setTimeout(()=>{
+
+            s.classList.remove("glitch");
+
+        },500);
+
+    },3000);
+
+
+    /* 80% */
+
+    setTimeout(()=>{
+
+        text.innerHTML=
+        "████████░░ 80%";
+
+        fill.style.width="80%";
+
+        document
+        .getElementById("system")
+        .querySelector(".secretText")
+        ?.remove();
+
+        heartbeat(true);
+
+    },5000);
+
+
+    /* MOMENT */
+
+    setTimeout(()=>{
+
+        text.innerHTML=
+        "THE MOMENT YOU'VE BEEN WAITING FOR…";
+
+        fill.style.width="90%";
+
+    },7000);
+
+
+    /* 100% */
+
+    setTimeout(()=>{
+
+        text.innerHTML=
+        "██████████ 100%";
+
+        fill.style.width="100%";
+
+    },9000);
+
+
+    /* SILENCE → 3 */
+
+    setTimeout(
+        startFinalCountdown,
+        11000
+    );
+
 }
+
+
+/* =================================================
+   FINAL 3 2 1
+================================================= */
+
+function startFinalCountdown(){
+
+    hideAll();
+
+    const s =
+    document.getElementById("finalMessage");
+
+    const text =
+    document.getElementById("finalMessageText");
+
+    s.classList.remove("hidden");
+
+    let n=3;
+
+    text.innerHTML="3…";
+
+    soundBeep();
+
+
+    const timer =
+    setInterval(()=>{
+
+        n--;
+
+        if(n>0){
+
+            text.innerHTML=
+            n+"…";
+
+            soundBeep();
+
+            if(n===2){
+
+                tone(
+                    660,
+                    .2,
+                    "square",
+                    .07
+                );
+
+            }
+
+        }
+
+        else{
+
+            clearInterval(timer);
+
+            text.innerHTML="1…";
+
+            soundBeep();
+
+            setTimeout(
+                revealLogo,
+                700
+            );
+
+        }
+
+    },1200);
+
+}
+
+
+/* =================================================
+   LOGO REVEAL
+================================================= */
+
 function revealLogo(){
-  hideAll();soundLaunch();playOptional(optionalMusic.logo);
-  const scene=document.getElementById("logoLaunch");
-  scene.classList.remove("show");void scene.offsetWidth;scene.classList.add("show");
+
+    hideAll();
+
+    soundBoom();
+
+    const boom =
+    document.getElementById("boom");
+
+    boom.classList.remove("active");
+
+    void boom.offsetWidth;
+
+    boom.classList.add("active");
+
+
+    const scene =
+    document.getElementById("logoLaunch");
+
+    scene.classList.remove("show");
+
+    void scene.offsetWidth;
+
+    scene.classList.add("show");
+
+
+    /*
+       After logo appears,
+       show final branding.
+    */
+
+    setTimeout(()=>{
+
+        const brand =
+        document.getElementById("brandFinal");
+
+        brand.classList.remove("show");
+
+        void brand.offsetWidth;
+
+        brand.classList.add("show");
+
+    },4000);
+
 }
+
 </script>
+
 </body>
 </html>
+```
