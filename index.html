@@ -454,35 +454,212 @@ button{
 }
 
 
-/* =========================
-   CHAIRMAN
-========================= */
+/* =================================================
+   CHAIRMAN SUSPENSE INTRO
+================================================= */
 
-.chairmanText{
-
-    max-width:1000px;
-
-    line-height:1.4;
-
-    font-size:clamp(22px,4vw,60px);
-
-    font-weight:700;
+.chairmanSuspense{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-.sir{
+.suspenseLine{
+    opacity:0;
+    font-size:clamp(22px,4vw,58px);
+    font-weight:800;
+    letter-spacing:clamp(2px,.5vw,7px);
+    line-height:1.45;
+    transform:translateY(20px);
+}
 
-    margin-top:25px;
+.suspenseLine.show{
+    animation:suspenseReveal 1.4s ease forwards;
+}
 
+@keyframes suspenseReveal{
+
+    0%{
+        opacity:0;
+        transform:translateY(25px);
+        filter:blur(8px);
+    }
+
+    60%{
+        opacity:1;
+        filter:blur(0);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.highlight{
+    color:#b8c9d5;
+}
+
+.question{
+    margin-top:15px;
+    font-size:clamp(32px,5vw,72px);
     color:#69eaff;
+    text-shadow:
+        0 0 20px #00d9ff,
+        0 0 50px rgba(0,210,255,.5);
+}
 
-    font-size:clamp(28px,5vw,70px);
+.suspenseGap{
+    height:35px;
+}
+
+.suspensePause,
+.suspenseBeat{
+    opacity:0;
+    font-size:24px;
+    margin:25px 0;
+}
+
+.suspensePause.show,
+.suspenseBeat.show{
+    animation:pauseAppear .8s ease forwards;
+}
+
+@keyframes pauseAppear{
+
+    0%{
+        opacity:0;
+    }
+
+    50%{
+        opacity:.7;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+
+/* =================================================
+   FINAL CHAIRMAN REVEAL
+================================================= */
+
+.chairmanFinal{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    opacity:0;
+    visibility:hidden;
+}
+
+.chairmanFinal.show{
+    visibility:visible;
+    animation:chairmanFinalReveal 2.5s ease forwards;
+}
+
+@keyframes chairmanFinalReveal{
+
+    0%{
+        opacity:0;
+        filter:blur(15px);
+        transform:scale(.94);
+    }
+
+    60%{
+        opacity:1;
+        filter:blur(0);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.finalLine{
+    font-size:clamp(20px,3.2vw,50px);
+    font-weight:700;
+    letter-spacing:clamp(1px,.35vw,5px);
+    line-height:1.5;
+    color:#d8e5ec;
+}
+
+.chairmanName{
+    margin-top:35px;
+
+    font-size:clamp(40px,7vw,95px);
 
     font-weight:900;
 
-    letter-spacing:5px;
+    letter-spacing:clamp(3px,.7vw,10px);
+
+    color:#69eaff;
 
     text-shadow:
-    0 0 25px #00cfff;
+        0 0 20px #00d9ff,
+        0 0 60px #0077ff,
+        0 0 110px rgba(124,0,255,.8);
+
+    animation:chairmanNameGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes chairmanNameGlow{
+
+    from{
+        text-shadow:
+            0 0 15px #00d9ff,
+            0 0 40px #0077ff;
+    }
+
+    to{
+        text-shadow:
+            0 0 30px #00d9ff,
+            0 0 80px #0077ff,
+            0 0 130px #7c00ff;
+    }
+
+}
+
+.stageText{
+    margin-top:15px;
+
+    color:#9bb1c0;
+
+    font-size:clamp(14px,1.7vw,23px);
+
+    letter-spacing:4px;
+}
+
+.chairmanFinal .chairmanEnter{
+    opacity:0;
+    animation:buttonAppear 1s ease 2s forwards;
+}
+
+@keyframes buttonAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
 }
 
 
@@ -1566,30 +1743,86 @@ button{
      8. CHAIRMAN
 ================================================= -->
 
+<!-- =================================================
+     8. CHAIRMAN — SUSPENSE INTRO
+================================================= -->
+
 <div class="screen hidden" id="chairman">
 
-    <div class="label">
-        FINAL AUTHORIZATION REQUIRED
+    <div class="chairmanSuspense" id="chairmanSuspense">
+
+        <div class="suspenseLine" id="cs1">
+            EVERYTHING IS READY...
+        </div>
+
+        <div class="suspenseLine" id="cs2">
+            THE STAGE IS SET...
+        </div>
+
+        <div class="suspenseLine" id="cs3">
+            THE MOMENT IS HERE...
+        </div>
+
+        <div class="suspenseGap" id="csGap"></div>
+
+        <div class="suspenseLine highlight" id="cs4">
+            BUT SOMETHING... IS STILL MISSING.
+        </div>
+
+        <div class="suspensePause" id="csPause">
+            ⏳
+        </div>
+
+        <div class="suspenseLine" id="cs5">
+            THE FINAL STEP...
+        </div>
+
+        <div class="suspenseLine" id="cs6">
+            AWAITS ITS KEY.
+        </div>
+
+        <div class="suspenseBeat" id="csBeat">
+            ⏳
+        </div>
+
+        <div class="suspenseLine question" id="cs7">
+            WHO HOLDS THE KEY?
+        </div>
+
     </div>
 
-    <div class="chairmanText">
-        THIS IS THE TIME TO REQUEST OUR
+
+    <!-- FINAL REVEAL -->
+
+    <div class="chairmanFinal" id="chairmanFinal">
+
+        <div class="finalLine">
+            THE ONE WHO CAN TURN THIS MOMENT...
+        </div>
+
+        <div class="finalLine">
+            ...INTO A BEGINNING.
+        </div>
+
+        <div class="chairmanName">
+            CHAIRMAN SIR
+        </div>
+
+        <div class="stageText">
+            THE STAGE AWAITS YOU.
+        </div>
+
+        <button
+            class="chairmanEnter"
+            onclick="chairmanEnter()">
+
+            ⚡ ENTER
+
+        </button>
+
     </div>
-
-    <div class="sir">
-        CHAIRMAN SIR
-    </div>
-
-    <button
-        class="chairmanEnter"
-        onclick="chairmanEnter()">
-
-        ENTER
-
-    </button>
 
 </div>
-
 
 <!-- =================================================
      9. CHAIRMAN LOADING
@@ -2311,44 +2544,115 @@ function associateEnter(){
    CHAIRMAN
 ================================================= */
 
-function chairmanEnter(){
+/* =================================================
+   CHAIRMAN SUSPENSE INTRO
+================================================= */
 
-    unlockAudio();
-
-    soundScan();
+function startChairmanIntro(){
 
     hideAll();
 
-    document
-        .getElementById(
-            "chairmanLoading"
-        )
-        .classList
-        .remove("hidden");
+    const chairman =
+        document.getElementById("chairman");
 
+    chairman.classList.remove("hidden");
+
+    const lines = [
+        "cs1",
+        "cs2",
+        "cs3",
+        "cs4",
+        "cs5",
+        "cs6",
+        "cs7"
+    ];
+
+    const pause =
+        document.getElementById("csPause");
+
+    const beat =
+        document.getElementById("csBeat");
+
+
+    /* EVERYTHING IS READY */
+
+    setTimeout(()=>{
+        document.getElementById("cs1").classList.add("show");
+    },500);
+
+
+    /* THE STAGE IS SET */
+
+    setTimeout(()=>{
+        document.getElementById("cs2").classList.add("show");
+    },2200);
+
+
+    /* THE MOMENT IS HERE */
+
+    setTimeout(()=>{
+        document.getElementById("cs3").classList.add("show");
+    },3900);
+
+
+    /* BUT SOMETHING IS STILL MISSING */
+
+    setTimeout(()=>{
+        document.getElementById("cs4").classList.add("show");
+    },5700);
+
+
+    /* PAUSE */
+
+    setTimeout(()=>{
+        pause.classList.add("show");
+    },7600);
+
+
+    /* THE FINAL STEP */
+
+    setTimeout(()=>{
+        document.getElementById("cs5").classList.add("show");
+    },9300);
+
+
+    /* AWAITS ITS KEY */
+
+    setTimeout(()=>{
+        document.getElementById("cs6").classList.add("show");
+    },10800);
+
+
+    /* DRAMATIC BEAT */
+
+    setTimeout(()=>{
+        beat.classList.add("show");
+    },12400);
+
+
+    /* WHO HOLDS THE KEY? */
+
+    setTimeout(()=>{
+        document.getElementById("cs7").classList.add("show");
+    },14000);
+
+
+    /* FINAL REVEAL */
 
     setTimeout(()=>{
 
-        hideAll();
+        document
+            .getElementById("chairmanSuspense")
+            .style.display="none";
 
         document
-            .getElementById("success")
+            .getElementById("chairmanFinal")
             .classList
-            .remove("hidden");
+            .add("show");
 
-        soundSuccess();
-
-    },3000);
-
-
-    setTimeout(
-        showLetsGo,
-        5000
-    );
+    },17500);
 
 }
-
-
 /* =================================================
    LET'S GO
 ================================================= */
