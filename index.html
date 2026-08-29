@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +19,8 @@ html,body{
     width:100%;
     height:100%;
     overflow:hidden;
-    background:#000;
-    color:#fff;
+    background:#02040a;
+    color:white;
     font-family:Arial,Helvetica,sans-serif;
 }
 
@@ -29,24 +29,11 @@ body{
     radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%);
 }
 
-button{
-    font:inherit;
-}
-
 #app{
     position:fixed;
     inset:0;
     overflow:hidden;
 }
-
-.hidden{
-    display:none!important;
-}
-
-
-/* =========================
-   BACKGROUND GRID
-========================= */
 
 .grid{
     position:absolute;
@@ -63,25 +50,16 @@ button{
         rotateX(60deg);
 
     animation:gridMove 8s linear infinite;
-
-    pointer-events:none;
 }
 
 @keyframes gridMove{
-
     to{
         transform:
-            perspective(500px)
-            rotateX(60deg)
-            translateY(55px);
+        perspective(500px)
+        rotateX(60deg)
+        translateY(55px);
     }
-
 }
-
-
-/* =========================
-   PARTICLES
-========================= */
 
 .particles{
     position:absolute;
@@ -122,24 +100,15 @@ button{
         transform:translateY(-10vh);
         opacity:0;
     }
-
 }
 
-
-/* =========================
-   SCREEN
-========================= */
-
 .screen{
-
     position:absolute;
-
     inset:0;
 
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     flex-direction:column;
@@ -151,13 +120,11 @@ button{
     padding:clamp(18px,4vw,40px);
 }
 
-
-/* =========================
-   TEXT
-========================= */
+.hidden{
+    display:none!important;
+}
 
 .label{
-
     font-size:clamp(12px,1.7vw,25px);
 
     letter-spacing:clamp(2px,.4vw,6px);
@@ -168,7 +135,6 @@ button{
 }
 
 .title{
-
     font-size:clamp(30px,5vw,75px);
 
     font-weight:800;
@@ -177,7 +143,6 @@ button{
 }
 
 .subtitle{
-
     margin-top:20px;
 
     color:#a7bdcc;
@@ -187,13 +152,7 @@ button{
     font-size:clamp(12px,1.5vw,22px);
 }
 
-
-/* =========================
-   LOADING
-========================= */
-
 .loading{
-
     width:min(500px,70vw);
 
     height:4px;
@@ -206,7 +165,6 @@ button{
 }
 
 .loadingBar{
-
     width:0;
 
     height:100%;
@@ -221,17 +179,10 @@ button{
 }
 
 @keyframes load{
-
     to{
         width:100%;
     }
-
 }
-
-
-/* =========================
-   BUTTONS
-========================= */
 
 .enterBtn,
 .chairmanEnter,
@@ -273,13 +224,7 @@ button{
     transform:scale(1.05);
 }
 
-
-/* =========================
-   LOADING SCREEN
-========================= */
-
 .loadingScreen{
-
     animation:
         appear .6s ease;
 }
@@ -295,7 +240,6 @@ button{
         opacity:1;
         transform:scale(1);
     }
-
 }
 
 .loadingTitle{
@@ -330,7 +274,6 @@ button{
 .dot{
 
     width:12px;
-
     height:12px;
 
     border-radius:50%;
@@ -363,13 +306,10 @@ button{
         opacity:1;
         transform:scale(1.2);
     }
-
 }
 
 
-/* =========================
-   ERROR
-========================= */
+/* ERROR */
 
 .errorText{
 
@@ -403,7 +343,6 @@ button{
     100%{
         transform:scale(1);
     }
-
 }
 
 .errorSmall{
@@ -418,9 +357,7 @@ button{
 }
 
 
-/* =========================
-   CHAIRMAN
-========================= */
+/* CHAIRMAN */
 
 .chairmanText{
 
@@ -450,9 +387,7 @@ button{
 }
 
 
-/* =========================
-   SUCCESS
-========================= */
+/* SUCCESS */
 
 .success{
 
@@ -487,13 +422,10 @@ button{
         opacity:1;
         transform:scale(1);
     }
-
 }
 
 
-/* =========================
-   LET'S GO
-========================= */
+/* LET'S GO */
 
 #letsGo{
 
@@ -572,13 +504,10 @@ button{
         transform:scale(1.06);
         opacity:0;
     }
-
 }
 
 
-/* =========================
-   ENERGY
-========================= */
+/* ENERGY */
 
 .energy{
 
@@ -619,13 +548,10 @@ button{
         transform:scale(3);
         opacity:0;
     }
-
 }
 
 
-/* =========================
-   COUNTDOWN
-========================= */
+/* COUNTDOWN */
 
 .countNumber{
 
@@ -661,13 +587,10 @@ button{
     100%{
         transform:scale(1);
     }
-
 }
 
 
-/* =========================
-   FLASH
-========================= */
+/* FLASH */
 
 .flash{
 
@@ -675,7 +598,7 @@ button{
 
     inset:0;
 
-    background:white;
+    background:#fff;
 
     opacity:0;
 
@@ -700,9 +623,9 @@ button{
 }
 
 
-/* =================================================
+/* =================================
    BANNER
-================================================= */
+================================= */
 
 #bannerReveal{
 
@@ -758,9 +681,6 @@ button{
     display:block;
 }
 
-
-/* Banner slices */
-
 .bannerSlices{
 
     position:absolute;
@@ -810,19 +730,11 @@ button{
     opacity:.7;
 }
 
-.slice:nth-child(1),
-.slice:nth-child(2),
-.slice:nth-child(3),
-.slice:nth-child(4){
-
+.slice:nth-child(-n+4){
     transform-origin:right center;
 }
 
-.slice:nth-child(5),
-.slice:nth-child(6),
-.slice:nth-child(7),
-.slice:nth-child(8){
-
+.slice:nth-child(n+5){
     transform-origin:left center;
 }
 
@@ -916,19 +828,190 @@ button{
 }
 
 
-/* =================================================
+/* =================================
+   LOGO READY
+================================= */
+
+#logoReady .readyTitle{
+
+    font-size:clamp(30px,6vw,82px);
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    text-shadow:
+        0 0 30px #00d9ff;
+}
+
+
+/* =================================
    LOGO SUSPENSE
-================================================= */
+================================= */
 
-#logoSuspense{
+.suspenseText{
 
-    position:absolute;
+    font-size:clamp(24px,5vw,70px);
+
+    font-weight:900;
+
+    letter-spacing:4px;
+
+    text-shadow:
+        0 0 25px #00d9ff;
+
+    animation:
+        suspenseFade 1s ease;
+}
+
+@keyframes suspenseFade{
+
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.waitText{
+
+    font-size:clamp(35px,8vw,100px);
+
+    font-weight:900;
+
+    letter-spacing:8px;
+
+    animation:
+        blink 1.2s infinite;
+}
+
+@keyframes blink{
+
+    0%,100%{opacity:.25}
+
+    50%{opacity:1}
+}
+
+.systemProgress{
+
+    width:min(650px,80vw);
+
+    height:25px;
+
+    border:2px solid #4ddfff;
+
+    margin-top:35px;
+
+    padding:3px;
+
+    box-shadow:
+        0 0 25px rgba(0,210,255,.5);
+}
+
+.systemProgressBar{
+
+    height:100%;
+
+    width:0;
+
+    background:#5ceaff;
+
+    box-shadow:
+        0 0 20px #00d9ff;
+}
+
+.progress40{
+    animation:
+        progress40 2s forwards;
+}
+
+.progress80{
+    animation:
+        progress80 2s forwards;
+}
+
+.progress100{
+    animation:
+        progress100 2s forwards;
+}
+
+@keyframes progress40{
+    to{width:40%}
+}
+
+@keyframes progress80{
+    to{width:80%}
+}
+
+@keyframes progress100{
+    to{width:100%}
+}
+
+.glitch{
+
+    animation:
+        glitch .5s infinite;
+}
+
+@keyframes glitch{
+
+    0%,100%{
+        transform:translate(0);
+    }
+
+    25%{
+        transform:translate(-4px,2px);
+    }
+
+    50%{
+        transform:translate(4px,-2px);
+    }
+
+    75%{
+        transform:translate(-2px,-3px);
+    }
+}
+
+
+/* =================================
+   LOGO COUNTDOWN
+================================= */
+
+.logoCountdownNumber{
+
+    font-size:clamp(160px,30vw,420px);
+
+    font-weight:900;
+
+    line-height:1;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 30px #00d9ff,
+        0 0 80px #0077ff,
+        0 0 150px #7c00ff;
+
+    animation:
+        pulse 1s ease;
+}
+
+
+/* =================================
+   LOGO REVEAL
+================================= */
+
+.logoLaunch{
+
+    position:fixed;
 
     inset:0;
 
-    background:#000;
-
-    z-index:70;
+    z-index:90;
 
     display:flex;
 
@@ -938,276 +1021,24 @@ button{
 
     flex-direction:column;
 
-    text-align:center;
-
-    overflow:hidden;
-}
-
-.suspenseText{
-
-    font-size:clamp(24px,4vw,60px);
-
-    font-weight:800;
-
-    letter-spacing:5px;
-
-    min-height:80px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-}
-
-.waitText{
-
-    font-size:clamp(35px,7vw,100px);
-
-    font-weight:900;
-
-    letter-spacing:10px;
-
-    animation:
-        waitPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes waitPulse{
-
-    0%,100%{
-        opacity:.35;
-    }
-
-    50%{
-        opacity:1;
-    }
-}
-
-
-/* System loading */
-
-.systemLoading{
-
-    width:min(650px,80vw);
-
-    margin-top:30px;
-
-    opacity:0;
-}
-
-.systemLoading.show{
-
-    animation:
-        fadeIn .5s forwards;
-}
-
-@keyframes fadeIn{
-
-    to{
-        opacity:1;
-    }
-}
-
-.systemPercent{
-
-    font-size:clamp(20px,3vw,40px);
-
-    margin-bottom:15px;
-
-    letter-spacing:5px;
-
-    color:#63eaff;
-}
-
-.progress{
-
-    width:100%;
-
-    height:18px;
-
-    border:2px solid #63eaff;
-
-    padding:2px;
-
-}
-
-.progressFill{
-
-    width:0;
-
-    height:100%;
-
-    background:#63eaff;
-
-    box-shadow:
-        0 0 20px #00d9ff;
-
-    transition:
-        width 2s linear;
-}
-
-
-/* Glitch */
-
-.glitch{
-
-    animation:
-        glitchEffect .45s steps(2,end) infinite;
-}
-
-@keyframes glitchEffect{
-
-    0%{
-        transform:translate(0);
-        text-shadow:2px 0 red,-2px 0 cyan;
-    }
-
-    25%{
-        transform:translate(4px,-2px);
-        text-shadow:-3px 0 red,3px 0 cyan;
-    }
-
-    50%{
-        transform:translate(-4px,2px);
-        text-shadow:3px 0 red,-3px 0 cyan;
-    }
-
-    75%{
-        transform:translate(2px,0);
-    }
-
-    100%{
-        transform:translate(0);
-    }
-}
-
-
-/* Final 3 2 1 */
-
-.secretCountdown{
-
-    font-size:clamp(130px,25vw,360px);
-
-    font-weight:900;
-
-    line-height:1;
-
-    color:white;
-
-    text-shadow:
-        0 0 30px #00d9ff,
-        0 0 80px #0077ff,
-        0 0 150px #7c00ff;
-
-    animation:
-        secretNumber .9s ease;
-}
-
-@keyframes secretNumber{
-
-    0%{
-        opacity:0;
-        transform:scale(1.8);
-    }
-
-    60%{
-        opacity:1;
-        transform:scale(.95);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-}
-
-
-/* =================================================
-   BOOM
-================================================= */
-
-#boomFlash{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#fff;
-
-    opacity:0;
-
-    z-index:120;
-
     pointer-events:none;
-}
 
-#boomFlash.active{
-
-    animation:
-        boomFlash .8s ease;
-}
-
-@keyframes boomFlash{
-
-    0%{
-        opacity:0;
-    }
-
-    15%{
-        opacity:1;
-    }
-
-    35%{
-        opacity:.2;
-    }
-
-    55%{
-        opacity:.9;
-    }
-
-    100%{
-        opacity:0;
-    }
-}
-
-
-/* =================================================
-   LOGO REVEAL
-================================================= */
-
-#logoLaunch{
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:90;
+    opacity:0;
 
     background:#000;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    pointer-events:none;
-
-    opacity:0;
 }
 
-#logoLaunch.show{
+.logoLaunch.show{
 
     animation:
-        logoScene 3.5s ease forwards;
+        logoScene 3s ease forwards;
 }
 
-#logoImage{
+.logoLaunch img{
 
-    max-width:75vw;
+    max-width:80vw;
 
-    max-height:70vh;
+    max-height:60vh;
 
     width:auto;
 
@@ -1217,17 +1048,20 @@ button{
 
     filter:
         drop-shadow(0 0 25px #00d9ff)
-        drop-shadow(0 0 70px rgba(124,0,255,.9));
+        drop-shadow(0 0 65px rgba(124,0,255,.8));
 
-    transform:scale(.05);
+    transform:scale(.15);
 
     opacity:0;
-}
-
-#logoLaunch.show #logoImage{
 
     animation:
-        logoPop 3.5s cubic-bezier(.16,1,.3,1) forwards;
+        none;
+}
+
+.logoLaunch.show img{
+
+    animation:
+        logoPop 3s cubic-bezier(.16,1,.3,1) forwards;
 }
 
 @keyframes logoScene{
@@ -1236,11 +1070,7 @@ button{
         opacity:0;
     }
 
-    15%{
-        opacity:1;
-    }
-
-    75%{
+    20%{
         opacity:1;
     }
 
@@ -1252,122 +1082,81 @@ button{
 @keyframes logoPop{
 
     0%{
-        transform:scale(.05);
+        transform:scale(.15);
         opacity:0;
+        filter:brightness(0);
     }
 
-    30%{
-        transform:scale(.3);
-        opacity:.35;
+    35%{
+        transform:scale(1.12);
+        opacity:1;
+        filter:brightness(1);
     }
 
     55%{
-        transform:scale(.85);
-        opacity:.8;
-    }
-
-    70%{
-        transform:scale(1.12);
-        opacity:1;
-    }
-
-    82%{
         transform:scale(.98);
     }
 
+    75%{
+        transform:scale(1.02);
+        filter:
+            brightness(1.8)
+            drop-shadow(0 0 60px #00eaff);
+    }
+
     100%{
         transform:scale(1);
         opacity:1;
+        filter:
+            brightness(1)
+            drop-shadow(0 0 25px #00d9ff)
+            drop-shadow(0 0 65px rgba(124,0,255,.8));
     }
 }
 
+.logoMessage{
 
-/* =================================================
-   FINAL MESSAGE
-================================================= */
-
-#finalMessage{
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:95;
-
-    background:#000;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-direction:column;
-
-    text-align:center;
-
-    opacity:0;
-}
-
-#finalMessage.show{
-
-    animation:
-        finalFade 2s ease forwards;
-}
-
-.finalBig{
-
-    font-size:clamp(28px,5vw,75px);
-
-    font-weight:900;
-
-    letter-spacing:4px;
-
-    margin-bottom:25px;
-
-    text-shadow:
-        0 0 30px #00d9ff;
-}
-
-.finalSmall{
-
-    font-size:clamp(18px,3vw,42px);
-
-    color:#6eeaff;
-
-    letter-spacing:5px;
-
-    margin-top:10px;
-}
-
-.finalJourney{
+    margin-top:35px;
 
     font-size:clamp(16px,2vw,28px);
 
-    color:#a7bdcc;
+    letter-spacing:5px;
 
-    letter-spacing:4px;
+    color:#9eeeff;
 
-    margin-top:30px;
+    opacity:0;
+
+    animation:
+        messageIn 1s ease 2.8s forwards;
 }
 
-@keyframes finalFade{
+@keyframes messageIn{
 
-    0%{
-        opacity:0;
-        transform:scale(.96);
-    }
-
-    100%{
+    to{
         opacity:1;
-        transform:scale(1);
     }
 }
 
+.logoJourney{
 
-/* =================================================
-   ROTATE PHONE
-================================================= */
+    margin-top:15px;
+
+    font-size:clamp(20px,3vw,40px);
+
+    font-weight:bold;
+
+    letter-spacing:6px;
+
+    color:#fff;
+
+    opacity:0;
+
+    animation:
+        messageIn 1s ease 3.3s forwards;
+}
+
+
+/* ROTATE */
 
 #rotateHint{
 
@@ -1391,7 +1180,6 @@ button{
 }
 
 #rotateHint .rotateBox{
-
     max-width:420px;
 }
 
@@ -1431,7 +1219,6 @@ button{
     #rotateHint{
         display:flex;
     }
-
 }
 
 @media(min-width:601px){
@@ -1439,7 +1226,6 @@ button{
     #rotateHint{
         display:none!important;
     }
-
 }
 
 @media(max-width:600px) and (orientation:landscape){
@@ -1452,16 +1238,14 @@ button{
         padding:1vh 1vw;
     }
 
-    #logoImage{
+    .logoLaunch img{
         max-width:72vw;
-        max-height:72vh;
+        max-height:60vh;
     }
-
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -1475,60 +1259,71 @@ button{
 
 <div class="flash" id="flash"></div>
 
-<div id="boomFlash"></div>
 
-
-<!-- =========================
-     BOOT
-========================= -->
+<!-- 1 BOOT -->
 
 <div class="screen" id="boot">
 
-    <div class="label">
-        SYSTEM INITIALIZATION
-    </div>
+<div class="label">
+SYSTEM INITIALIZATION
+</div>
 
-    <div class="title">
-        TECH HUB
-    </div>
+<div class="title">
+TECH HUB
+</div>
 
-    <div class="loading">
+<div class="loading">
+<div class="loadingBar"></div>
+</div>
 
-        <div class="loadingBar"></div>
-
-    </div>
-
-    <div class="subtitle">
-        INITIALIZING TECHNOLOGY CORE...
-    </div>
+<div class="subtitle">
+INITIALIZING TECHNOLOGY CORE...
+</div>
 
 </div>
 
 
-<!-- =========================
-     PRESIDENT
-========================= -->
+<!-- 2 WE ARE HERE -->
+
+<div class="screen hidden" id="weAreHere">
+
+<div class="label">
+TECH HUB GRAND LAUNCH
+</div>
+
+<div class="title">
+WE ARE HERE
+</div>
+
+<div class="subtitle">
+TO LAUNCH OUR BANNER
+</div>
+
+</div>
+
+
+<!-- 3 PRESIDENT -->
 
 <div class="screen hidden" id="president">
 
-    <div class="label">
-        AUTHORIZED PERSONNEL REQUIRED
-    </div>
+<div class="label">
+AUTHORIZED PERSONNEL REQUIRED
+</div>
 
-    <div class="title">
-        PRESIDENT OF TECH HUB
-    </div>
+<div class="title">
+PRESIDENT OF TECH HUB
+</div>
 
-    <div class="subtitle">
-        PLEASE ENTER TO MOVE ON
-    </div>
+<div class="subtitle">
+PLEASE ENTER TO MOVE ON
+</div>
 
-    <button class="enterBtn"
-            onclick="presidentEnter()">
+<button class="enterBtn"
+onclick="presidentEnter()">
 
-        ENTER
+ENTER
 
-    </button>
+</button>
 
 </div>
 
@@ -1536,27 +1331,25 @@ button{
 <!-- PRESIDENT LOADING -->
 
 <div class="screen hidden loadingScreen"
-     id="presidentLoading">
+id="presidentLoading">
 
-    <div class="label">
-        SECURITY PROTOCOL
-    </div>
+<div class="label">
+SECURITY PROTOCOL
+</div>
 
-    <div class="loadingTitle">
-        AUTHENTICATING...
-    </div>
+<div class="loadingTitle">
+AUTHENTICATING...
+</div>
 
-    <div class="loadingText">
-        VERIFYING PRESIDENT AUTHORIZATION
-    </div>
+<div class="loadingText">
+VERIFYING PRESIDENT AUTHORIZATION
+</div>
 
-    <div class="dots">
-
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-
-    </div>
+<div class="dots">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
 
 </div>
 
@@ -1565,21 +1358,17 @@ button{
 
 <div class="screen hidden" id="error1">
 
-    <div>
+<div class="errorText">
+ERROR
+</div>
 
-        <div class="errorText">
-            ERROR
-        </div>
+<div class="errorSmall">
+AUTHORIZATION FAILED
+</div>
 
-        <div class="errorSmall">
-            AUTHORIZATION FAILED
-        </div>
-
-        <div class="errorSmall">
-            PRESIDENT ACCESS DENIED
-        </div>
-
-    </div>
+<div class="errorSmall">
+PRESIDENT ACCESS DENIED
+</div>
 
 </div>
 
@@ -1588,24 +1377,24 @@ button{
 
 <div class="screen hidden" id="associate">
 
-    <div class="label">
-        SECOND AUTHORIZATION REQUIRED
-    </div>
+<div class="label">
+SECOND AUTHORIZATION REQUIRED
+</div>
 
-    <div class="title">
-        ASSOCIATIVE PRESIDENT
-    </div>
+<div class="title">
+ASSOCIATIVE PRESIDENT
+</div>
 
-    <div class="subtitle">
-        PLEASE ENTER TO MOVE ON
-    </div>
+<div class="subtitle">
+PLEASE ENTER TO MOVE ON
+</div>
 
-    <button class="enterBtn"
-            onclick="associateEnter()">
+<button class="enterBtn"
+onclick="associateEnter()">
 
-        ENTER
+ENTER
 
-    </button>
+</button>
 
 </div>
 
@@ -1613,27 +1402,25 @@ button{
 <!-- ASSOCIATE LOADING -->
 
 <div class="screen hidden loadingScreen"
-     id="associateLoading">
+id="associateLoading">
 
-    <div class="label">
-        SECURITY PROTOCOL
-    </div>
+<div class="label">
+SECURITY PROTOCOL
+</div>
 
-    <div class="loadingTitle">
-        AUTHENTICATING...
-    </div>
+<div class="loadingTitle">
+AUTHENTICATING...
+</div>
 
-    <div class="loadingText">
-        VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION
-    </div>
+<div class="loadingText">
+VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION
+</div>
 
-    <div class="dots">
-
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-
-    </div>
+<div class="dots">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
 
 </div>
 
@@ -1642,21 +1429,17 @@ button{
 
 <div class="screen hidden" id="error2">
 
-    <div>
+<div class="errorText">
+ERROR
+</div>
 
-        <div class="errorText">
-            ERROR
-        </div>
+<div class="errorSmall">
+AUTHORIZATION FAILED
+</div>
 
-        <div class="errorSmall">
-            AUTHORIZATION FAILED
-        </div>
-
-        <div class="errorSmall">
-            ASSOCIATE PRESIDENT ACCESS DENIED
-        </div>
-
-    </div>
+<div class="errorSmall">
+ASSOCIATE PRESIDENT ACCESS DENIED
+</div>
 
 </div>
 
@@ -1665,24 +1448,24 @@ button{
 
 <div class="screen hidden" id="chairman">
 
-    <div class="label">
-        FINAL AUTHORIZATION REQUIRED
-    </div>
+<div class="label">
+FINAL AUTHORIZATION REQUIRED
+</div>
 
-    <div class="chairmanText">
-        THIS IS THE TIME TO REQUEST OUR
-    </div>
+<div class="chairmanText">
+THIS IS THE TIME TO REQUEST OUR
+</div>
 
-    <div class="sir">
-        CHAIRMAN SIR
-    </div>
+<div class="sir">
+CHAIRMAN SIR
+</div>
 
-    <button class="chairmanEnter"
-            onclick="chairmanEnter()">
+<button class="chairmanEnter"
+onclick="chairmanEnter()">
 
-        ENTER
+ENTER
 
-    </button>
+</button>
 
 </div>
 
@@ -1690,27 +1473,25 @@ button{
 <!-- CHAIRMAN LOADING -->
 
 <div class="screen hidden loadingScreen"
-     id="chairmanLoading">
+id="chairmanLoading">
 
-    <div class="label">
-        PRIORITY AUTHORIZATION
-    </div>
+<div class="label">
+PRIORITY AUTHORIZATION
+</div>
 
-    <div class="loadingTitle">
-        AUTHENTICATING...
-    </div>
+<div class="loadingTitle">
+AUTHENTICATING...
+</div>
 
-    <div class="loadingText">
-        VERIFYING CHAIRMAN AUTHORIZATION
-    </div>
+<div class="loadingText">
+VERIFYING CHAIRMAN AUTHORIZATION
+</div>
 
-    <div class="dots">
-
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-
-    </div>
+<div class="dots">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
 
 </div>
 
@@ -1719,17 +1500,17 @@ button{
 
 <div class="screen hidden" id="success">
 
-    <div class="success">
-        ACCESS GRANTED
-    </div>
+<div class="success">
+ACCESS GRANTED
+</div>
 
-    <div class="subtitle">
-        CHAIRMAN AUTHORIZATION SUCCESSFUL
-    </div>
+<div class="subtitle">
+CHAIRMAN AUTHORIZATION SUCCESSFUL
+</div>
 
-    <div class="subtitle">
-        TECH HUB LAUNCH SEQUENCE ACTIVATED
-    </div>
+<div class="subtitle">
+TECH HUB LAUNCH SEQUENCE ACTIVATED
+</div>
 
 </div>
 
@@ -1738,9 +1519,9 @@ button{
 
 <div id="letsGo">
 
-    <div class="letsGoText">
-        LET'S GO
-    </div>
+<div class="letsGoText">
+LET'S GO
+</div>
 
 </div>
 
@@ -1749,1081 +1530,1144 @@ button{
 
 <div class="screen hidden" id="countdown">
 
-    <div class="label">
-        TECH HUB LAUNCH SEQUENCE
-    </div>
+<div class="label">
+TECH HUB LAUNCH SEQUENCE
+</div>
 
-    <div class="countNumber"
-         id="countNumber">
+<div class="countNumber"
+id="countNumber">
 
-        10
+10
 
-    </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     BANNER
-========================= -->
+<!-- BANNER -->
 
 <div class="screen hidden"
-     id="bannerReveal">
+id="bannerReveal">
 
-    <div class="bannerFinal"
-         id="bannerFinal">
+<div class="bannerFinal"
+id="bannerFinal">
 
-        <img src="techhub-banner.png.png"
-             alt="TECH HUB Banner">
+<img src="techhub-banner.png.png"
+alt="TECH HUB Banner">
 
-    </div>
+</div>
 
-    <div class="bannerSlices"
-         id="bannerSlices">
+<div class="bannerSlices"
+id="bannerSlices">
 
-        <div class="slice"></div>
-        <div class="slice"></div>
-        <div class="slice"></div>
-        <div class="slice"></div>
-        <div class="slice"></div>
-        <div class="slice"></div>
-        <div class="slice"></div>
-        <div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
 
-    </div>
+</div>
 
-    <div class="bannerGlow"
-         id="bannerGlow">
-    </div>
+<div class="bannerGlow"
+id="bannerGlow"></div>
 
 </div>
 
 
-<!-- =========================
-     LOGO SUSPENSE
-========================= -->
+<!-- LOGO READY -->
 
-<div class="hidden"
-     id="logoSuspense">
+<div class="screen hidden"
+id="logoReady">
 
-    <div class="suspenseText"
-         id="suspenseText">
-    </div>
+<div class="readyTitle">
+ARE YOU READY TO LAUNCH LOGO?
+</div>
 
-    <div class="systemLoading"
-         id="systemLoading">
+<button class="yesBtn"
+onclick="startLogoLaunch()">
 
-        <div class="systemPercent"
-             id="systemPercent">
+YES
 
-            SYSTEM MESSAGE:
-            INITIALIZING... 0%
-
-        </div>
-
-        <div class="progress">
-
-            <div class="progressFill"
-                 id="progressFill">
-            </div>
-
-        </div>
-
-    </div>
+</button>
 
 </div>
 
 
-<!-- =========================
-     LOGO
-========================= -->
+<!-- LOGO LOADING -->
 
-<div id="logoLaunch">
+<div class="screen hidden loadingScreen"
+id="logoLoading">
 
-    <img id="logoImage"
-         src="techhub-logo.png"
-         alt="TECH HUB Logo">
+<div class="label">
+FINAL LAUNCH PROTOCOL
+</div>
+
+<div class="loadingTitle">
+PREPARING LOGO LAUNCH...
+</div>
+
+<div class="loadingText">
+CALIBRATING TECH HUB IDENTITY SYSTEM
+</div>
+
+<div class="dots">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     FINAL MESSAGE
-========================= -->
+<!-- SUSPENSE 1 -->
 
-<div id="finalMessage">
+<div class="screen hidden"
+id="suspense1">
 
-    <div class="finalBig">
-        THIS IS NOT JUST A LOGO.
-    </div>
-
-    <div class="finalSmall">
-        THIS IS WHERE THE JOURNEY BEGINS.
-    </div>
-
-    <div class="finalBig"
-         style="margin-top:45px;margin-bottom:10px">
-
-        TECH HUB
-
-    </div>
-
-    <div class="finalJourney">
-        LEARN • BUILD • INNOVATE
-    </div>
+<div class="waitText">
+WAIT...
+</div>
 
 </div>
 
 
-<!-- ROTATE -->
+<!-- SUSPENSE 2 -->
+
+<div class="screen hidden"
+id="suspense2">
+
+<div class="suspenseText">
+THAT WASN'T THE END.
+</div>
+
+</div>
+
+
+<!-- SUSPENSE 3 -->
+
+<div class="screen hidden"
+id="suspense3">
+
+<div class="suspenseText">
+YOU'VE UNLOCKED THE SYSTEM...
+</div>
+
+</div>
+
+
+<!-- SUSPENSE 4 -->
+
+<div class="screen hidden"
+id="suspense4">
+
+<div class="suspenseText">
+BUT THE REAL SECRET...
+</div>
+
+</div>
+
+
+<!-- SUSPENSE 5 -->
+
+<div class="screen hidden"
+id="suspense5">
+
+<div class="suspenseText">
+...IS STILL HIDDEN.
+</div>
+
+</div>
+
+
+<!-- SUSPENSE 6 -->
+
+<div class="screen hidden"
+id="suspense6">
+
+<div class="suspenseText">
+ONE FINAL SEQUENCE REMAINS.
+</div>
+
+</div>
+
+
+<!-- SYSTEM -->
+
+<div class="screen hidden"
+id="systemInit">
+
+<div class="label">
+SYSTEM MESSAGE
+</div>
+
+<div class="loadingTitle">
+INITIALIZING...
+</div>
+
+<div class="systemProgress">
+
+<div class="systemProgressBar"
+id="progressBar"></div>
+
+</div>
+
+</div>
+
+
+<!-- GLITCH -->
+
+<div class="screen hidden"
+id="glitchScreen">
+
+<div class="suspenseText glitch">
+DO NOT LOOK AWAY.
+</div>
+
+</div>
+
+
+<!-- 80 -->
+
+<div class="screen hidden"
+id="progress80">
+
+<div class="label">
+SYSTEM MESSAGE
+</div>
+
+<div class="systemProgress">
+
+<div class="systemProgressBar progress80"></div>
+
+</div>
+
+<div class="suspenseText"
+style="margin-top:30px">
+
+THE MOMENT YOU'VE BEEN WAITING FOR...
+
+</div>
+
+</div>
+
+
+<!-- 100 -->
+
+<div class="screen hidden"
+id="progress100">
+
+<div class="label">
+SYSTEM MESSAGE
+</div>
+
+<div class="systemProgress">
+
+<div class="systemProgressBar progress100"></div>
+
+</div>
+
+</div>
+
+
+<!-- LOGO COUNTDOWN -->
+
+<div class="screen hidden"
+id="logoCountdown">
+
+<div class="label">
+FINAL SEQUENCE
+</div>
+
+<div class="logoCountdownNumber"
+id="logoCountNumber">
+
+3
+
+</div>
+
+</div>
+
+
+<!-- LOGO -->
+
+<div class="logoLaunch"
+id="logoLaunch">
+
+<img
+id="logoImage"
+src="techhub-logo.png"
+alt="TECH HUB Logo">
+
+<div class="logoMessage">
+THIS IS NOT JUST A LOGO.
+</div>
+
+<div class="logoJourney">
+THIS IS WHERE THE JOURNEY BEGINS.
+</div>
+
+<div class="logoJourney">
+TECH HUB
+</div>
+
+<div class="logoJourney">
+LEARN • BUILD • INNOVATE
+</div>
+
+</div>
+
 
 <div id="rotateHint">
 
-    <div class="rotateBox">
+<div class="rotateBox">
 
-        <div class="phone">
-            📱
-        </div>
+<div class="phone">
+📱
+</div>
 
-        <h2>
-            PLEASE ROTATE YOUR PHONE
-        </h2>
+<h2>
+PLEASE ROTATE YOUR PHONE
+</h2>
 
-        <p>
-            For the full cinematic TECH HUB launch,
-            view this presentation in landscape mode.
-        </p>
-
-    </div>
+<p>
+For the full cinematic TECH HUB launch,
+view this presentation in landscape mode.
+</p>
 
 </div>
 
+</div>
 
 </div>
 
 
 <script>
 
-/* =================================================
-   AUDIO SYSTEM
-================================================= */
+/* =========================
+   AUDIO ENGINE
+========================= */
 
 let audioCtx=null;
 
 function unlockAudio(){
 
-    try{
+try{
 
-        if(!audioCtx){
+if(!audioCtx)
+audioCtx=new(window.AudioContext||window.webkitAudioContext)();
 
-            audioCtx=
-                new(
-                    window.AudioContext ||
-                    window.webkitAudioContext
-                )();
+if(audioCtx.state==="suspended")
+audioCtx.resume();
 
-        }
+}catch(e){}
 
-        if(audioCtx.state==="suspended"){
+}
 
-            audioCtx.resume();
+function tone(freq,duration,type="sine",volume=.06,delay=0){
 
-        }
+if(!audioCtx)return;
 
-    }catch(e){}
+const t=audioCtx.currentTime+delay;
+
+const o=audioCtx.createOscillator();
+
+const g=audioCtx.createGain();
+
+o.type=type;
+
+o.frequency.setValueAtTime(freq,t);
+
+g.gain.setValueAtTime(0,t);
+
+g.gain.linearRampToValueAtTime(
+volume,t+.01
+);
+
+g.gain.exponentialRampToValueAtTime(
+.001,t+duration
+);
+
+o.connect(g);
+
+g.connect(audioCtx.destination);
+
+o.start(t);
+
+o.stop(t+duration+.03);
 
 }
 
 
-function tone(
-    freq,
-    duration,
-    type="sine",
-    volume=.06,
-    delay=0
-){
-
-    if(!audioCtx) return;
-
-    const t=
-        audioCtx.currentTime+delay;
-
-    const o=
-        audioCtx.createOscillator();
-
-    const g=
-        audioCtx.createGain();
-
-    o.type=type;
-
-    o.frequency.setValueAtTime(
-        freq,
-        t
-    );
-
-    g.gain.setValueAtTime(
-        0,
-        t
-    );
-
-    g.gain.linearRampToValueAtTime(
-        volume,
-        t+.01
-    );
-
-    g.gain.exponentialRampToValueAtTime(
-        .001,
-        t+duration
-    );
-
-    o.connect(g);
-
-    g.connect(audioCtx.destination);
-
-    o.start(t);
-
-    o.stop(
-        t+duration+.03
-    );
-}
-
-
-/* sounds */
+/* SOUNDS */
 
 function soundScan(){
 
-    unlockAudio();
+unlockAudio();
 
-    tone(620,.08,"square",.05);
+tone(620,.08,"square",.05);
 
-    tone(880,.08,"square",.04,.09);
+tone(880,.08,"square",.04,.09);
+
 }
-
 
 function soundError(){
 
-    unlockAudio();
+unlockAudio();
 
-    tone(150,.12,"sawtooth",.07);
+tone(150,.12,"sawtooth",.07);
 
-    tone(95,.28,"sawtooth",.06,.12);
+tone(95,.28,"sawtooth",.06,.12);
+
 }
-
 
 function soundSuccess(){
 
-    unlockAudio();
+unlockAudio();
 
-    tone(520,.12,"sine",.06);
+tone(520,.12,"sine",.06);
 
-    tone(780,.16,"sine",.06,.12);
+tone(780,.16,"sine",.06,.12);
 
-    tone(1040,.28,"sine",.07,.27);
+tone(1040,.28,"sine",.07,.27);
+
 }
-
 
 function soundBeep(){
 
-    unlockAudio();
+unlockAudio();
 
-    tone(880,.16,"square",.045);
+tone(880,.16,"square",.045);
+
 }
-
 
 function soundLetsGo(){
 
-    unlockAudio();
+unlockAudio();
 
-    tone(220,.12,"sawtooth",.05);
+tone(220,.12,"sawtooth",.05);
 
-    tone(440,.12,"sawtooth",.06,.1);
+tone(440,.12,"sawtooth",.06,.1);
 
-    tone(880,.4,"sawtooth",.07,.2);
+tone(880,.4,"sawtooth",.07,.2);
+
 }
-
-
-function soundReveal(){
-
-    unlockAudio();
-
-    [220,330,440,660]
-    .forEach(
-        (f,i)=>
-            tone(
-                f,
-                .45,
-                "sawtooth",
-                .045,
-                i*.11
-            )
-    );
-}
-
-
-function soundLaunch(){
-
-    unlockAudio();
-
-    tone(180,.25,"sine",.05);
-
-    tone(360,.25,"sine",.05,.18);
-
-    tone(720,.5,"sine",.07,.36);
-}
-
 
 function heartbeat(){
 
-    unlockAudio();
+unlockAudio();
 
-    tone(70,.12,"sine",.10);
+tone(90,.12,"sine",.08);
 
-    tone(55,.18,"sine",.08,.16);
+tone(70,.16,"sine",.07,.16);
+
+}
+
+function boom(){
+
+unlockAudio();
+
+tone(70,.5,"sawtooth",.12);
+
+tone(45,.7,"sine",.1,.08);
+
+tone(900,.12,"square",.08,.25);
 
 }
 
 
-/* =================================================
+/* =========================
    SCREENS
-================================================= */
+========================= */
 
 const screens=[
 
-    "boot",
-    "president",
-    "presidentLoading",
-    "error1",
-    "associate",
-    "associateLoading",
-    "error2",
-    "chairman",
-    "chairmanLoading",
-    "success",
-    "countdown",
-    "bannerReveal"
+"boot",
+"weAreHere",
+"president",
+"presidentLoading",
+"error1",
+"associate",
+"associateLoading",
+"error2",
+"chairman",
+"chairmanLoading",
+"success",
+"countdown",
+"bannerReveal",
+"logoReady",
+"logoLoading",
+"suspense1",
+"suspense2",
+"suspense3",
+"suspense4",
+"suspense5",
+"suspense6",
+"systemInit",
+"glitchScreen",
+"progress80",
+"progress100",
+"logoCountdown"
 
 ];
 
-
 function hideAll(){
 
-    screens.forEach(id=>{
+screens.forEach(id=>{
 
-        document
-            .getElementById(id)
-            ?.classList
-            .add("hidden");
+document
+.getElementById(id)
+?.classList
+.add("hidden");
 
-    });
+});
 
 }
 
 
-/* =================================================
+/* =========================
    PARTICLES
-================================================= */
+========================= */
 
 const particles=
-    document.getElementById(
-        "particles"
-    );
+document.getElementById("particles");
 
 for(let i=0;i<90;i++){
 
-    const p=
-        document.createElement("div");
+const p=document.createElement("div");
 
-    p.className="particle";
+p.className="particle";
 
-    p.style.left=
-        Math.random()*100+"%";
+p.style.left=
+Math.random()*100+"%";
 
-    p.style.animationDelay=
-        Math.random()*5+"s";
+p.style.animationDelay=
+Math.random()*5+"s";
 
-    p.style.animationDuration=
-        3+Math.random()*6+"s";
+p.style.animationDuration=
+3+Math.random()*6+"s";
 
-    particles.appendChild(p);
+particles.appendChild(p);
 
 }
 
 
-/* =================================================
-   BOOT → PRESIDENT
-================================================= */
+/* =========================
+   START
+========================= */
 
 setTimeout(()=>{
 
-    document
-        .getElementById("boot")
-        .style.opacity="0";
+document
+.getElementById("boot")
+.style.opacity="0";
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        hideAll();
+hideAll();
 
-        document
-            .getElementById("president")
-            .classList
-            .remove("hidden");
+document
+.getElementById("weAreHere")
+.classList
+.remove("hidden");
 
-    },900);
+setTimeout(()=>{
+
+hideAll();
+
+document
+.getElementById("president")
+.classList
+.remove("hidden");
+
+},2500);
+
+},900);
 
 },3500);
 
 
-/* =================================================
+/* =========================
    PRESIDENT
-================================================= */
+========================= */
 
 function presidentEnter(){
 
-    unlockAudio();
+unlockAudio();
 
-    soundScan();
+soundScan();
 
-    hideAll();
+hideAll();
 
-    document
-        .getElementById("presidentLoading")
-        .classList
-        .remove("hidden");
+document
+.getElementById("presidentLoading")
+.classList
+.remove("hidden");
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        hideAll();
+hideAll();
 
-        document
-            .getElementById("error1")
-            .classList
-            .remove("hidden");
+document
+.getElementById("error1")
+.classList
+.remove("hidden");
 
-        soundError();
+soundError();
 
-    },3000);
+},3000);
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        hideAll();
+hideAll();
 
-        document
-            .getElementById("associate")
-            .classList
-            .remove("hidden");
+document
+.getElementById("associate")
+.classList
+.remove("hidden");
 
-    },5500);
+},5500);
 
 }
 
 
-/* =================================================
+/* =========================
    ASSOCIATE
-================================================= */
+========================= */
 
 function associateEnter(){
 
-    unlockAudio();
+unlockAudio();
 
-    soundScan();
+soundScan();
 
-    hideAll();
+hideAll();
 
-    document
-        .getElementById("associateLoading")
-        .classList
-        .remove("hidden");
+document
+.getElementById("associateLoading")
+.classList
+.remove("hidden");
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        hideAll();
+hideAll();
 
-        document
-            .getElementById("error2")
-            .classList
-            .remove("hidden");
+document
+.getElementById("error2")
+.classList
+.remove("hidden");
 
-        soundError();
+soundError();
 
-    },3000);
+},3000);
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        hideAll();
+hideAll();
 
-        document
-            .getElementById("chairman")
-            .classList
-            .remove("hidden");
+document
+.getElementById("chairman")
+.classList
+.remove("hidden");
 
-    },5500);
+},5500);
 
 }
 
 
-/* =================================================
+/* =========================
    CHAIRMAN
-================================================= */
+========================= */
 
 function chairmanEnter(){
 
-    unlockAudio();
+unlockAudio();
 
-    soundScan();
+soundScan();
 
-    hideAll();
+hideAll();
 
-    document
-        .getElementById("chairmanLoading")
-        .classList
-        .remove("hidden");
+document
+.getElementById("chairmanLoading")
+.classList
+.remove("hidden");
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        hideAll();
+hideAll();
 
-        document
-            .getElementById("success")
-            .classList
-            .remove("hidden");
+document
+.getElementById("success")
+.classList
+.remove("hidden");
 
-        soundSuccess();
+soundSuccess();
 
-    },3000);
+},3000);
 
-    setTimeout(
-        showLetsGo,
-        5000
-    );
+setTimeout(showLetsGo,5000);
 
 }
 
 
-/* =================================================
+/* =========================
    LET'S GO
-================================================= */
+========================= */
 
 function showLetsGo(){
 
-    hideAll();
+hideAll();
 
-    const lg=
-        document.getElementById(
-            "letsGo"
-        );
+const lg=
+document.getElementById("letsGo");
 
-    const en=
-        document.getElementById(
-            "energy"
-        );
+const en=
+document.getElementById("energy");
 
-    lg.classList.remove("show");
+lg.classList.remove("show");
 
-    void lg.offsetWidth;
+void lg.offsetWidth;
 
-    lg.classList.add("show");
+lg.classList.add("show");
 
-    en.classList.remove("active");
+en.classList.remove("active");
 
-    void en.offsetWidth;
+void en.offsetWidth;
 
-    en.classList.add("active");
+en.classList.add("active");
 
-    soundLetsGo();
+soundLetsGo();
 
-    setTimeout(
-        startCountdown,
-        1450
-    );
+setTimeout(startCountdown,1450);
 
 }
 
 
-/* =================================================
-   10 → 0
-================================================= */
+/* =========================
+   BANNER COUNTDOWN
+========================= */
 
 function startCountdown(){
 
-    hideAll();
+hideAll();
 
-    const s=
-        document.getElementById(
-            "countdown"
-        );
+const s=
+document.getElementById("countdown");
 
-    const nEl=
-        document.getElementById(
-            "countNumber"
-        );
+const nEl=
+document.getElementById("countNumber");
 
-    s.classList.remove("hidden");
+s.classList.remove("hidden");
 
-    let n=10;
+let n=10;
 
-    nEl.textContent=n;
+nEl.textContent=n;
 
-    soundBeep();
+soundBeep();
 
-    const timer=
-        setInterval(()=>{
+const timer=setInterval(()=>{
 
-            n--;
+n--;
 
-            if(n>0){
+if(n>0){
 
-                nEl.textContent=n;
+nEl.textContent=n;
 
-                nEl.style.animation="none";
+nEl.style.animation="none";
 
-                void nEl.offsetWidth;
+void nEl.offsetWidth;
 
-                nEl.style.animation=
-                    "pulse 1s ease";
+nEl.style.animation=
+"pulse 1s ease";
 
-                soundBeep();
+soundBeep();
 
-            }else{
+}else{
 
-                clearInterval(timer);
+clearInterval(timer);
 
-                finalBannerReveal();
+finalBannerReveal();
 
-            }
+}
 
-        },1000);
+},1000);
 
 }
 
 
-/* =================================================
+/* =========================
    BANNER REVEAL
-   BANNER STAYS ONLY 1 MINUTE
-================================================= */
+========================= */
 
 function finalBannerReveal(){
 
-    hideAll();
+hideAll();
 
-    soundReveal();
+const b=
+document.getElementById("bannerReveal");
 
-    const b=
-        document.getElementById(
-            "bannerReveal"
-        );
+const s=
+document.getElementById("bannerSlices");
 
-    const s=
-        document.getElementById(
-            "bannerSlices"
-        );
+const f=
+document.getElementById("bannerFinal");
 
-    const f=
-        document.getElementById(
-            "bannerFinal"
-        );
+const g=
+document.getElementById("bannerGlow");
 
-    const g=
-        document.getElementById(
-            "bannerGlow"
-        );
+b.classList.remove("hidden");
 
-    b.classList.remove("hidden");
+s.classList.remove("open");
 
-    s.classList.remove("open");
+f.classList.remove("visible");
 
-    f.classList.remove("visible");
+g.classList.remove("on");
 
-    g.classList.remove("on");
+void s.offsetWidth;
 
-    void s.offsetWidth;
+s.classList.add("open");
 
-    s.classList.add("open");
+g.classList.add("on");
 
-    g.classList.add("on");
+setTimeout(()=>{
 
-    setTimeout(()=>{
+f.classList.add("visible");
 
-        f.classList.add("visible");
-
-    },1450);
+},1450);
 
 
-    /* ONLY 1 MINUTE */
+/*
+   BANNER = 1 MINUTE
+*/
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        startLogoSuspense();
+hideAll();
 
-    },60000);
+document
+.getElementById("logoReady")
+.classList
+.remove("hidden");
+
+},60000);
 
 }
 
 
-/* =================================================
-   LOGO SUSPENSE — 15 SECONDS
-================================================= */
+/* =========================
+   LOGO YES
+========================= */
+
+function startLogoLaunch(){
+
+unlockAudio();
+
+hideAll();
+
+document
+.getElementById("logoLoading")
+.classList
+.remove("hidden");
+
+
+/*
+   15 SECOND LOADING
+*/
+
+setTimeout(()=>{
+
+startLogoSuspense();
+
+},15000);
+
+}
+
+
+/* =========================
+   LOGO SUSPENSE
+========================= */
 
 function startLogoSuspense(){
 
-    hideAll();
+hideAll();
 
-    const suspense=
-        document.getElementById(
-            "logoSuspense"
-        );
+document
+.getElementById("suspense1")
+.classList
+.remove("hidden");
 
-    suspense.classList.remove(
-        "hidden"
-    );
 
-    const text=
-        document.getElementById(
-            "suspenseText"
-        );
+/*
+ WAIT...
+ 2 sec
+*/
 
-    const loading=
-        document.getElementById(
-            "systemLoading"
-        );
+setTimeout(()=>{
 
-    const percent=
-        document.getElementById(
-            "systemPercent"
-        );
+hideAll();
 
-    const fill=
-        document.getElementById(
-            "progressFill"
-        );
+document
+.getElementById("suspense2")
+.classList
+.remove("hidden");
 
+},2000);
 
-    /* Reset */
 
-    text.innerHTML="";
+/*
+ YOU'VE UNLOCKED
+*/
 
-    loading.classList.remove(
-        "show"
-    );
+setTimeout(()=>{
 
-    fill.style.width="0%";
+hideAll();
 
+document
+.getElementById("suspense3")
+.classList
+.remove("hidden");
 
-    /*
-       0 - 2 sec
-       WAIT...
-    */
+heartbeat();
 
-    setTimeout(()=>{
+},4000);
 
-        text.innerHTML=
-            '<div class="waitText">WAIT...</div>';
 
-    },100);
+/*
+ REAL SECRET
+*/
 
+setTimeout(()=>{
 
-    /*
-       2 sec
-       THAT WASN'T THE END
-    */
+hideAll();
 
-    setTimeout(()=>{
+document
+.getElementById("suspense4")
+.classList
+.remove("hidden");
 
-        text.innerHTML=
-            "THAT WASN'T THE END.";
+heartbeat();
 
-    },2000);
+},6000);
 
 
-    /*
-       heartbeat starts
-    */
+/*
+ STILL HIDDEN
+*/
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        heartbeat();
+hideAll();
 
-    },3200);
+document
+.getElementById("suspense5")
+.classList
+.remove("hidden");
 
+heartbeat();
 
-    /*
-       YOU'VE UNLOCKED
-    */
+},7500);
 
-    setTimeout(()=>{
 
-        text.innerHTML=
-            "YOU'VE UNLOCKED THE SYSTEM...";
+/*
+ FINAL SEQUENCE
+*/
 
-        heartbeat();
+setTimeout(()=>{
 
-    },3500);
+hideAll();
 
+document
+.getElementById("suspense6")
+.classList
+.remove("hidden");
 
-    /*
-       REAL SECRET
-    */
+heartbeat();
 
-    setTimeout(()=>{
+},9000);
 
-        text.innerHTML=
-            "BUT THE REAL SECRET...";
 
-        heartbeat();
+/*
+ SYSTEM INITIALIZING
+*/
 
-    },5500);
+setTimeout(()=>{
 
+hideAll();
 
-    /*
-       hidden
-    */
+document
+.getElementById("systemInit")
+.classList
+.remove("hidden");
 
-    setTimeout(()=>{
+const bar=
+document.getElementById("progressBar");
 
-        text.innerHTML=
-            '<span class="glitch">...IS STILL HIDDEN.</span>';
+bar.classList.add("progress40");
 
-        heartbeat();
+},10500);
 
-    },7000);
 
+/*
+ GLITCH
+*/
 
-    /*
-       final sequence
-    */
+setTimeout(()=>{
 
-    setTimeout(()=>{
+hideAll();
 
-        text.innerHTML=
-            "ONE FINAL SEQUENCE REMAINS.";
+document
+.getElementById("glitchScreen")
+.classList
+.remove("hidden");
 
-        heartbeat();
+},12500);
 
-    },8500);
 
+/*
+ 80%
+*/
 
-    /*
-       SYSTEM
-    */
+setTimeout(()=>{
 
-    setTimeout(()=>{
+hideAll();
 
-        text.innerHTML=
-            "SYSTEM MESSAGE: INITIALIZING...";
+document
+.getElementById("progress80")
+.classList
+.remove("hidden");
 
-        loading.classList.add("show");
+heartbeat();
 
-        percent.innerHTML=
-            "SYSTEM MESSAGE: INITIALIZING... 40%";
+},14000);
 
-        fill.style.width="40%";
 
-        heartbeat();
+/*
+ 100%
+*/
 
-    },10000);
+setTimeout(()=>{
 
+hideAll();
 
-    /*
-       80%
-    */
+document
+.getElementById("progress100")
+.classList
+.remove("hidden");
 
-    setTimeout(()=>{
+},16000);
 
-        text.innerHTML=
-            '<span class="glitch">DO NOT LOOK AWAY.</span>';
 
-        percent.innerHTML=
-            "SYSTEM MESSAGE: INITIALIZING... 80%";
+/*
+ SILENCE + COUNTDOWN
+*/
 
-        fill.style.width="80%";
+setTimeout(()=>{
 
-        heartbeat();
+hideAll();
 
-        heartbeat();
+startLogoCountdown();
 
-    },11500);
-
-
-    /*
-       100%
-    */
-
-    setTimeout(()=>{
-
-        text.innerHTML=
-            "THE MOMENT YOU'VE BEEN WAITING FOR...";
-
-        percent.innerHTML=
-            "SYSTEM MESSAGE: INITIALIZING... 100%";
-
-        fill.style.width="100%";
-
-        heartbeat();
-
-    },13000);
-
-
-    /*
-       SILENCE → 3
-    */
-
-    setTimeout(()=>{
-
-        loading.classList.remove(
-            "show"
-        );
-
-        text.innerHTML=
-            '<div class="secretCountdown">3</div>';
-
-        soundBeep();
-
-    },14500);
-
-
-    /*
-       2
-    */
-
-    setTimeout(()=>{
-
-        text.innerHTML=
-            '<div class="secretCountdown">2</div>';
-
-        soundBeep();
-
-        heartbeat();
-
-    },15400);
-
-
-    /*
-       1
-    */
-
-    setTimeout(()=>{
-
-        text.innerHTML=
-            '<div class="secretCountdown">1</div>';
-
-        soundBeep();
-
-        heartbeat();
-
-    },16300);
-
-
-    /*
-       BOOM
-    */
-
-    setTimeout(()=>{
-
-        revealLogo();
-
-    },17200);
+},18000);
 
 }
 
 
-/* =================================================
-   LOGO REVEAL
-================================================= */
+/* =========================
+   LOGO COUNTDOWN
+========================= */
+
+function startLogoCountdown(){
+
+const s=
+document.getElementById("logoCountdown");
+
+const el=
+document.getElementById("logoCountNumber");
+
+s.classList.remove("hidden");
+
+let n=3;
+
+el.textContent=n;
+
+const timer=setInterval(()=>{
+
+n--;
+
+if(n>0){
+
+el.textContent=n;
+
+el.style.animation="none";
+
+void el.offsetWidth;
+
+el.style.animation=
+"pulse 1s ease";
+
+if(n===2){
+
+heartbeat();
+
+}
+
+if(n===1){
+
+heartbeat();
+
+}
+
+}else{
+
+clearInterval(timer);
+
+boom();
+
+revealLogo();
+
+}
+
+},1100);
+
+}
+
+
+/* =========================
+   FINAL LOGO
+========================= */
 
 function revealLogo(){
 
-    const suspense=
-        document.getElementById(
-            "logoSuspense"
-        );
+hideAll();
 
-    const boom=
-        document.getElementById(
-            "boomFlash"
-        );
+const scene=
+document.getElementById("logoLaunch");
 
-    const logo=
-        document.getElementById(
-            "logoLaunch"
-        );
+scene.classList.remove("show");
+
+void scene.offsetWidth;
+
+scene.classList.add("show");
 
 
-    suspense.classList.add(
-        "hidden"
-    );
+/*
+   LOGO STAYS 45 SECONDS
+*/
 
+setTimeout(()=>{
 
-    /* BOOM */
+scene.classList.remove("show");
 
-    boom.classList.remove(
-        "active"
-    );
+hideAll();
 
-    void boom.offsetWidth;
+document
+.getElementById("logoReady")
+.classList
+.remove("hidden");
 
-    boom.classList.add(
-        "active"
-    );
-
-    soundLaunch();
-
-
-    /* Logo */
-
-    logo.classList.remove(
-        "show"
-    );
-
-    void logo.offsetWidth;
-
-    logo.classList.add(
-        "show"
-    );
-
-
-    /*
-       After logo has appeared,
-       show final message.
-    */
-
-    setTimeout(()=>{
-
-        showFinalMessage();
-
-    },5500);
-
-}
-
-
-/* =================================================
-   FINAL MESSAGE
-================================================= */
-
-function showFinalMessage(){
-
-    const logo=
-        document.getElementById(
-            "logoLaunch"
-        );
-
-    const final=
-        document.getElementById(
-            "finalMessage"
-        );
-
-
-    logo.style.opacity="0";
-
-    final.classList.remove(
-        "show"
-    );
-
-    void final.offsetWidth;
-
-    final.classList.add(
-        "show"
-    );
-
-    soundSuccess();
+},45000);
 
 }
 
