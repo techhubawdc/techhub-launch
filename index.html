@@ -330,7 +330,7 @@ button{
 
     gap:12px;
 }
-   
+
 .dot{
 
     width:12px;
@@ -1259,6 +1259,51 @@ button{
 
 }
 
+
+/* =================================================
+   CLEAN CINEMATIC INTRO TEXT
+================================================= */
+.launchIntro{
+    gap:0;
+}
+.launchIntro > .label,
+.launchIntro > .introMain,
+.launchIntro > .introSub{
+    opacity:0;
+    transform:translateY(18px) scale(.98);
+}
+.launchIntro.introRun > .label{
+    animation:introLine .65s ease forwards;
+}
+.launchIntro.introRun > .introMain{
+    animation:introLine .8s ease .65s forwards;
+}
+.launchIntro.introRun > .introSub{
+    animation:introLine .8s ease 1.35s forwards;
+}
+@keyframes introLine{
+    0%{opacity:0;transform:translateY(18px) scale(.98)}
+    100%{opacity:1;transform:translateY(0) scale(1)}
+}
+.introMain{
+    max-width:92vw;
+    font-size:clamp(32px,6vw,82px);
+    font-weight:900;
+    letter-spacing:clamp(1px,.35vw,5px);
+    line-height:1.15;
+    text-shadow:0 0 25px rgba(0,210,255,.35);
+}
+.introSub{
+    margin-top:20px;
+    color:#a7bdcc;
+    font-size:clamp(15px,2.2vw,30px);
+    letter-spacing:clamp(1px,.25vw,4px);
+}
+.authIntro .introMain{
+    max-width:90vw;
+    font-size:clamp(28px,5vw,68px);
+}
+
 </style>
 </head>
 
@@ -1292,6 +1337,15 @@ button{
 
 
 <!-- =================================================
+     0. OPENING
+================================================= -->
+<div class="screen launchIntro introRun" id="weAreHere">
+    <div class="label">TECH HUB GRAND LAUNCH</div>
+    <div class="introMain">WE ARE HERE</div>
+    <div class="introSub">TO LAUNCH OUR TECH HUB BANNER</div>
+</div>
+
+<!-- =================================================
      1. SYSTEM INITIALIZATION
 ================================================= -->
 
@@ -1321,7 +1375,16 @@ button{
 
 
 <!-- =================================================
-     2. PRESIDENT
+     2. PRESIDENT INTRO
+================================================= -->
+<div class="screen hidden launchIntro authIntro" id="presidentIntro">
+    <div class="label">AUTHORIZATION SEQUENCE</div>
+    <div class="introMain">LET'S TRY PRESIDENT'S AUTHORIZATION</div>
+    <div class="introSub">PRESIDENT ACCESS REQUIRED</div>
+</div>
+
+<!-- =================================================
+     3. PRESIDENT
 ================================================= -->
 
 <div
@@ -1410,7 +1473,16 @@ button{
 
 
 <!-- =================================================
-     5. associative PRESIDENT
+     5. ASSOCIATIVE PRESIDENT INTRO
+================================================= -->
+<div class="screen hidden launchIntro authIntro" id="associativeIntro">
+    <div class="label">SECOND AUTHORIZATION SEQUENCE</div>
+    <div class="introMain">LET'S TRY ASSOCIATIVE PRESIDENT'S AUTHORIZATION</div>
+    <div class="introSub">SECOND ACCESS REQUIRED</div>
+</div>
+
+<!-- =================================================
+     6. ASSOCIATIVE PRESIDENT
 ================================================= -->
 
 <div
@@ -2222,13 +2294,19 @@ function stopOptional(a){
 
 const screens=[
 
+    "weAreHere",
+
     "boot",
+
+    "presidentIntro",
 
     "president",
 
     "presidentLoading",
 
     "error1",
+
+    "associativeIntro",
 
     "associative",
 
@@ -2305,29 +2383,62 @@ for(
 }
 
 
+function playIntro(id){
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.classList.remove("introRun");
+    void el.offsetWidth;
+    el.classList.add("introRun");
+}
+
+
 /* =================================================
    BOOT → PRESIDENT
 ================================================= */
 
+/* WE ARE HERE → INITIALIZATION → PRESIDENT INTRO → PRESIDENT */
 setTimeout(()=>{
+
+    hideAll();
 
     document
         .getElementById("boot")
-        .style.opacity="0";
-
+        .classList
+        .remove("hidden");
 
     setTimeout(()=>{
 
-        hideAll();
-
         document
-            .getElementById("president")
-            .classList
-            .remove("hidden");
+            .getElementById("boot")
+            .style.opacity="0";
 
-    },900);
+        setTimeout(()=>{
 
-},3500);
+            hideAll();
+
+            document
+                .getElementById("presidentIntro")
+                .classList
+                .remove("hidden");
+
+            playIntro("presidentIntro");
+
+            setTimeout(()=>{
+
+                hideAll();
+
+                document
+                    .getElementById("president")
+                    .classList
+                    .remove("hidden");
+
+            },2800);
+
+        },900);
+
+    },3500);
+
+},2800);
 
 
 /* =================================================
@@ -2367,9 +2478,22 @@ function presidentEnter(){
         hideAll();
 
         document
-            .getElementById("associative")
+            .getElementById("associativeIntro")
             .classList
             .remove("hidden");
+
+        playIntro("associativeIntro");
+
+        setTimeout(()=>{
+
+            hideAll();
+
+            document
+                .getElementById("associative")
+                .classList
+                .remove("hidden");
+
+        },2800);
 
     },5500);
 
