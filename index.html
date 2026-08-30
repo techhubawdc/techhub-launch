@@ -1418,12 +1418,12 @@ button{
 
 
 <!-- =================================================
-     5. ASSOCIATE PRESIDENT
+     5. associative PRESIDENT
 ================================================= -->
 
 <div
     class="screen hidden"
-    id="associate">
+    id="associative">
 
     <div class="label">
         SECOND AUTHORIZATION REQUIRED
@@ -1439,7 +1439,7 @@ button{
 
     <button
         class="enterBtn"
-        onclick="associateEnter()">
+        onclick="associativeEnter()">
 
         ENTER
 
@@ -1449,12 +1449,12 @@ button{
 
 
 <!-- =================================================
-     6. ASSOCIATE LOADING
+     6. associative LOADING
 ================================================= -->
 
 <div
     class="screen hidden loadingScreen"
-    id="associateLoading">
+    id="associativeLoading">
 
     <div class="label">
         SECURITY PROTOCOL
@@ -1465,7 +1465,7 @@ button{
     </div>
 
     <div class="loadingText">
-        VERIFYING ASSOCIATE PRESIDENT AUTHORIZATION
+        VERIFYING associative PRESIDENT AUTHORIZATION
     </div>
 
     <div class="dots">
@@ -1480,7 +1480,7 @@ button{
 
 
 <!-- =================================================
-     7. ASSOCIATE ERROR
+     7. associative ERROR
 ================================================= -->
 
 <div
@@ -1498,7 +1498,7 @@ button{
         </div>
 
         <div class="errorSmall">
-            ASSOCIATE PRESIDENT ACCESS DENIED
+            associative PRESIDENT ACCESS DENIED
         </div>
 
     </div>
@@ -2238,9 +2238,9 @@ const screens=[
 
     "error1",
 
-    "associate",
+    "associative",
 
-    "associateLoading",
+    "associativeLoading",
 
     "error2",
 
@@ -2375,7 +2375,7 @@ function presidentEnter(){
         hideAll();
 
         document
-            .getElementById("associate")
+            .getElementById("associative")
             .classList
             .remove("hidden");
 
@@ -2385,10 +2385,10 @@ function presidentEnter(){
 
 
 /* =================================================
-   ASSOCIATE
+   associative
 ================================================= */
 
-function associateEnter(){
+function associativeEnter(){
 
     unlockAudio();
 
@@ -2397,7 +2397,7 @@ function associateEnter(){
     hideAll();
 
     document
-        .getElementById("associateLoading")
+        .getElementById("associativeLoading")
         .classList
         .remove("hidden");
 
