@@ -1339,7 +1339,7 @@ button{
 <!-- =================================================
      0. OPENING
 ================================================= -->
-<div class="screen launchIntro introRun" id="weAreHere">
+<div class="screen hidden launchIntro" id="weAreHere">
     <div class="label">TECH HUB GRAND LAUNCH</div>
     <div class="introMain">WE ARE HERE</div>
     <div class="introSub">TO LAUNCH OUR TECH HUB BANNER</div>
@@ -1350,7 +1350,7 @@ button{
 ================================================= -->
 
 <div
-    class="screen"
+    class="screen hidden"
     id="boot">
 
     <div class="label">
@@ -2397,48 +2397,55 @@ function playIntro(id){
 ================================================= */
 
 /* WE ARE HERE → INITIALIZATION → PRESIDENT INTRO → PRESIDENT */
-setTimeout(()=>{
+/* IMPORTANT: only ONE opening screen is visible at a time. */
+window.addEventListener("DOMContentLoaded",()=>{
+
+    const intro=document.getElementById("weAreHere");
+    const boot=document.getElementById("boot");
 
     hideAll();
 
-    document
-        .getElementById("boot")
-        .classList
-        .remove("hidden");
+    /* 1. WE ARE HERE */
+    intro.classList.remove("hidden");
+    playIntro("weAreHere");
 
+    /* 2. Move cleanly to system initialization */
     setTimeout(()=>{
+        intro.classList.add("hidden");
+        intro.classList.remove("introRun");
 
-        document
-            .getElementById("boot")
-            .style.opacity="0";
+        boot.style.opacity="1";
+        boot.classList.remove("hidden");
 
+        /* restart the loading bar every time */
+        const bar=boot.querySelector(".loadingBar");
+        if(bar){
+            bar.style.animation="none";
+            void bar.offsetWidth;
+            bar.style.animation="load 3s forwards";
+        }
+
+        /* 3. After initialization → President intro */
         setTimeout(()=>{
-
-            hideAll();
-
-            document
-                .getElementById("presidentIntro")
-                .classList
-                .remove("hidden");
-
-            playIntro("presidentIntro");
+            boot.style.opacity="0";
 
             setTimeout(()=>{
-
                 hideAll();
 
-                document
-                    .getElementById("president")
-                    .classList
-                    .remove("hidden");
+                const pi=document.getElementById("presidentIntro");
+                pi.classList.remove("hidden");
+                playIntro("presidentIntro");
 
-            },2800);
+                setTimeout(()=>{
+                    hideAll();
+                    document.getElementById("president").classList.remove("hidden");
+                },2800);
 
-        },900);
+            },700);
+        },3500);
 
-    },3500);
-
-},2800);
+    },3200);
+});
 
 
 /* =================================================
