@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>TECH HUB — Grand Launch</title>
 
-
 <style>
 
-/* =================================================
+/* =====================================================
    RESET
-================================================= */
+===================================================== */
 
 *{
     margin:0;
@@ -25,76 +18,47 @@ viewport-fit=cover">
     box-sizing:border-box;
 }
 
-html,
-body{
-
+html,body{
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     background:#02040a;
-
-    color:white;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-
     background:
-    radial-gradient(
-        circle at center,
-        #071b35 0%,
-        #02040a 55%,
-        #000 100%
-    );
+    radial-gradient(circle at center,#071b35 0%,#02040a 55%,#000 100%);
 }
 
 button{
     font:inherit;
 }
 
-
-/* =================================================
-   APP
-================================================= */
-
 #app{
-
     position:fixed;
-
     inset:0;
-
     overflow:hidden;
 }
 
 
-/* =================================================
+/* =====================================================
    GRID
-================================================= */
+===================================================== */
 
 .grid{
-
     position:absolute;
-
     inset:-50%;
 
     background-image:
-
         linear-gradient(
-            rgba(0,180,255,.08)
-            1px,
+            rgba(0,180,255,.08) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
-            rgba(0,180,255,.08)
-            1px,
+            rgba(0,180,255,.08) 1px,
             transparent 1px
         );
 
@@ -104,47 +68,44 @@ button{
         perspective(500px)
         rotateX(60deg);
 
-    animation:
-        gridMove 8s linear infinite;
+    animation:gridMove 8s linear infinite;
 
     pointer-events:none;
 }
 
 @keyframes gridMove{
 
-    to{
+    from{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(0);
+    }
 
+    to{
         transform:
             perspective(500px)
             rotateX(60deg)
             translateY(55px);
-
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    PARTICLES
-================================================= */
+===================================================== */
 
 .particles{
-
     position:absolute;
-
     inset:0;
-
     overflow:hidden;
-
     pointer-events:none;
 }
 
 .particle{
-
     position:absolute;
 
     width:3px;
-
     height:3px;
 
     border-radius:50%;
@@ -161,39 +122,30 @@ button{
 @keyframes float{
 
     from{
-
-        transform:
-            translateY(100vh);
-
+        transform:translateY(100vh);
         opacity:0;
-
     }
 
-    20%,
-    80%{
-
+    20%{
         opacity:1;
+    }
 
+    80%{
+        opacity:1;
     }
 
     to{
-
-        transform:
-            translateY(-10vh);
-
+        transform:translateY(-10vh);
         opacity:0;
-
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    SCREEN
-================================================= */
+===================================================== */
 
 .screen{
-
     position:absolute;
 
     inset:0;
@@ -201,7 +153,6 @@ button{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     flex-direction:column;
@@ -210,19 +161,19 @@ button{
 
     z-index:10;
 
-    padding:
-        clamp(18px,4vw,40px);
+    padding:clamp(18px,4vw,40px);
+
+    pointer-events:auto;
 }
 
 .hidden{
-
     display:none !important;
 }
 
 
-/* =================================================
+/* =====================================================
    TEXT
-================================================= */
+===================================================== */
 
 .label{
 
@@ -261,9 +212,9 @@ button{
 }
 
 
-/* =================================================
-   BOOT
-================================================= */
+/* =====================================================
+   LOADING BAR
+===================================================== */
 
 .loading{
 
@@ -271,8 +222,7 @@ button{
 
     height:4px;
 
-    background:
-        rgba(255,255,255,.12);
+    background:rgba(255,255,255,.12);
 
     margin-top:28px;
 
@@ -289,23 +239,27 @@ button{
 
     box-shadow:
         0 0 20px #00d9ff;
-
-    animation:
-        load 3s forwards;
 }
 
-@keyframes load{
+.loadingBar.run15{
+    animation:load15 15s linear forwards;
+}
+
+@keyframes load15{
+
+    from{
+        width:0;
+    }
 
     to{
         width:100%;
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    BUTTONS
-================================================= */
+===================================================== */
 
 .enterBtn,
 .chairmanEnter,
@@ -313,16 +267,14 @@ button{
 
     margin-top:34px;
 
-    padding:
-        16px 42px;
+    padding:16px 42px;
 
     background:
         rgba(0,150,255,.08);
 
     color:#fff;
 
-    border:
-        2px solid #63eaff;
+    border:2px solid #63eaff;
 
     font-size:
         clamp(14px,1.6vw,23px);
@@ -334,16 +286,13 @@ button{
     cursor:pointer;
 
     box-shadow:
-        0 0 20px
-        rgba(0,210,255,.25);
+        0 0 20px rgba(0,210,255,.25);
 
     transition:.25s;
 
     position:relative;
 
-    z-index:100;
-
-    pointer-events:auto;
+    z-index:30;
 }
 
 .enterBtn:hover,
@@ -354,17 +303,60 @@ button{
         rgba(0,190,255,.22);
 
     box-shadow:
-        0 0 40px
-        rgba(0,210,255,.6);
+        0 0 40px rgba(0,210,255,.6);
 
-    transform:
-        scale(1.05);
+    transform:scale(1.05);
 }
 
 
-/* =================================================
-   LOADING
-================================================= */
+/* =====================================================
+   INSTALLATION
+===================================================== */
+
+.installTitle{
+
+    font-size:
+        clamp(30px,5vw,72px);
+
+    font-weight:900;
+
+    letter-spacing:
+        clamp(2px,.5vw,7px);
+
+    text-shadow:
+        0 0 25px #00d9ff;
+}
+
+.installText{
+
+    margin-top:22px;
+
+    color:#8eaabd;
+
+    font-size:
+        clamp(12px,1.5vw,21px);
+
+    letter-spacing:3px;
+}
+
+.installPercent{
+
+    margin-top:18px;
+
+    font-size:
+        clamp(20px,3vw,40px);
+
+    color:#63eaff;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+}
+
+
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
 
 .loadingScreen{
 
@@ -375,23 +367,14 @@ button{
 @keyframes appear{
 
     from{
-
         opacity:0;
-
-        transform:
-            scale(.9);
-
+        transform:scale(.9);
     }
 
     to{
-
         opacity:1;
-
-        transform:
-            scale(1);
-
+        transform:scale(1);
     }
-
 }
 
 .loadingTitle{
@@ -417,9 +400,9 @@ button{
 }
 
 
-/* =================================================
+/* =====================================================
    DOTS
-================================================= */
+===================================================== */
 
 .dots{
 
@@ -433,7 +416,6 @@ button{
 .dot{
 
     width:12px;
-
     height:12px;
 
     border-radius:50%;
@@ -448,42 +430,36 @@ button{
 }
 
 .dot:nth-child(2){
-
     animation-delay:.2s;
 }
 
 .dot:nth-child(3){
-
     animation-delay:.4s;
 }
 
 @keyframes dotPulse{
 
-    0%,
-    100%{
-
+    0%,100%{
         opacity:.2;
-
-        transform:
-            scale(.7);
-
+        transform:scale(.7);
     }
 
     50%{
-
         opacity:1;
-
-        transform:
-            scale(1.2);
-
+        transform:scale(1.2);
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    ERROR
-================================================= */
+===================================================== */
+
+.errorBox{
+
+    animation:
+        errorAppear .7s ease;
+}
 
 .errorText{
 
@@ -497,40 +473,24 @@ button{
     letter-spacing:7px;
 
     text-shadow:
-        0 0 30px
-        rgba(255,50,70,.6);
-
-    animation:
-        errorAppear .7s ease;
+        0 0 30px rgba(255,50,70,.6);
 }
 
 @keyframes errorAppear{
 
     0%{
-
         opacity:0;
-
-        transform:
-            scale(1.2);
-
+        transform:scale(1.2);
     }
 
     60%{
-
         opacity:1;
-
-        transform:
-            scale(.98);
-
+        transform:scale(.98);
     }
 
     100%{
-
-        transform:
-            scale(1);
-
+        transform:scale(1);
     }
-
 }
 
 .errorSmall{
@@ -546,209 +506,98 @@ button{
 }
 
 
-/* =================================================
-   CHAIRMAN SUSPENSE
-================================================= */
-
-.chairmanIntro{
-
-    width:100%;
-
-    max-width:1100px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:18px;
-}
-
-.suspenseLine{
-
-    font-size:
-        clamp(20px,3.2vw,48px);
-
-    font-weight:700;
-
-    letter-spacing:2px;
-
-    opacity:0;
-
-    transform:
-        translateY(20px);
-
-    animation:
-        suspenseAppear
-        1s ease forwards;
-}
-
-.suspenseLine:nth-child(1){
-
-    animation-delay:.3s;
-}
-
-.suspenseLine:nth-child(2){
-
-    animation-delay:1.3s;
-}
-
-.suspenseLine:nth-child(3){
-
-    animation-delay:2.3s;
-}
-
-.suspenseLine.missing{
-
-    margin-top:25px;
-
-    color:#ffcf70;
-
-    animation-delay:4.3s;
-}
-
-@keyframes suspenseAppear{
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* =================================================
-   WHO HOLDS KEY
-================================================= */
-
-.keyQuestion{
-
-    margin-top:45px;
-
-    font-size:
-        clamp(26px,4vw,60px);
-
-    font-weight:900;
-
-    letter-spacing:4px;
-
-    color:#fff;
-
-    opacity:0;
-
-    animation:
-        keyReveal 1s ease
-        6.3s forwards;
-}
-
-@keyframes keyReveal{
-
-    0%{
-
-        opacity:0;
-
-        transform:
-            scale(.7);
-
-    }
-
-    70%{
-
-        opacity:1;
-
-        transform:
-            scale(1.08);
-
-    }
-
-    100%{
-
-        opacity:1;
-
-        transform:
-            scale(1);
-
-    }
-
-}
-
-
-/* =================================================
-   FINAL CHAIRMAN MESSAGE
-================================================= */
-
-.chairmanFinal{
-
-    opacity:0;
-
-    animation:
-        chairmanFinalReveal
-        1.2s ease
-        7.8s forwards;
-}
-
-@keyframes chairmanFinalReveal{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            scale(.8);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            scale(1);
-
-    }
-
-}
+/* =====================================================
+   CHAIRMAN INTRO
+===================================================== */
 
 .chairmanText{
 
     max-width:1000px;
 
-    line-height:1.4;
+    line-height:1.5;
 
     font-size:
-        clamp(22px,4vw,60px);
+        clamp(24px,4vw,60px);
 
     font-weight:700;
 }
 
+.chairmanLine{
+
+    margin-top:18px;
+
+    font-size:
+        clamp(20px,3vw,45px);
+
+    color:#d9e8ef;
+
+    letter-spacing:2px;
+}
+
+.chairmanPause{
+
+    margin-top:32px;
+
+    color:#6eeaff;
+
+    font-size:
+        clamp(15px,2vw,28px);
+
+    letter-spacing:5px;
+
+    animation:slowBlink 2s infinite;
+}
+
+@keyframes slowBlink{
+
+    0%,100%{
+        opacity:.35;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
 .sir{
 
-    margin-top:25px;
+    margin-top:28px;
 
     color:#69eaff;
 
     font-size:
-        clamp(28px,5vw,70px);
+        clamp(32px,5vw,75px);
 
     font-weight:900;
 
     letter-spacing:5px;
 
     text-shadow:
-        0 0 25px #00cfff;
+        0 0 25px #00cfff,
+        0 0 60px rgba(0,210,255,.5);
+
+    animation:sirReveal 1.2s ease;
+}
+
+@keyframes sirReveal{
+
+    from{
+        opacity:0;
+        transform:scale(.8);
+        filter:blur(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
 }
 
 
-/* =================================================
+/* =====================================================
    SUCCESS
-================================================= */
+===================================================== */
 
 .success{
 
@@ -762,11 +611,8 @@ button{
     letter-spacing:7px;
 
     text-shadow:
-
         0 0 20px #00ff91,
-
-        0 0 60px
-        rgba(0,255,150,.6);
+        0 0 60px rgba(0,255,150,.6);
 
     animation:
         successPop .8s ease;
@@ -775,36 +621,24 @@ button{
 @keyframes successPop{
 
     0%{
-
         opacity:0;
-
-        transform:
-            scale(.5);
-
+        transform:scale(.5);
     }
 
     70%{
-
-        transform:
-            scale(1.1);
-
+        transform:scale(1.1);
     }
 
     100%{
-
         opacity:1;
-
-        transform:
-            scale(1);
-
+        transform:scale(1);
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    LET'S GO
-================================================= */
+===================================================== */
 
 #letsGo{
 
@@ -815,7 +649,6 @@ button{
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
     z-index:80;
@@ -828,8 +661,7 @@ button{
 #letsGo.show{
 
     animation:
-        letsGoShow
-        1.5s ease forwards;
+        letsGoShow 1.5s ease forwards;
 }
 
 .letsGoText{
@@ -847,15 +679,11 @@ button{
     color:#fff;
 
     text-shadow:
-
         0 0 20px #00d9ff,
-
         0 0 70px #0077ff,
-
         0 0 120px #7c00ff;
 
-    transform:
-        scale(.4);
+    transform:scale(.4);
 
     animation:
         letsGoPop
@@ -867,87 +695,57 @@ button{
 @keyframes letsGoShow{
 
     0%{
-
         opacity:0;
-
     }
 
-    15%,
-    75%{
-
+    15%,75%{
         opacity:1;
-
     }
 
     100%{
-
         opacity:0;
-
     }
-
 }
 
 @keyframes letsGoPop{
 
     0%{
-
-        transform:
-            scale(.4)
-            rotate(-4deg);
-
+        transform:scale(.4) rotate(-4deg);
         opacity:0;
-
     }
 
     35%{
-
-        transform:
-            scale(1.12)
-            rotate(1deg);
-
+        transform:scale(1.12) rotate(1deg);
         opacity:1;
-
     }
 
     60%{
-
-        transform:
-            scale(1)
-            rotate(0);
-
+        transform:scale(1) rotate(0);
     }
 
     100%{
-
-        transform:
-            scale(1.06);
-
+        transform:scale(1.06);
         opacity:0;
-
     }
-
 }
 
 
-/* =================================================
-   ENERGY RING
-================================================= */
+/* =====================================================
+   ENERGY
+===================================================== */
 
 .energy{
 
     position:absolute;
 
     width:25vw;
-
     height:25vw;
 
     max-width:430px;
-
     max-height:430px;
 
     border:
-        2px solid
-        rgba(90,230,255,.8);
+        2px solid rgba(90,230,255,.8);
 
     border-radius:50%;
 
@@ -965,29 +763,20 @@ button{
 @keyframes ring{
 
     0%{
-
-        transform:
-            scale(.1);
-
+        transform:scale(.1);
         opacity:1;
-
     }
 
     100%{
-
-        transform:
-            scale(3);
-
+        transform:scale(3);
         opacity:0;
-
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    COUNTDOWN
-================================================= */
+===================================================== */
 
 .countNumber{
 
@@ -1001,11 +790,8 @@ button{
     color:#fff;
 
     text-shadow:
-
         0 0 25px #00d9ff,
-
         0 0 70px #0077ff,
-
         0 0 130px #7c00ff;
 
     animation:
@@ -1015,36 +801,24 @@ button{
 @keyframes pulse{
 
     0%{
-
-        transform:
-            scale(1.6);
-
+        transform:scale(1.6);
         opacity:0;
-
     }
 
     60%{
-
-        transform:
-            scale(.95);
-
+        transform:scale(.95);
         opacity:1;
-
     }
 
     100%{
-
-        transform:
-            scale(1);
-
+        transform:scale(1);
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    FLASH
-================================================= */
+===================================================== */
 
 .flash{
 
@@ -1070,29 +844,22 @@ button{
 @keyframes flash{
 
     0%{
-
         opacity:0;
-
     }
 
     20%{
-
         opacity:.95;
-
     }
 
     100%{
-
         opacity:0;
-
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    BANNER
-================================================= */
+===================================================== */
 
 #bannerReveal{
 
@@ -1114,16 +881,13 @@ button{
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
-    padding:
-        3vh 2vw;
+    padding:3vh 2vw;
 
     opacity:0;
 
-    transform:
-        scale(1.04);
+    transform:scale(1.04);
 
     transition:
         opacity .7s ease,
@@ -1134,14 +898,12 @@ button{
 
     opacity:1;
 
-    transform:
-        scale(1);
+    transform:scale(1);
 }
 
 .bannerFinal img{
 
     width:100%;
-
     height:100%;
 
     object-fit:contain;
@@ -1152,9 +914,9 @@ button{
 }
 
 
-/* =================================================
+/* =====================================================
    BANNER SLICES
-================================================= */
+===================================================== */
 
 .bannerSlices{
 
@@ -1179,11 +941,9 @@ button{
     background:#000;
 
     box-shadow:
-        0 0 18px
-        rgba(0,0,0,.9);
+        0 0 18px rgba(0,0,0,.9);
 
-    transform:
-        scaleX(1);
+    transform:scaleX(1);
 
     transform-origin:center;
 }
@@ -1207,134 +967,72 @@ button{
     opacity:.7;
 }
 
-.slice:nth-child(1),
-.slice:nth-child(2),
-.slice:nth-child(3),
-.slice:nth-child(4){
-
+.slice:nth-child(-n+4){
     transform-origin:right center;
 }
 
-.slice:nth-child(5),
-.slice:nth-child(6),
-.slice:nth-child(7),
-.slice:nth-child(8){
-
+.slice:nth-child(n+5){
     transform-origin:left center;
 }
 
-.bannerSlices.open
-.slice:nth-child(1){
-
-    animation:
-        openLeft
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .05s forwards;
+.bannerSlices.open .slice:nth-child(1){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .05s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(2){
-
-    animation:
-        openLeft
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .12s forwards;
+.bannerSlices.open .slice:nth-child(2){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .12s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(3){
-
-    animation:
-        openLeft
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .19s forwards;
+.bannerSlices.open .slice:nth-child(3){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .19s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(4){
-
-    animation:
-        openLeft
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .26s forwards;
+.bannerSlices.open .slice:nth-child(4){
+    animation:openLeft 1.7s cubic-bezier(.16,1,.3,1) .26s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(5){
-
-    animation:
-        openRight
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .26s forwards;
+.bannerSlices.open .slice:nth-child(5){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .26s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(6){
-
-    animation:
-        openRight
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .19s forwards;
+.bannerSlices.open .slice:nth-child(6){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .19s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(7){
-
-    animation:
-        openRight
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .12s forwards;
+.bannerSlices.open .slice:nth-child(7){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .12s forwards;
 }
 
-.bannerSlices.open
-.slice:nth-child(8){
-
-    animation:
-        openRight
-        1.7s
-        cubic-bezier(.16,1,.3,1)
-        .05s forwards;
+.bannerSlices.open .slice:nth-child(8){
+    animation:openRight 1.7s cubic-bezier(.16,1,.3,1) .05s forwards;
 }
 
 @keyframes openLeft{
 
     to{
-
         transform:
             translateX(-115%)
             scaleX(.92);
 
         opacity:0;
-
     }
-
 }
 
 @keyframes openRight{
 
     to{
-
         transform:
             translateX(115%)
             scaleX(.92);
 
         opacity:0;
-
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    BANNER GLOW
-================================================= */
+===================================================== */
 
 .bannerGlow{
 
@@ -1365,34 +1063,27 @@ button{
 @keyframes glow{
 
     0%{
-
         opacity:0;
-
     }
 
     35%{
-
         opacity:.8;
-
     }
 
     100%{
-
         opacity:.15;
-
     }
-
 }
 
 
-/* =================================================
+/* =====================================================
    LOGO READY
-================================================= */
+===================================================== */
 
 #logoReady .readyTitle{
 
     font-size:
-        clamp(30px,6vw,82px);
+        clamp(28px,6vw,82px);
 
     font-weight:900;
 
@@ -1403,9 +1094,157 @@ button{
 }
 
 
-/* =================================================
+/* =====================================================
+   LOGO SUSPENSE
+===================================================== */
+
+.suspenseText{
+
+    font-size:
+        clamp(24px,4vw,58px);
+
+    font-weight:800;
+
+    letter-spacing:
+        clamp(1px,.4vw,6px);
+
+    line-height:1.5;
+
+    text-shadow:
+        0 0 20px rgba(0,210,255,.5);
+
+    max-width:1100px;
+}
+
+.suspenseDim{
+
+    color:#91a7b5;
+
+    font-size:
+        clamp(15px,2vw,28px);
+
+    letter-spacing:4px;
+
+    margin-top:20px;
+}
+
+.heartbeat{
+
+    width:100px;
+
+    height:2px;
+
+    background:#ff455c;
+
+    box-shadow:
+        0 0 15px #ff455c;
+
+    margin-top:30px;
+
+    animation:
+        heartLine .8s infinite;
+}
+
+@keyframes heartLine{
+
+    0%,100%{
+        transform:scaleX(.3);
+        opacity:.3;
+    }
+
+    50%{
+        transform:scaleX(1.5);
+        opacity:1;
+    }
+}
+
+
+/* =====================================================
+   SYSTEM PROGRESS
+===================================================== */
+
+.systemProgress{
+
+    width:min(650px,80vw);
+
+    margin-top:35px;
+
+    font-family:monospace;
+
+    font-size:
+        clamp(17px,2.5vw,32px);
+
+    color:#63eaff;
+
+    letter-spacing:3px;
+}
+
+.progressBar{
+
+    margin-top:18px;
+
+    height:12px;
+
+    width:100%;
+
+    background:#12202a;
+
+    border:
+        1px solid #31505d;
+
+    overflow:hidden;
+}
+
+.progressFill{
+
+    height:100%;
+
+    width:0;
+
+    background:#63eaff;
+
+    box-shadow:
+        0 0 20px #00d9ff;
+}
+
+
+/* =====================================================
+   GLITCH
+===================================================== */
+
+.glitch{
+
+    animation:
+        glitch .35s steps(2,end) infinite;
+}
+
+@keyframes glitch{
+
+    0%{
+        transform:translate(0);
+    }
+
+    25%{
+        transform:translate(-4px,2px);
+    }
+
+    50%{
+        transform:translate(4px,-2px);
+    }
+
+    75%{
+        transform:translate(-2px,-1px);
+    }
+
+    100%{
+        transform:translate(0);
+    }
+}
+
+
+/* =====================================================
    LOGO LAUNCH
-================================================= */
+===================================================== */
 
 .logoLaunch{
 
@@ -1424,6 +1263,14 @@ button{
     pointer-events:none;
 
     opacity:0;
+
+    background:#000;
+}
+
+.logoLaunch.show{
+
+    animation:
+        logoScene 3s ease forwards;
 }
 
 .logoLaunch img{
@@ -1433,41 +1280,24 @@ button{
     max-height:75vh;
 
     width:auto;
-
     height:auto;
 
     object-fit:contain;
 
     filter:
+        drop-shadow(0 0 25px #00d9ff)
+        drop-shadow(0 0 65px rgba(124,0,255,.8));
 
-        drop-shadow(
-            0 0 25px #00d9ff
-        )
-
-        drop-shadow(
-            0 0 65px
-            rgba(124,0,255,.8)
-        );
-
-    transform:
-        scale(.15);
+    transform:scale(.15);
 
     opacity:0;
-}
-
-.logoLaunch.show{
-
-    animation:
-        logoScene
-        2.2s ease
-        forwards;
 }
 
 .logoLaunch.show img{
 
     animation:
         logoPop
-        2.2s
+        3s
         cubic-bezier(.16,1,.3,1)
         forwards;
 }
@@ -1475,70 +1305,57 @@ button{
 @keyframes logoScene{
 
     0%{
-
         opacity:0;
-
     }
 
-    18%,
-    82%{
-
+    12%{
         opacity:1;
-
     }
 
     100%{
-
         opacity:1;
-
     }
-
 }
 
 @keyframes logoPop{
 
     0%{
-
-        transform:
-            scale(.15);
-
+        transform:scale(.15);
         opacity:0;
-
+        filter:
+            brightness(0)
+            drop-shadow(0 0 0 transparent);
     }
 
     35%{
-
-        transform:
-            scale(1.12);
-
+        transform:scale(1.08);
         opacity:1;
-
+        filter:
+            brightness(1)
+            drop-shadow(0 0 35px #00d9ff)
+            drop-shadow(0 0 80px #7c00ff);
     }
 
-    65%{
-
-        transform:
-            scale(.98);
-
+    55%{
+        transform:scale(.98);
     }
 
     100%{
-
-        transform:
-            scale(1);
-
+        transform:scale(1);
         opacity:1;
-
+        filter:
+            brightness(1)
+            drop-shadow(0 0 25px #00d9ff)
+            drop-shadow(0 0 65px #7c00ff);
     }
-
 }
 
 
-/* =================================================
-   FINAL MESSAGE AFTER LOGO
-================================================= */
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
 
-.logoMessage{
+.finalMessage{
 
     position:fixed;
 
@@ -1548,265 +1365,177 @@ button{
 
     display:flex;
 
-    align-items:flex-end;
-
-    justify-content:center;
-
-    padding-bottom:8vh;
-
-    pointer-events:none;
-
-    opacity:0;
-}
-
-.logoMessage.show{
-
-    animation:
-        logoMessageIn
-        2s ease
-        1.5s forwards;
-}
-
-.logoMessageText{
-
-    font-size:
-        clamp(16px,2.5vw,36px);
-
-    font-weight:700;
-
-    letter-spacing:3px;
-
-    text-shadow:
-        0 0 20px #00d9ff;
-
-}
-
-@keyframes logoMessageIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* =================================================
-   ROTATE PHONE
-================================================= */
-
-#rotateHint{
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:200;
-
-    background:#02040a;
-
     align-items:center;
 
     justify-content:center;
 
+    flex-direction:column;
+
     text-align:center;
 
-    padding:28px;
+    pointer-events:none;
+
+    opacity:0;
+
+    background:rgba(0,0,0,.35);
 }
 
-#rotateHint .rotateBox{
-
-    max-width:420px;
-}
-
-#rotateHint .phone{
-
-    font-size:60px;
-
-    margin-bottom:15px;
+.finalMessage.show{
 
     animation:
-        rotatePhone
-        1.5s
-        infinite alternate;
+        finalMessageShow 7s ease forwards;
 }
 
-#rotateHint h2{
+.finalBig{
 
     font-size:
-        clamp(22px,7vw,36px);
+        clamp(25px,5vw,70px);
 
-    margin-bottom:10px;
+    font-weight:900;
+
+    letter-spacing:3px;
+
+    text-shadow:
+        0 0 25px #00d9ff;
 }
 
-#rotateHint p{
+.finalSmall{
 
-    color:#9bb1c0;
+    margin-top:25px;
 
-    line-height:1.5;
+    color:#6eeaff;
+
+    font-size:
+        clamp(16px,2vw,28px);
+
+    letter-spacing:5px;
 }
 
-@keyframes rotatePhone{
+@keyframes finalMessageShow{
 
-    to{
-
-        transform:
-            rotate(90deg);
-
+    0%,12%{
+        opacity:0;
     }
 
+    20%,85%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+    }
 }
 
 
-/* =================================================
+/* =====================================================
    MOBILE
-================================================= */
+===================================================== */
 
-@media
-(max-width:600px)
-and
-(orientation:portrait){
-
-    #rotateHint{
-
-        display:flex;
-
-    }
-
-}
-
-@media
-(max-width:600px)
-and
-(orientation:landscape){
+@media(max-width:600px){
 
     .screen{
+        padding:15px 20px;
+    }
 
-        padding:
-            12px 22px;
-
+    .chairmanText{
+        line-height:1.4;
     }
 
     .bannerFinal{
-
-        padding:
-            1vh 1vw;
-
+        padding:1vh 1vw;
     }
 
     .logoLaunch img{
-
         max-width:72vw;
-
         max-height:72vh;
-
     }
-
-    .suspenseLine{
-
-        font-size:
-            clamp(16px,3vw,30px);
-
-    }
-
-}
-
-@media(min-width:601px){
-
-    #rotateHint{
-
-        display:none!important;
-
-    }
-
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div id="app">
 
-
-<!-- =================================================
+<!-- =====================================================
      BACKGROUND
-================================================= -->
+===================================================== -->
 
 <div class="grid"></div>
 
-<div
-    class="particles"
-    id="particles">
-</div>
+<div class="particles" id="particles"></div>
+
+<div class="energy" id="energy"></div>
+
+<div class="flash" id="flash"></div>
 
 
-<div
-    class="energy"
-    id="energy">
-</div>
+<!-- =====================================================
+     1. WE ARE HERE
+===================================================== -->
 
-
-<div
-    class="flash"
-    id="flash">
-</div>
-
-
-<!-- =================================================
-     1. BOOT
-================================================= -->
-
-<div
-    class="screen"
-    id="boot">
+<div class="screen" id="welcome">
 
     <div class="label">
-        SYSTEM INITIALIZATION
+        TECH HUB PRESENTS
     </div>
 
     <div class="title">
-        TECH HUB
+        WE ARE HERE
+    </div>
+
+    <div class="subtitle">
+        TO LAUNCH OUR BANNER
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     2. INSTALLATION
+===================================================== -->
+
+<div class="screen hidden" id="installation">
+
+    <div class="label">
+        SYSTEM PREPARATION
+    </div>
+
+    <div class="installTitle">
+        INSTALLATION
+    </div>
+
+    <div class="installText">
+        PREPARING TECH HUB LAUNCH SYSTEM...
     </div>
 
     <div class="loading">
 
-        <div class="loadingBar"></div>
+        <div
+            class="loadingBar"
+            id="installBar">
+        </div>
 
     </div>
 
-    <div class="subtitle">
-        INITIALIZING TECHNOLOGY CORE...
+    <div
+        class="installPercent"
+        id="installPercent">
+
+        0%
+
     </div>
 
 </div>
 
 
-<!-- =================================================
-     2. PRESIDENT
-================================================= -->
+<!-- =====================================================
+     3. PRESIDENT
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="president">
+<div class="screen hidden" id="president">
 
     <div class="label">
         AUTHORIZED PERSONNEL REQUIRED
@@ -1831,9 +1560,9 @@ and
 </div>
 
 
-<!-- =================================================
-     3. PRESIDENT LOADING
-================================================= -->
+<!-- =====================================================
+     4. PRESIDENT LOADING
+===================================================== -->
 
 <div
     class="screen hidden loadingScreen"
@@ -1862,15 +1591,13 @@ and
 </div>
 
 
-<!-- =================================================
-     4. PRESIDENT ERROR
-================================================= -->
+<!-- =====================================================
+     5. PRESIDENT ERROR
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="error1">
+<div class="screen hidden" id="error1">
 
-    <div>
+    <div class="errorBox">
 
         <div class="errorText">
             ERROR
@@ -1889,13 +1616,11 @@ and
 </div>
 
 
-<!-- =================================================
-     5. ASSOCIATE PRESIDENT
-================================================= -->
+<!-- =====================================================
+     6. ASSOCIATIVE PRESIDENT
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="associate">
+<div class="screen hidden" id="associate">
 
     <div class="label">
         SECOND AUTHORIZATION REQUIRED
@@ -1920,9 +1645,9 @@ and
 </div>
 
 
-<!-- =================================================
-     6. ASSOCIATE LOADING
-================================================= -->
+<!-- =====================================================
+     7. ASSOCIATE LOADING
+===================================================== -->
 
 <div
     class="screen hidden loadingScreen"
@@ -1951,15 +1676,13 @@ and
 </div>
 
 
-<!-- =================================================
-     7. ASSOCIATE ERROR
-================================================= -->
+<!-- =====================================================
+     8. ASSOCIATE ERROR
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="error2">
+<div class="screen hidden" id="error2">
 
-    <div>
+    <div class="errorBox">
 
         <div class="errorText">
             ERROR
@@ -1978,98 +1701,74 @@ and
 </div>
 
 
-<!-- =================================================
-     8. CHAIRMAN SUSPENSE INTRO
-================================================= -->
+<!-- =====================================================
+     9. CHAIRMAN INTRO
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="chairman">
+<div class="screen hidden" id="chairman">
 
-
-    <div class="chairmanIntro">
-
-
-        <div class="suspenseLine">
-            EVERYTHING IS READY...
-        </div>
-
-
-        <div class="suspenseLine">
-            THE STAGE IS SET...
-        </div>
-
-
-        <div class="suspenseLine">
-            THE MOMENT IS HERE...
-        </div>
-
-
-        <div
-            class="suspenseLine missing">
-
-            BUT SOMETHING...
-            IS STILL MISSING.
-
-        </div>
-
-
-        <div class="keyQuestion">
-
-            WHO HOLDS THE KEY?
-
-        </div>
-
-
-        <div
-            class="chairmanFinal">
-
-            <div class="chairmanText">
-
-                THE ONE WHO CAN TURN
-                THIS MOMENT...
-
-            </div>
-
-            <div class="chairmanText">
-
-                ...INTO A BEGINNING.
-
-            </div>
-
-
-            <div class="sir">
-
-                CHAIRMAN SIR
-
-            </div>
-
-
-            <div class="subtitle">
-
-                THE STAGE AWAITS YOU.
-
-            </div>
-
-
-            <button
-                class="chairmanEnter"
-                onclick="chairmanEnter()">
-
-                ENTER
-
-            </button>
-
-        </div>
-
+    <div class="label">
+        FINAL AUTHORIZATION REQUIRED
     </div>
+
+    <div class="chairmanText">
+        EVERYTHING IS READY...
+    </div>
+
+    <div class="chairmanLine">
+        THE STAGE IS SET...
+    </div>
+
+    <div class="chairmanLine">
+        THE MOMENT IS HERE...
+    </div>
+
+    <div class="chairmanPause">
+        BUT SOMETHING... IS STILL MISSING.
+    </div>
+
+    <div class="chairmanLine">
+        THE FINAL STEP...
+    </div>
+
+    <div class="chairmanLine">
+        AWAITS ITS KEY.
+    </div>
+
+    <div class="chairmanPause">
+        WHO HOLDS THE KEY?
+    </div>
+
+    <div class="chairmanLine">
+        THE ONE WHO CAN TURN THIS MOMENT...
+    </div>
+
+    <div class="chairmanLine">
+        ...INTO A BEGINNING.
+    </div>
+
+    <div class="sir">
+        CHAIRMAN SIR
+    </div>
+
+    <div class="subtitle">
+        THE STAGE AWAITS YOU.
+    </div>
+
+    <button
+        class="chairmanEnter"
+        onclick="chairmanEnter()">
+
+        ENTER
+
+    </button>
 
 </div>
 
 
-<!-- =================================================
-     9. CHAIRMAN LOADING
-================================================= -->
+<!-- =====================================================
+     10. CHAIRMAN LOADING
+===================================================== -->
 
 <div
     class="screen hidden loadingScreen"
@@ -2084,7 +1783,7 @@ and
     </div>
 
     <div class="loadingText">
-        VERIFYING CHAIRMAN AUTHORIZATION
+        VERIFYING FINAL AUTHORIZATION
     </div>
 
     <div class="dots">
@@ -2098,13 +1797,11 @@ and
 </div>
 
 
-<!-- =================================================
-     10. SUCCESS
-================================================= -->
+<!-- =====================================================
+     11. SUCCESS
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="success">
+<div class="screen hidden" id="success">
 
     <div class="success">
         ACCESS GRANTED
@@ -2121,9 +1818,9 @@ and
 </div>
 
 
-<!-- =================================================
-     11. LET'S GO
-================================================= -->
+<!-- =====================================================
+     12. LET'S GO
+===================================================== -->
 
 <div id="letsGo">
 
@@ -2134,13 +1831,11 @@ and
 </div>
 
 
-<!-- =================================================
-     12. COUNTDOWN
-================================================= -->
+<!-- =====================================================
+     13. COUNTDOWN
+===================================================== -->
 
-<div
-    class="screen hidden"
-    id="countdown">
+<div class="screen hidden" id="countdown">
 
     <div class="label">
         TECH HUB LAUNCH SEQUENCE
@@ -2157,14 +1852,13 @@ and
 </div>
 
 
-<!-- =================================================
-     13. BANNER
-================================================= -->
+<!-- =====================================================
+     14. BANNER
+===================================================== -->
 
 <div
     class="screen hidden"
     id="bannerReveal">
-
 
     <div
         class="bannerFinal"
@@ -2175,7 +1869,6 @@ and
             alt="TECH HUB Banner">
 
     </div>
-
 
     <div
         class="bannerSlices"
@@ -2193,7 +1886,6 @@ and
 
     </div>
 
-
     <div
         class="bannerGlow"
         id="bannerGlow">
@@ -2202,19 +1894,16 @@ and
 </div>
 
 
-<!-- =================================================
-     14. LOGO READY
-================================================= -->
+<!-- =====================================================
+     15. LOGO READY
+===================================================== -->
 
 <div
     class="screen hidden"
     id="logoReady">
 
     <div class="readyTitle">
-
-        ARE YOU READY TO
-        LAUNCH LOGO?
-
+        ARE YOU READY TO LAUNCH LOGO?
     </div>
 
     <button
@@ -2228,47 +1917,82 @@ and
 </div>
 
 
-<!-- =================================================
-     15. LOGO LOADING
-================================================= -->
+<!-- =====================================================
+     16. LOGO SUSPENSE
+===================================================== -->
 
 <div
-    class="screen hidden loadingScreen"
-    id="logoLoading">
+    class="screen hidden"
+    id="logoSuspense">
 
-    <div class="label">
-        FINAL LAUNCH PROTOCOL
+    <div
+        class="suspenseText"
+        id="suspenseText">
+
     </div>
 
-    <div class="loadingTitle">
-        PREPARING LOGO LAUNCH...
+    <div
+        class="suspenseDim"
+        id="suspenseDim">
+
     </div>
 
-    <div class="loadingText">
-        CALIBRATING TECH HUB IDENTITY SYSTEM
-    </div>
-
-    <div class="dots">
-
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+    <div
+        class="heartbeat"
+        id="heartbeat">
 
     </div>
 
 </div>
 
 
-<!-- =================================================
-     16. LOGO COUNTDOWN
-================================================= -->
+<!-- =====================================================
+     17. SYSTEM INITIALIZING
+===================================================== -->
+
+<div
+    class="screen hidden"
+    id="systemProgress">
+
+    <div class="label">
+        SYSTEM MESSAGE
+    </div>
+
+    <div class="suspenseText">
+        INITIALIZING...
+    </div>
+
+    <div class="systemProgress">
+
+        <div id="progressText">
+            ████░░░░░░ 40%
+        </div>
+
+        <div class="progressBar">
+
+            <div
+                class="progressFill"
+                id="progressFill">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     18. LOGO COUNTDOWN
+===================================================== -->
 
 <div
     class="screen hidden"
     id="logoCountdown">
 
     <div class="label">
-        FINAL LOGO SEQUENCE
+        FINAL SEQUENCE
     </div>
 
     <div
@@ -2282,9 +2006,9 @@ and
 </div>
 
 
-<!-- =================================================
-     17. LOGO REVEAL
-================================================= -->
+<!-- =====================================================
+     19. LOGO
+===================================================== -->
 
 <div
     class="logoLaunch"
@@ -2298,48 +2022,20 @@ and
 </div>
 
 
-<!-- =================================================
-     18. LOGO MESSAGE
-================================================= -->
+<!-- =====================================================
+     20. FINAL MESSAGE
+===================================================== -->
 
 <div
-    class="logoMessage"
-    id="logoMessage">
+    class="finalMessage"
+    id="finalMessage">
 
-    <div class="logoMessageText">
-
+    <div class="finalBig">
         THIS IS NOT JUST A LOGO.
-        <br><br>
-        THIS IS WHERE THE JOURNEY BEGINS.
-
     </div>
 
-</div>
-
-
-<!-- =================================================
-     ROTATE PHONE
-================================================= -->
-
-<div id="rotateHint">
-
-    <div class="rotateBox">
-
-        <div class="phone">
-            📱
-        </div>
-
-        <h2>
-            PLEASE ROTATE YOUR PHONE
-        </h2>
-
-        <p>
-            For the full cinematic
-            TECH HUB launch,
-            view this presentation
-            in landscape mode.
-        </p>
-
+    <div class="finalSmall">
+        THIS IS WHERE THE JOURNEY BEGINS.
     </div>
 
 </div>
@@ -2350,13 +2046,11 @@ and
 
 <script>
 
-
-/* =================================================
+/* =====================================================
    AUDIO ENGINE
-================================================= */
+===================================================== */
 
 let audioCtx = null;
-
 
 function unlockAudio(){
 
@@ -2372,10 +2066,7 @@ function unlockAudio(){
 
         }
 
-        if(
-            audioCtx.state ===
-            "suspended"
-        ){
+        if(audioCtx.state === "suspended"){
 
             audioCtx.resume();
 
@@ -2394,69 +2085,52 @@ function tone(
     delay=0
 ){
 
-    if(!audioCtx)
-        return;
+    if(!audioCtx) return;
 
     const t =
-        audioCtx.currentTime +
-        delay;
+        audioCtx.currentTime + delay;
 
-    const oscillator =
+    const o =
         audioCtx.createOscillator();
 
-    const gain =
+    const g =
         audioCtx.createGain();
 
+    o.type = type;
 
-    oscillator.type=type;
+    o.frequency.setValueAtTime(
+        freq,
+        t
+    );
 
-    oscillator.frequency
-        .setValueAtTime(
-            freq,
-            t
-        );
+    g.gain.setValueAtTime(
+        0,
+        t
+    );
 
+    g.gain.linearRampToValueAtTime(
+        volume,
+        t+.01
+    );
 
-    gain.gain
-        .setValueAtTime(
-            0,
-            t
-        );
+    g.gain.exponentialRampToValueAtTime(
+        .001,
+        t+duration
+    );
 
+    o.connect(g);
 
-    gain.gain
-        .linearRampToValueAtTime(
-            volume,
-            t+.01
-        );
-
-
-    gain.gain
-        .exponentialRampToValueAtTime(
-            .001,
-            t+duration
-        );
-
-
-    oscillator.connect(gain);
-
-    gain.connect(
+    g.connect(
         audioCtx.destination
     );
 
+    o.start(t);
 
-    oscillator.start(t);
-
-    oscillator.stop(
+    o.stop(
         t+duration+.03
     );
-
 }
 
-
-/* =================================================
-   SOUNDS
-================================================= */
 
 function soundScan(){
 
@@ -2476,7 +2150,6 @@ function soundScan(){
         .04,
         .09
     );
-
 }
 
 
@@ -2498,7 +2171,6 @@ function soundError(){
         .06,
         .12
     );
-
 }
 
 
@@ -2506,12 +2178,7 @@ function soundSuccess(){
 
     unlockAudio();
 
-    tone(
-        520,
-        .12,
-        "sine",
-        .06
-    );
+    tone(520,.12,"sine",.06);
 
     tone(
         780,
@@ -2528,7 +2195,6 @@ function soundSuccess(){
         .07,
         .27
     );
-
 }
 
 
@@ -2542,7 +2208,6 @@ function soundBeep(){
         "square",
         .045
     );
-
 }
 
 
@@ -2572,75 +2237,67 @@ function soundLetsGo(){
         .07,
         .2
     );
-
 }
 
 
-function soundReveal(){
-
-    unlockAudio();
-
-    [
-        220,
-        330,
-        440,
-        660
-    ].forEach(
-        (f,i)=>{
-
-            tone(
-                f,
-                .45,
-                "sawtooth",
-                .045,
-                i*.11
-            );
-
-        }
-    );
-
-}
-
-
-function soundLaunch(){
+function soundHeartbeat(){
 
     unlockAudio();
 
     tone(
-        180,
-        .25,
+        80,
+        .12,
         "sine",
-        .05
+        .09
     );
 
     tone(
-        360,
-        .25,
-        "sine",
-        .05,
-        .18
-    );
-
-    tone(
-        720,
-        .5,
+        65,
+        .16,
         "sine",
         .07,
-        .36
+        .16
     );
-
 }
 
 
-/* =================================================
+function soundBoom(){
+
+    unlockAudio();
+
+    tone(
+        80,
+        .5,
+        "sawtooth",
+        .12
+    );
+
+    tone(
+        160,
+        .35,
+        "sine",
+        .08,
+        .08
+    );
+
+    tone(
+        500,
+        .6,
+        "sine",
+        .09,
+        .2
+    );
+}
+
+
+/* =====================================================
    PARTICLES
-================================================= */
+===================================================== */
 
 const particles =
     document.getElementById(
         "particles"
     );
-
 
 for(
     let i=0;
@@ -2656,60 +2313,41 @@ for(
     p.className =
         "particle";
 
-
     p.style.left =
         Math.random()*100+"%";
-
 
     p.style.animationDelay =
         Math.random()*5+"s";
 
-
     p.style.animationDuration =
-        3+
-        Math.random()*6+
-        "s";
-
+        3+Math.random()*6+"s";
 
     particles.appendChild(p);
-
 }
 
 
-/* =================================================
+/* =====================================================
    SCREENS
-================================================= */
+===================================================== */
 
-const screens = [
+const screens=[
 
-    "boot",
-
+    "welcome",
+    "installation",
     "president",
-
     "presidentLoading",
-
     "error1",
-
     "associate",
-
     "associateLoading",
-
     "error2",
-
     "chairman",
-
     "chairmanLoading",
-
     "success",
-
     "countdown",
-
     "bannerReveal",
-
     "logoReady",
-
-    "logoLoading",
-
+    "logoSuspense",
+    "systemProgress",
     "logoCountdown"
 
 ];
@@ -2721,9 +2359,7 @@ function hideAll(){
         id=>{
 
             const el =
-                document.getElementById(
-                    id
-                );
+                document.getElementById(id);
 
             if(el){
 
@@ -2739,43 +2375,89 @@ function hideAll(){
 }
 
 
-/* =================================================
-   BOOT → PRESIDENT
-================================================= */
+/* =====================================================
+   WELCOME → INSTALLATION
+===================================================== */
 
 setTimeout(()=>{
 
-    const boot =
+    hideAll();
+
+    document
+        .getElementById(
+            "installation"
+        )
+        .classList
+        .remove("hidden");
+
+    startInstallation();
+
+},3000);
+
+
+/* =====================================================
+   INSTALLATION — 15 SECONDS
+===================================================== */
+
+function startInstallation(){
+
+    const bar =
         document.getElementById(
-            "boot"
+            "installBar"
         );
 
+    const percent =
+        document.getElementById(
+            "installPercent"
+        );
 
-    boot.style.opacity="0";
+    bar.classList.remove(
+        "run15"
+    );
+
+    void bar.offsetWidth;
+
+    bar.classList.add(
+        "run15"
+    );
+
+    let value=0;
+
+    const timer =
+        setInterval(()=>{
+
+            value++;
+
+            percent.textContent =
+                value+"%";
+
+            if(value>=100){
+
+                clearInterval(timer);
+
+                setTimeout(()=>{
+
+                    hideAll();
+
+                    document
+                        .getElementById(
+                            "president"
+                        )
+                        .classList
+                        .remove("hidden");
+
+                },700);
+
+            }
+
+        },150);
+
+}
 
 
-    setTimeout(()=>{
-
-        hideAll();
-
-
-        document
-            .getElementById(
-                "president"
-            )
-            .classList
-            .remove(
-                "hidden"
-            );
-
-    },900);
-
-},3500);
-
-
-/* =================================================
+/* =====================================================
    PRESIDENT
-================================================= */
+===================================================== */
 
 function presidentEnter(){
 
@@ -2785,34 +2467,25 @@ function presidentEnter(){
 
     hideAll();
 
-
     document
         .getElementById(
             "presidentLoading"
         )
         .classList
-        .remove(
-            "hidden"
-        );
-
+        .remove("hidden");
 
     setTimeout(()=>{
 
         hideAll();
-
 
         document
             .getElementById(
                 "error1"
             )
             .classList
-            .remove(
-                "hidden"
-            );
-
+            .remove("hidden");
 
         soundError();
-
 
     },3000);
 
@@ -2821,25 +2494,21 @@ function presidentEnter(){
 
         hideAll();
 
-
         document
             .getElementById(
                 "associate"
             )
             .classList
-            .remove(
-                "hidden"
-            );
-
+            .remove("hidden");
 
     },5500);
 
 }
 
 
-/* =================================================
+/* =====================================================
    ASSOCIATE PRESIDENT
-================================================= */
+===================================================== */
 
 function associateEnter(){
 
@@ -2849,123 +2518,96 @@ function associateEnter(){
 
     hideAll();
 
-
     document
         .getElementById(
             "associateLoading"
         )
         .classList
-        .remove(
-            "hidden"
-        );
-
+        .remove("hidden");
 
     setTimeout(()=>{
 
         hideAll();
-
 
         document
             .getElementById(
                 "error2"
             )
             .classList
-            .remove(
-                "hidden"
-            );
-
+            .remove("hidden");
 
         soundError();
-
 
     },3000);
 
 
     setTimeout(()=>{
 
-        hideAll();
-
-
-        document
-            .getElementById(
-                "chairman"
-            )
-            .classList
-            .remove(
-                "hidden"
-            );
-
+        showChairman();
 
     },5500);
 
 }
 
 
-/* =================================================
+/* =====================================================
    CHAIRMAN
-   FIXED VERSION
-================================================= */
+===================================================== */
+
+function showChairman(){
+
+    hideAll();
+
+    document
+        .getElementById(
+            "chairman"
+        )
+        .classList
+        .remove("hidden");
+
+}
+
 
 function chairmanEnter(){
 
-    console.log(
-        "CHAIRMAN ENTER CLICKED"
-    );
-
+    /* IMPORTANT:
+       This function now always
+       continues the launch.
+    */
 
     unlockAudio();
 
     soundScan();
 
-
     hideAll();
 
-
-    const loading =
-        document.getElementById(
+    document
+        .getElementById(
             "chairmanLoading"
-        );
-
-
-    loading
+        )
         .classList
-        .remove(
-            "hidden"
-        );
+        .remove("hidden");
 
 
-    /*
-       3 SEC AUTHENTICATION
-    */
+    /* 3 sec authentication */
 
     setTimeout(()=>{
 
         hideAll();
 
-
-        const success =
-            document.getElementById(
+        document
+            .getElementById(
                 "success"
-            );
-
-
-        success
+            )
             .classList
-            .remove(
-                "hidden"
-            );
-
+            .remove("hidden");
 
         soundSuccess();
-
 
     },3000);
 
 
-    /*
-       ACCESS GRANTED
-       → LET'S GO
-    */
+    /* After success */
 
     setTimeout(()=>{
 
@@ -2976,30 +2618,23 @@ function chairmanEnter(){
 }
 
 
-/* =================================================
+/* =====================================================
    LET'S GO
-================================================= */
+===================================================== */
 
 function showLetsGo(){
 
     hideAll();
-
 
     const lg =
         document.getElementById(
             "letsGo"
         );
 
-
     const energy =
         document.getElementById(
             "energy"
         );
-
-
-    /*
-       RESET LET'S GO
-    */
 
     lg.classList.remove(
         "show"
@@ -3012,10 +2647,6 @@ function showLetsGo(){
     );
 
 
-    /*
-       RESET ENERGY
-    */
-
     energy.classList.remove(
         "active"
     );
@@ -3026,62 +2657,43 @@ function showLetsGo(){
         "active"
     );
 
-
     soundLetsGo();
 
 
-    /*
-       AFTER EFFECT
-       → COUNTDOWN
-    */
-
-    setTimeout(()=>{
-
-        startCountdown();
-
-    },1800);
+    setTimeout(
+        startCountdown,
+        1450
+    );
 
 }
 
 
-/* =================================================
-   10 SECOND COUNTDOWN
-================================================= */
+/* =====================================================
+   BANNER COUNTDOWN
+===================================================== */
 
 function startCountdown(){
 
-    console.log(
-        "COUNTDOWN STARTED"
-    );
-
-
     hideAll();
-
 
     const screen =
         document.getElementById(
             "countdown"
         );
 
-
     const number =
         document.getElementById(
             "countNumber"
         );
 
-
-    screen
-        .classList
-        .remove(
-            "hidden"
-        );
-
+    screen.classList.remove(
+        "hidden"
+    );
 
     let n=10;
 
-
-    number.textContent=n;
-
+    number.textContent =
+        n;
 
     soundBeep();
 
@@ -3091,37 +2703,26 @@ function startCountdown(){
 
             n--;
 
-
             if(n>0){
 
-                number.textContent=n;
+                number.textContent =
+                    n;
 
-
-                number.style.animation=
+                number.style.animation =
                     "none";
-
 
                 void number.offsetWidth;
 
-
-                number.style.animation=
+                number.style.animation =
                     "pulse 1s ease";
-
 
                 soundBeep();
 
             }
 
-
             else{
 
                 clearInterval(timer);
-
-
-                console.log(
-                    "COUNTDOWN FINISHED"
-                );
-
 
                 finalBannerReveal();
 
@@ -3132,35 +2733,30 @@ function startCountdown(){
 }
 
 
-/* =================================================
+/* =====================================================
    BANNER REVEAL
-================================================= */
+===================================================== */
 
 function finalBannerReveal(){
 
     hideAll();
 
-
-    soundReveal();
-
+    soundBoom();
 
     const banner =
         document.getElementById(
             "bannerReveal"
         );
 
-
     const slices =
         document.getElementById(
             "bannerSlices"
         );
 
-
-    const finalBanner =
+    const final =
         document.getElementById(
             "bannerFinal"
         );
-
 
     const glow =
         document.getElementById(
@@ -3168,153 +2764,335 @@ function finalBannerReveal(){
         );
 
 
-    banner
-        .classList
-        .remove(
-            "hidden"
-        );
+    banner.classList.remove(
+        "hidden"
+    );
 
+    slices.classList.remove(
+        "open"
+    );
 
-    /*
-       RESET
-    */
+    final.classList.remove(
+        "visible"
+    );
 
-    slices
-        .classList
-        .remove(
-            "open"
-        );
-
-
-    finalBanner
-        .classList
-        .remove(
-            "visible"
-        );
-
-
-    glow
-        .classList
-        .remove(
-            "on"
-        );
+    glow.classList.remove(
+        "on"
+    );
 
 
     void slices.offsetWidth;
 
 
-    /*
-       START OPENING
-    */
+    slices.classList.add(
+        "open"
+    );
 
-    slices
-        .classList
-        .add(
-            "open"
-        );
+    glow.classList.add(
+        "on"
+    );
 
-
-    glow
-        .classList
-        .add(
-            "on"
-        );
-
-
-    /*
-       FULL BANNER APPEARS
-    */
 
     setTimeout(()=>{
 
-        finalBanner
-            .classList
-            .add(
-                "visible"
-            );
+        final.classList.add(
+            "visible"
+        );
 
     },1450);
 
 
     /*
-       BANNER STAYS
-       FOR 1 MINUTE
+       BANNER = 1 MINUTE
     */
 
     setTimeout(()=>{
 
         hideAll();
 
-
         document
             .getElementById(
                 "logoReady"
             )
             .classList
-            .remove(
-                "hidden"
-            );
-
+            .remove("hidden");
 
     },60000);
 
 }
 
 
-/* =================================================
+/* =====================================================
    LOGO START
-================================================= */
+===================================================== */
 
 function startLogoLaunch(){
 
     unlockAudio();
 
-    soundLaunch();
-
-
     hideAll();
 
+    startLogoSuspense();
 
-    const loading =
+}
+
+
+/* =====================================================
+   LOGO SUSPENSE
+===================================================== */
+
+function startLogoSuspense(){
+
+    const screen =
         document.getElementById(
-            "logoLoading"
+            "logoSuspense"
+        );
+
+    const text =
+        document.getElementById(
+            "suspenseText"
+        );
+
+    const dim =
+        document.getElementById(
+            "suspenseDim"
+        );
+
+    const heart =
+        document.getElementById(
+            "heartbeat"
         );
 
 
-    loading
-        .classList
-        .remove(
-            "hidden"
-        );
+    screen.classList.remove(
+        "hidden"
+    );
+
+    text.textContent="";
+    dim.textContent="";
+
+    heart.style.opacity="0";
 
 
     /*
-       EXACTLY 15 SEC
+       0 - 2 sec
+       WAIT...
+    */
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "WAIT...";
+
+    },200);
+
+
+    /*
+       2 - 5 sec
+    */
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "THAT WASN'T THE END.";
+
+    },2500);
+
+
+    /*
+       Heartbeat
+    */
+
+    setTimeout(()=>{
+
+        heart.style.opacity="1";
+
+        soundHeartbeat();
+
+    },5000);
+
+
+    /*
+       5 - 8 sec
+    */
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "YOU'VE UNLOCKED THE SYSTEM...";
+
+    },5500);
+
+
+    /*
+       8 - 11 sec
+    */
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "BUT THE REAL SECRET...";
+
+    },8500);
+
+
+    /*
+       11 - 14 sec
+    */
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "...IS STILL HIDDEN.";
+
+        screen.classList.add(
+            "glitch"
+        );
+
+    },11000);
+
+
+    /*
+       14 - 17 sec
+    */
+
+    setTimeout(()=>{
+
+        screen.classList.remove(
+            "glitch"
+        );
+
+        text.textContent =
+            "ONE FINAL SEQUENCE REMAINS.";
+
+    },14000);
+
+
+    /*
+       System progress
+    */
+
+    setTimeout(()=>{
+
+        startSystemProgress();
+
+    },17000);
+
+}
+
+
+/* =====================================================
+   SYSTEM PROGRESS
+===================================================== */
+
+function startSystemProgress(){
+
+    hideAll();
+
+    const screen =
+        document.getElementById(
+            "systemProgress"
+        );
+
+    const progress =
+        document.getElementById(
+            "progressFill"
+        );
+
+    const text =
+        document.getElementById(
+            "progressText"
+        );
+
+
+    screen.classList.remove(
+        "hidden"
+    );
+
+
+    /* 40% */
+
+    progress.style.width="40%";
+
+    text.textContent =
+        "████░░░░░░ 40%";
+
+
+    setTimeout(()=>{
+
+        screen.classList.add(
+            "glitch"
+        );
+
+    },1200);
+
+
+    setTimeout(()=>{
+
+        screen.classList.remove(
+            "glitch"
+        );
+
+        text.textContent =
+            "DO NOT LOOK AWAY.";
+
+        progress.style.width="80%";
+
+    },3000);
+
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "████████░░ 80%";
+
+    },3600);
+
+
+    setTimeout(()=>{
+
+        text.textContent =
+            "THE MOMENT YOU'VE BEEN WAITING FOR...";
+
+    },5000);
+
+
+    setTimeout(()=>{
+
+        progress.style.width =
+            "100%";
+
+        text.textContent =
+            "██████████ 100%";
+
+    },7000);
+
+
+    /*
+       Silence → 3
     */
 
     setTimeout(()=>{
 
         startLogoCountdown();
 
-    },15000);
+    },8500);
 
 }
 
 
-/* =================================================
-   LOGO COUNTDOWN
-================================================= */
+/* =====================================================
+   FINAL 3 2 1
+===================================================== */
 
 function startLogoCountdown(){
 
     hideAll();
 
-
     const screen =
         document.getElementById(
             "logoCountdown"
         );
-
 
     const number =
         document.getElementById(
@@ -3322,18 +3100,15 @@ function startLogoCountdown(){
         );
 
 
-    screen
-        .classList
-        .remove(
-            "hidden"
-        );
+    screen.classList.remove(
+        "hidden"
+    );
 
 
     let n=3;
 
-
-    number.textContent=n;
-
+    number.textContent =
+        n;
 
     soundBeep();
 
@@ -3343,52 +3118,45 @@ function startLogoCountdown(){
 
             n--;
 
-
             if(n>0){
 
-                number.textContent=n;
+                number.textContent =
+                    n;
 
-
-                number.style.animation=
+                number.style.animation =
                     "none";
-
 
                 void number.offsetWidth;
 
-
-                number.style.animation=
+                number.style.animation =
                     "pulse 1s ease";
-
 
                 soundBeep();
 
             }
 
-
             else{
 
                 clearInterval(timer);
-
 
                 revealLogo();
 
             }
 
-        },1000);
+        },1200);
 
 }
 
 
-/* =================================================
+/* =====================================================
    LOGO REVEAL
-================================================= */
+===================================================== */
 
 function revealLogo(){
 
     hideAll();
 
-
-    soundLaunch();
+    soundBoom();
 
 
     const flash =
@@ -3396,97 +3164,69 @@ function revealLogo(){
             "flash"
         );
 
-
     const scene =
         document.getElementById(
             "logoLaunch"
         );
 
 
-    const message =
-        document.getElementById(
-            "logoMessage"
-        );
+    flash.classList.add(
+        "active"
+    );
 
 
-    /*
-       BOOM FLASH
-    */
+    setTimeout(()=>{
 
-    flash
-        .classList
-        .add(
+        flash.classList.remove(
             "active"
         );
 
-
-    setTimeout(()=>{
-
-        flash
-            .classList
-            .remove(
-                "active"
-            );
-
-
-        /*
-           LOGO
-        */
-
-        scene
-            .classList
-            .remove(
-                "show"
-            );
-
+        scene.classList.remove(
+            "show"
+        );
 
         void scene.offsetWidth;
 
+        scene.classList.add(
+            "show"
+        );
 
-        scene
-            .classList
-            .add(
-                "show"
-            );
-
-
-        /*
-           MESSAGE
-        */
-
-        message
-            .classList
-            .remove(
-                "show"
-            );
-
-
-        void message.offsetWidth;
-
-
-        message
-            .classList
-            .add(
-                "show"
-            );
-
-
-    },300);
+    },400);
 
 
     /*
-       LOGO STAYS FOR
-       45 SECONDS
+       Final message after logo appears
     */
 
     setTimeout(()=>{
 
-        console.log(
-            "45 SECOND LOGO DISPLAY COMPLETE"
+        showFinalMessage();
+
+    },4000);
+
+}
+
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
+
+function showFinalMessage(){
+
+    const msg =
+        document.getElementById(
+            "finalMessage"
         );
 
+    msg.classList.remove(
+        "show"
+    );
 
-    },45000);
+    void msg.offsetWidth;
+
+    msg.classList.add(
+        "show"
+    );
 
 }
 
@@ -3494,5 +3234,4 @@ function revealLogo(){
 </script>
 
 </body>
-
 </html>
