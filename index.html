@@ -1102,19 +1102,19 @@ button{
 
 
 <!-- =================================================
-     5. Associate PRESIDENT
+     5. associative PRESIDENT
 ================================================= -->
 
 <div
     class="screen hidden"
-    id="Associate">
+    id="associative">
 
     <div class="label">
         SECOND AUTHORIZATION REQUIRED
     </div>
 
     <div class="title">
-        Associate PRESIDENT
+        ASSOCIATIVE PRESIDENT
     </div>
 
     <div class="subtitle">
@@ -1123,7 +1123,7 @@ button{
 
     <button
         class="enterBtn"
-        onclick="AssociateEnter()">
+        onclick="associativeEnter()">
 
         ENTER
 
@@ -1133,12 +1133,12 @@ button{
 
 
 <!-- =================================================
-     6. Associate LOADING
+     6. associative LOADING
 ================================================= -->
 
 <div
     class="screen hidden loadingScreen"
-    id="AssociateLoading">
+    id="associativeLoading">
 
     <div class="label">
         SECURITY PROTOCOL
@@ -1149,7 +1149,7 @@ button{
     </div>
 
     <div class="loadingText">
-        VERIFYING Associate PRESIDENT AUTHORIZATION
+        VERIFYING associative PRESIDENT AUTHORIZATION
     </div>
 
     <div class="dots">
@@ -1164,7 +1164,7 @@ button{
 
 
 <!-- =================================================
-     7. Associate ERROR
+     7. associative ERROR
 ================================================= -->
 
 <div
@@ -1182,7 +1182,7 @@ button{
         </div>
 
         <div class="errorSmall">
-            Associate PRESIDENT ACCESS DENIED
+            associative PRESIDENT ACCESS DENIED
         </div>
 
     </div>
@@ -1878,9 +1878,9 @@ const screens=[
 
     "error1",
 
-    "Associate",
+    "associative",
 
-    "AssociateLoading",
+    "associativeLoading",
 
     "error2",
 
@@ -2015,7 +2015,7 @@ function presidentEnter(){
         hideAll();
 
         document
-            .getElementById("Associate")
+            .getElementById("associative")
             .classList
             .remove("hidden");
 
@@ -2025,10 +2025,10 @@ function presidentEnter(){
 
 
 /* =================================================
-   Associate
+   associative
 ================================================= */
 
-function AssociateEnter(){
+function associativeEnter(){
 
     unlockAudio();
 
@@ -2037,7 +2037,7 @@ function AssociateEnter(){
     hideAll();
 
     document
-        .getElementById("AssociateLoading")
+        .getElementById("associativeLoading")
         .classList
         .remove("hidden");
 
@@ -2575,6 +2575,16 @@ function revealLogo(){
             "logoLaunch"
         );
 
+    const video =
+        document.getElementById(
+            "logoVideo"
+        );
+
+    try{
+        video.pause();
+        video.currentTime = 0;
+        video.muted = false;
+    }catch(e){}
 
     scene.classList.remove(
         "show"
@@ -2585,6 +2595,16 @@ function revealLogo(){
     scene.classList.add(
         "show"
     );
+
+    try{
+        const p = video.play();
+        if(p){
+            p.catch(()=>{
+                video.muted = true;
+                video.play().catch(()=>{});
+            });
+        }
+    }catch(e){}
 
 
     /*
@@ -2600,6 +2620,10 @@ function revealLogo(){
         scene.classList.remove(
             "show"
         );
+        try{
+            video.pause();
+            video.currentTime = 0;
+        }catch(e){}
 
     },45000);
 
